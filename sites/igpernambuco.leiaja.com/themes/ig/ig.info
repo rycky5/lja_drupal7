@@ -1,0 +1,20 @@
+name = IG Leia Já
+description = Tema para a parceria com o portal ig.
+package = Core
+version = VERSION
+core = 7.x
+;base theme = leiaja
+
+settings[shortcut_module_link] = 0
+regions[content] = Content
+regions[content_baixo] = Content Baixo
+regions[sidebar] = SideBar
+regions[header] = Header
+regions[footer] = Footer
+regions[cobertura] = Cobertura
+
+
+;Information added by drupal.org packaging script on 2011-06-30
+version = "0.1 BETA"
+project = "drupal"
+datestamp = "1309397516"

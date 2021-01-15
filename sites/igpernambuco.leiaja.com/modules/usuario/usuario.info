@@ -1,0 +1,4 @@
+name = usuario
+description = Entidade customizada para usuários.
+core = 7.x
+package = LeiaJá | IG

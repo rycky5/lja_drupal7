@@ -1,0 +1,96 @@
+.box0017 { padding:0px;margin:0px;overflow:hidden !important;float:left }
+.box0017 .colunas4 {
+width: 620px;
+float: left;
+background:#fff;
+}
+.box0017 .divColunistasBloco {
+height: 220px;
+overflow: hidden;
+}
+.box0017 .tituloH2Colunista {
+margin: 0 0 10px;
+width: 520px;
+}
+.box0017 .tituloH2, .box0017 .tituloH2 a {
+font-family: Arial,Helvetica,sans-serif;
+font-size: 20px;
+width: 520px;
+float: left;
+}
+.box0017 .cinza {
+color: #4C4B4C;
+}
+.box0017 .tituloH2 a {
+text-decoration: none;
+}
+.box0017 .colunas4 .contentCol {
+width: 135.5px;
+float: left;
+}
+.box0017 .contentCol strong {
+font-family: Arial,Helvetica,sans-serif;
+font-size: 12px;
+width: 100%;
+margin: 9px 0 5px;
+float: left;
+line-height: 14px;
+}
+.box0017 a.linksStrong {
+text-decoration: none;
+}
+.box0017 .azulEscuro {
+color: #405CA8;
+}
+.box0017 a.links {
+text-decoration: none;
+}
+.box0017 .cinza {
+color: #4C4B4C;
+}
+.box0017 .colunistaH6 {
+font-family: Arial,Helvetica,sans-serif;
+width: 100%;
+float: left;
+font: 12px arial;
+height: 40px;
+line-height: 14px;
+margin: 2px 0 0;
+}
+.box0017 .margin-left25 {
+margin-left: 25px;
+}
+.box0017 .passador a {
+width: 40px;
+height: 10px;
+padding-top:11px;
+float: left;
+background: #e7e7e7;
+border:1px solid #000000;
+border-radius:3px;
+margin: 0 0 0 6px;
+text-align:center;
+-webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.60);
+-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.60);
+box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.60);
+}
+.box0017 .passador a span { text-indent:-5000px;font-size:0.1px;color:#e7e7e7;;
+width: 0;
+height: 0;
+border-style: solid;
+}
+.box0017 .passador .passaLeft span {
+border-width: 5px 10px 5px 0;
+border-color: transparent #000000 transparent transparent;
+}
+.box0017 .passador .passaLeftFim, .passador .passaRightFim {
+cursor: default;opacity:0.4;
+}
+.box0017 .passador .passaRight span {
+border-width: 5px 0 5px 10px;
+border-color: transparent transparent transparent #000000;
+}
+.branco{color:#fff}.cinza{color:#4C4B4C}.cinza1{color:#666}.cinza2{color:#B4B4B4}.vermelho{color:#EA0C25}.amarelo{color:#FCD416}.laranja{color:#E77D19}.azulClaro{color:#2CB4ED}.azulEscuro{color:#405CA8}.roxo{color:#639}.verde{color:#060}.preto{color:#000}
+.region .box0017 .passador .passaLeft, .region .box0017 .passador .passaRight, .region .box0017 .passador .passaLeft:hover, .region .box0017 .passador .passaRight:hover { background:none !important; }
+.region .box0017 .passador .passaLeft span {}, .region .box0017 .passador .passaRight span { margin:-5px 15px 7px 15px;float:left; }
+

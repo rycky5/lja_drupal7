@@ -1,0 +1,20 @@
+
+.box0041 h2 a{
+	float:left;
+	margin:5px 0px 5px 0px; 
+	width:100%;
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.box0041 a:hover{
+	text-decoration:underline;
+}
+.box0041 a.titulo{
+	float:left;
+	font-size:18px;
+	color:#f2352f;
+	margin:0px 0px 0px 0px;
+}
+.box0041 .img { float:left;margin-right:10px; }
+.box0041 .node { margin:0px !important;padding:0px !important; }

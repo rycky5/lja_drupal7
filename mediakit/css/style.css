@@ -1,0 +1,289 @@
+/* css */
+body {
+	font-family: 'Source Code Pro' , sans-serif;
+	background-color: #ffffff;
+}
+
+textarea {
+   resize: none;
+}
+
+/* formatação TOPO */
+
+#top {
+	height: 401px;
+	width: 100%;
+	background: url('../img/top.jpg') center no-repeat;
+}
+
+h1#logo {
+	display: block;
+	width: 250px;
+	margin: 0 auto;
+	display:none;
+}
+
+h1#logo a {
+	width: 250px;
+	height: 90px;
+	display: block;
+	text-indent: -9999px;
+	background:url('../img/logo.png') center no-repeat;
+	position: relative;
+	top: 90px;
+	left: 255px;
+}
+
+#menu {
+	width: 100%;
+	background-color: #656565;
+	height: 80px;
+	z-index: 2;
+}
+
+ul.menu-list {
+	display: block;
+	width: 975px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+ul.menu-list li {
+	display: inline-block;
+	height: 100%;
+	line-height: 75px;
+	padding-right: 120px;
+}
+
+ul.menu-list li:last-child {
+	padding-right: 0;
+}
+
+ul.menu-list li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 20px;
+	font-weight: 300;
+	color: white;
+	text-decoration: none;
+}
+
+ul.menu-list li a:hover {
+	color: #80c8df;
+}
+
+ul.menu-list li:hover {
+	color:#bbefff;
+}
+
+/* fim da formatação TOPO */
+
+/* formatação CONTENT */
+
+#content {
+	min-height: 1800px;
+	width: 975px;
+	margin: 0 auto;
+	color: #544d4d;
+}
+
+#content .content-topic {
+	padding-top: 80px;
+}
+
+#content .content-topic h2 {
+	font-size: 30px;
+	font-weight: 300;
+	margin-bottom: 20px;
+	word-spacing: -5px;
+	letter-spacing: -1px;
+}
+
+.formato-slide { 
+	border-bottom: 2px dotted #dadada;
+	margin-top: 15px;
+	float: left;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+#formatos-comerciais {
+	min-height: 400px;
+}
+
+#menu-formatos {
+	height: 60px;
+	margin: 20px 0 40px 0;
+}
+
+#menu-formatos ul {
+	width: 975px;
+	height: 60px;
+	border-top: 2px dotted #dadada;
+	border-bottom: 2px dotted #dadada;	
+	background-color: #ffffff;
+}
+
+#menu-formatos ul li {
+	display: block;
+	float: left;
+	height: 100%;
+	width: 13%;
+	margin-right: 6px;
+	margin-left: 4px;
+	color: #544d4d;
+}
+
+#menu-formatos ul li.ativo {
+	color: #80c8df;
+}
+
+#menu-formatos ul li a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	color: inherit;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	word-spacing: -5px;
+}
+
+#menu-formatos ul li a span {
+	position: relative;
+	top:20px;
+}
+
+#menu-formatos ul li:nth-child(2) a span {
+	position: relative;
+	top:12px;
+}
+
+#menu-formatos ul li a:hover {
+	transition:0.2s;
+	text-decoration: underline;
+}
+
+.div-info {
+	display: inline-block;
+	max-width: 300px;
+}
+
+.formato-slide {
+	margin-bottom: 60px;
+}
+
+.formato-slide figure {
+	display: inline-block;
+	float: right;
+	clear: both;
+}
+
+.div-info h3 {
+	font-size: 28px;
+	font-weight: bold;
+	color: #80c8df;
+	margin-bottom: 25px;
+}
+
+.div-info ul {
+	width: 100%;
+}
+
+.div-info ul li {
+	margin:0 0 20px 20px;
+	font-size: 15px;
+}
+
+.formato-slide figure {
+	width: 632px;
+}
+
+#dados-audiencia ul {
+	padding-top: 20px;
+}
+
+#dados-audiencia ul li {
+  margin: 0 0 20px 20px;
+}
+
+#dados-audiencia h3 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #80c8df;
+	margin-bottom: 25px;
+	margin-top:50px;
+}
+
+#form-contato {
+	padding: 20px 0 40px 0;
+}
+
+#form-contato input, #form-contato textarea {
+	display: block;
+	margin: 10px 0;
+}
+
+#form-contato input {
+	width: 240px;
+}
+
+#form-contato input#submit {
+	width: 100px;
+}
+
+#form-contato textarea {
+	width: 50%;
+	height: 200px;
+}
+
+/* fim formatação CONTENT */
+
+#footer {
+	background-color: black;
+	min-height: 30px;
+	margin-top: 30px;
+	float: left;
+	width: 100%;
+}
+
+#footer p {
+	text-align: center;
+	color:#ffffff;
+	font-size: 12px;
+	padding-top:10px;
+}
+
+/* fim formatação FOOTER */
+
+/* fixar menu ao topo */
+
+.topofixo {
+	position: fixed;
+	top:0;
+	height: 40px !important;
+}
+
+.topofixo ul.menu-list li {
+	line-height: 35px !important;
+}
+
+/* Ajustes */
+
+p{
+	margin-bottom: 15px;
+	line-height: 22px;
+}
+ul li p{
+	margin-bottom: 0;
+}
+
+.error{
+    display: block;
+    size: 12px;
+    font-style: italic;
+    color: red;
+    margin-bottom: 10px;
+}

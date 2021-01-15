@@ -1,0 +1,4 @@
+name = Leia Já - Core
+description = Modulo com customizações para portal LeiaJá.
+core = 7.x
+package = Leia Já

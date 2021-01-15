@@ -1,0 +1,80 @@
+/* boxImgGrande */
+.box0008 div{	
+  margin:0px;
+}
+.box0008 .container{
+	border-radius:8px;
+	background:#ebebeb;
+	width:100%;
+}
+.box0008 ul{
+	position:relative !important;
+}
+.box0008 ul li{
+	float:left;
+	margin:0px;
+}
+.box0008 h1 a{
+	float:left;
+	margin:0px 0px 0px 0px;
+	width:100%; 
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.box0008 h1 a:hover{
+	text-decoration:underline;
+}
+.box0008 p a{
+	float:left;
+	width:600px;
+	margin:5px 0px 0px 0px;
+	color:#1cafdd;
+	line-height:36px;
+	font-size:28px;
+}
+.box0008 p a:hover{
+	text-decoration:underline;
+}
+
+/* /boxImgGrande */
+
+.box0008 div.carrossel{
+	float:left;
+	overflow:hidden;
+	width:100%;
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+}
+.box0008 div.carrossel ul { width:4000px; }
+
+.box0008 a.passadorPequenoEsq,
+.box0008 a.passadorPequenoDir{
+	width:30px;
+	height:82px;
+}
+.box0008 a.passadorPequenoEsq{position:absolute; left:-13px; top:190px; background:url('../images/bgPassadorPequenoEsq.png');}
+.box0008 a.passadorPequenoDir{position:absolute; right:-13px; top:190px; background:url('../images/bgPassadorPequenoDir.png');}
+
+
+.box0008 a.passadorPequenoEsq span , .box0008 a.passadorPequenoDir span {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	top:27px;
+}
+.box0008 a.passadorPequenoEsq span {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #d7d7d7;
+	border-width: 14px;
+	margin-left:-7px;
+}
+.box0008 a.passadorPequenoDir span {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #d7d7d7;
+	border-width: 14px;
+	margin-left:9px;
+}

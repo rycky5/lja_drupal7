@@ -1,0 +1,92 @@
+.tituloH2Colunista a{
+    color: #6f6f6f;
+    border-bottom:solid 6px #6f6f6f!important;
+}
+.template-colunistas .foto-colunista{
+    float: left;
+    margin-top: 50px;
+}
+.template-colunistas .content-colunistas{
+    float: right;
+    text-align: right;
+    width: 65%;
+    margin-top: 50px;
+}
+.template-colunistas .content-colunistas h2{
+    font-family: verdana;
+    font-size: 50px;
+    text-align: right;
+    color: #6d1818;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.template-colunistas .content-colunistas h3{
+   font-family: verdana;
+   font-size: 18px;
+   margin-bottom: 30px;
+}
+.template-colunistas .content-colunistas h4{
+   font-family: verdana;
+   font-size: 14px;
+   margin-bottom: 50px;
+   width: 80%;
+   float: right;
+}
+
+/* Node
+-------------------------------------------------------------------------------*/
+.template-node-colunistas{
+    padding-top: 0px!important;
+    min-height: auto!important;
+}
+section .bottom_barra{
+    margin-top: 25px;
+}
+.template-node-colunistas hr{
+    border: 0;
+    width: 100%;
+    float: left;
+    height: 6px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    background: url('../images/bg_info.png')top repeat-x;
+}
+section .bottom_inner{
+    margin-bottom: 15px;
+}
+section .inner_content .info{
+    padding: 0 0 50px 0;
+}
+
+.template-node-colunistas ul.tags li{
+    width: auto;
+    border:  0;
+}
+
+.template-node-colunistas .share ul li{
+    border:  0;
+}
+.template-node-colunistas .tagsExibir .tags{    
+    width: auto;
+     padding: 0 0 10px 0px;
+}
+.template-node-colunistas .tagsExibir ul li {
+    padding: 0 0 20px 0px;
+}
+
+.divPaginacao{
+    width: 960px;
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+}
+
+.content_aviso{
+    width: 60%;
+    float: right;
+    margin-bottom: 10px;
+    font-style: italic;
+    text-align: justify;
+    font-size: 11px;
+    color: #999;
+}

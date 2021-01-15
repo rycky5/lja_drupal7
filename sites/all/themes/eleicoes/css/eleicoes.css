@@ -1,0 +1,109 @@
+/*------- Eleicoes 2012 -------*/
+body { background:url(../images/bgBody.png) }
+#divTopoEleicoes { position:absolute;top:0px;z-index:2;width:100%; }
+.divBg1 { width:45%;background:url(../images/bgTopoVerde.png)  }
+.divBg1 h1 { text-indent:-9999em;float:right;height:115px ;width:379px;background:url(../images/bgTopoVerde2.png) right no-repeat; }
+.divBg2 { width:55%;background:url(../images/bgTopoAzul.png)  }
+.divBg { width:100%;background:url(../images/bgTopoFull.jpg) center center;text-align:center;text-indent:-5000px;  }
+.divBg2 div {width:100%;background:url(../images/bgTopoAzul2.jpg) left no-repeat; }
+.divBg1, .divBg2, .divBg2 div, .divBg { float:left;height:114px; }
+.divMenuEleicoes { height:43px;width:100%;float:left;background:url(../images/bgMenu.png);z-index:999;position:relative; }
+#divTopoEleicoesContent { width: 625px;margin: 0px auto; }
+#divTopoEleicoesContent .divMenuEleicoes { z-index:2;position:relative; }
+
+.divEleicoesHome #EleicoesSocial { width:300px;height:70px;position:absolute;margin:380px 0px 0px 0px;z-index:4 }
+.divEleicoesHome #EleicoesSocial p { width:180px;float:left;font:bold 21px arial;color:#b6b1b1;padding: 9px 20px 0px 0px;text-align:center; }
+.divEleicoesHome #EleicoesSocial  ul { float:left;width:100px }
+#divLogoEleicoes { width:698px; height:306px;position:absolute;margin: 35px 0px 0px -80px;z-index:3 }
+#divEspecialEleicoes { background:url(../images/bgCmeio.png) center top repeat-y  }
+#divEspecialEleicoes  .divContainerContent { width:625px;padding: 0px 65px 0px 65px }
+#tiralateral1 { background:url(../images/tira1.png) left top no-repeat;position:absolute;z-index:1;height:822px;width:167px;margin: -30px 0px 0px -174px }
+#tiralateral2 { background:url(../images/tira2.png) left top no-repeat;position:absolute;z-index:1;width:138px;height:614px;margin: -370px 0px 0px 640px;}
+#divEspecialEleicoes  .divContainerContent .bordaTopo, #divTopoEleicoesContent .divMenuEleicoes { width:756px;height:58px;float:left;margin-left:-65px;background:url(../images/bgmenu.png) no-repeat;float:left;overflow:hidden; }
+#divEspecialEleicoes  .divContainerContent .bordaTopo { margin-top:-58px;background:url(../images/bgCtopo.png) no-repeat; }
+
+.divContainerContent .colunaEsquerda {
+float: left;
+width: 700px;
+}
+.colunaEsquerda a { text-decoration:none }
+.colunaEsquerda a:hover { text-decoration:underline }
+
+.colunaEsquerda .colunas2 { width:700px;float:left; }
+.ultimasBanner { background-color:#fff;float:left; }
+.ultimasBanner .banner2 {  margin-left:15px }
+.ultimasBanner .ultimas.ultimasHome li { padding-right:10px; }
+.divEleicoesHome .blocosfoto { float:left;width:370px; }
+
+.colunas2 .contentCol { width:355px; }
+.containerImgH4 { width:230px; }
+.divEleicoesHome .chamadafull { width:685px;border:0px; }
+.contentCol .divInner, .divInner, .listaResultado li { background:url(../images/bgBody2.png);float:left;width:100% }
+.colunas3, .colunas2 .contentCol, .colunas1 .contentCol, .main_view, .divMultimidiaBloco, .colunas2_2, .ultimasBanner, .colunas2_1, .viewNoticiaEleicoes, ul.listaResultado { border:0px;padding-bottom:0px;padding:7px;background-color:#fff;float:left;
+-moz-box-shadow: 0px 7px 10px #bababa;
+-webkit-box-shadow: 0px 7px 10px #bababa;
+box-shadow: 0px 7px 10px #bababa;
+}
+.colunaEsquerda .colunas3, .ultimasBanner, .colunaEsquerda .colunas2_1 { width:685px;float:left } 
+.divNoticiasFloat { float:left;width:100%; }
+.divNoticiasFloat .colunas2_2 { float:left;position:absolute;margin:-119px 0px 0px 385px }
+.contentCol.margin-left25, .margin-left25 { margin-left:25px; }
+.contentCol.margin-left15, .margin-left15 { margin-left:15px; }
+.contentCol.margin-right15, .margin-right15 { margin-right:15px; }
+.colunaprincipal { padding-bottom:15px; }
+.noticiaH5 { height:19px;min-height:19px;margin-top:-2px;font-size:13px }
+.multimidia { width:630px; }
+.divMultimidiaBloco { width:685px }
+.ultimasCaderno { height:250px;overflow:hidden;width:355px }
+.ultimasCaderno ul.ultimas { width:355px; }
+
+.colunas2_1 .tagDestaqueH2 { width:100%;margin: 0px 0px 5px 20px; }
+#carrosselVideos .divInner { padding:7px;width:300px;margin: 0px 11px 0px 11px; }
+.paginacaoVideos { position:absolute; }
+.paginacaoVideos ul, .paginacaoVideos li { float:left;padding:0px;margin:0px; }
+.paginacaoVideos a { background-color:#f1f1f1;float:left;position:absolute;color:#000;font:bold 40px arial;text-decoration:none;padding:20px 0px 25px 0px;width:40px;text-align:center;border-radius:15px;line-height:0px;margin-top:130px;
+-moz-box-shadow: 0px 2px 5px #000;
+-webkit-box-shadow: 0px 2px 5px #000;
+box-shadow: 0px 2px 5px #000; }
+.paginacaoVideos a:hover { text-decoration:none }
+.paginacaoVideos .proximo { margin-left:645px}
+#carrosselVideos { float:left;width:670px;margin-left:7px;overflow:hidden; }
+#carrosselVideos  .content { width:5000px;float:left; }
+
+.divMenuEleicoes .menuTopo { width:600px;margin:0px auto; }
+.divMenuEleicoes .menuTopo ul { margin-left:-20px; }
+.divMenuEleicoes .menuTopo ul ul { margin-left:0px; }
+.divMenuEleicoes ul, .divMenuEleicoes ul li { float:left;cursor:pointer; }
+.divMenuEleicoes ul li:hover { overflow:visible; }
+.divMenuEleicoes ul li { height:43px;overflow:hidden;text-align:center;width:150px; }
+.divMenuEleicoes ul ul { margin:-1px 0px 0px 10px; }
+.divMenuEleicoes ul ul, .divMenuEleicoes ul li li { width:230px;float:left;height:auto;text-align:left; }
+.divMenuEleicoes ul li li:last-child { border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;overflow:hidden }
+.divMenuEleicoes a { color:#fff;font:16px arial;text-decoration:none;padding:12px;cursor:pointer;display:block;word-break: keep-all;max-width:184px; }
+.divMenuEleicoes a:hover { color:#f1f1f1;text-decoration:underline;background-color:#003e77; }
+.divMenuEleicoes li li a { width:184px;padding:5px 5px 5px 20px;background-color:#002649;border-bottom:1px dotted #3b5064;float:left; }
+.divMenuEleicoes ul li li { width:210px;overflow:hidden; }
+
+.divContainerContent  .viewNoticiaEleicoes { width:685px;}
+.divContainerContent  .viewNoticiaEleicoes a { color:#e31d21; }
+.breadcumb { color:#333; }
+.breadcumb a { font: bold 14px arial;margin:5px 0px 0px 5px; }
+.divContainerContent  .viewNoticiaEleicoes .divInner { float:left;margin:5px;padding:25px;width:625px; }
+ul.listaResultado li { width:617px;margin:5px;overflow:hidden; }
+
+#tabspesquisa a { color:#005B7F }
+#tabspesquisa a:hover { color:#fff;text-decoration:none; }
+
+.eleicoesPeqsuisaGrafico { width:600px;margin:0px auto; }
+.eleicoesPeqsuisaGrafico div { width:100%;min-height:400px;display:block;border-radius:10px;margin-top:10px; }
+.eleicoesPeqsuisaGrafico a {
+background: url(http://static1.leiaja.com/sites/all/themes/leiaja/images/logocharts.png) 0 0 no-repeat;
+height: 39px;
+width: 120px;
+z-index:999;
+float:left;
+position:relative;
+text-indent:-9999em;
+margin:-60px 0px 0px 470px;
+}
+iframe { float:left; }

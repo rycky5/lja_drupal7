@@ -1,0 +1,191 @@
+<?php
+
+/**
+ * Arquivo que conterá os hooks do módulo de montagem de capa
+ * 
+ * @author Alberto Medeiros <alberto.medeiros@sereducacional.com>
+ */
+
+/**
+ * Método que irá  implementar os temas do meu módulo
+ * 
+ * @return Themas 
+ */
+function blocosespeciais_theme() {
+
+    $path = drupal_get_path('module', 'blocosespeciais');
+
+    return array(
+        'montarcapa' => array(
+            'template' => 'montarcapa',
+            'path' => "$path/theme",
+        ),        
+        'capa_montada' => array(
+            'template' => 'capa_montada',
+            'path' => "$path/theme",
+        ),
+        'custom_block' => array(
+            'template' => 'custom_block',
+            'path' => "$path/theme",
+        ),
+        'custom_block_carnaval' => array(
+            'template' => 'custom_block_carnaval',
+            'path' => "$path/theme",
+        ),
+        'custom_block_copa' => array(
+            'template' => 'custom_block_copa',
+            'path' => "$path/theme",
+        ),
+        'custom_block_eleicoes' => array(
+            'template' => 'custom_block_eleicoes',
+            'path' => "$path/theme",
+        ),
+        'custom_block_saojoao' => array(
+            'template' => 'custom_block_saojoao',
+            'path' => "$path/theme",
+        ),
+    );
+}
+
+/*
+ * Implement hook_permission().
+ */
+
+function blocosespeciais_permission() {
+    return array(
+        'administer capa' => array(
+            'title' => t('Configurar Capa'),
+            'description' => t('Permite configurar as capas.'),
+        ),
+        'change node type' => array(
+            'title' => t('Trocar caderno'),
+            'description' => t('Permite alterar caderno da publicação.')
+        ),
+        'baixar arquivos' => array(
+            'title' => t('Download Arquivos Enviados.'),
+            'description' => t('Permite listar e baixar os arquivos enviados.'),
+        )
+    );
+}
+
+function blocosespeciais_menu() {
+    $items = array();
+
+    $items['admin/structure/blocosespeciais/montarcapa'] = array(
+        'title' => t('Custom Block'),
+        'page callback' => 'montarcapa',
+        'access arguments' => array('access content'),
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+        'weight' => -1,
+        'type' => MENU_CALLBACK,
+    );
+
+    $items['admin/blocosespeciais/ajaxnoticiasporcaderno'] = array(
+        'title' => 'Ajax de montagem de capa',
+        'type' => MENU_LOCAL_TASK,
+        'page callback' => 'ajax_noticiasPorCaderno',
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+    );
+
+    $items['admin/blocosespeciais/ajaxtemplateig'] = array(
+        'title' => 'Ajax pra carregar o template do IG',
+        'page callback' => 'ajax_templateig',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+    );
+
+    $items['admin/blocosespeciais/ajaxcarreganode'] = array(
+        'title' => 'Ajax pra carregar a node',
+        'page callback' => 'ajax_carreganode',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+    );
+
+    $items['admin/blocosespeciais/ajaxsalvarcapa'] = array(
+        'title' => 'ajax pra salvar a capa',
+        'page callback' => 'ajax_salvarcapa',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+    );
+
+    $items['admin/blocosespeciais/populartemplate'] = array(
+        'title' => 'Ajax pra popular o template',
+        'type' => MENU_LOCAL_TASK,
+        'page callback' => 'ajax_populartemplate',
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('administer capa'),
+    );
+
+    $items['cachenoticia'] = array(
+        'title' => 'Limpar cache node',
+        'page callback' => 'limparCacheNode',
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'blocosespeciais.inc',
+        'access arguments' => array('access content'),
+    );
+    return $items;
+}
+
+## hook block_info ##
+
+function blocosespeciais_block_info() {
+
+    $blocks = array();
+    $blocks['bloco_montarcapa'] = array(
+        'info' => 'Bloco do parceiro Agenda Recife',
+    );
+    $blocks['custom_block'] = array(
+        'info' => 'Bloco Especial Leiajá',
+    );
+    $blocks['custom_block_carnaval'] = array(
+        'info' => 'Bloco Especial Carnaval',
+    );
+    $blocks['custom_block_copa'] = array(
+        'info' => 'Bloco Espeial Copa',
+    );
+    $blocks['custom_block_eleicoes'] = array(
+        'info' => 'Bloco Especial Eleições',
+    );
+    $blocks['custom_block_saojoao'] = array(
+        'info' => 'Bloco Especial São João',
+    );
+
+    return $blocks;
+}
+
+## hook block_view ## 
+
+function blocosespeciais_block_view($delta) {
+   
+    module_load_include('inc', 'blocosespeciais', 'blocosespeciais');
+    $block = array();
+
+    switch ($delta) {
+        case 'custom_block':
+            $vars['nodes'] = getNodesInLeiajaBlock();
+            $block['content'] = theme('custom_block', $vars);
+            break;
+        case 'custom_block_carnaval':
+            $vars['nodes'] = getNodesInCarnavalBlock();
+            $block['content'] = theme('custom_block_carnaval', $vars);
+            break;
+        case 'custom_block_copa':
+            $vars['nodes'] = getNodesInCopaBlock();
+            $block['content'] = theme('custom_block_copa', $vars);
+            break;
+        case 'custom_block_eleicoes':
+            $vars['nodes'] = getNodesInEleicoesBlock();
+            $block['content'] = theme('custom_block_eleicoes', $vars);
+            break;
+        case 'custom_block_saojoao':
+            $vars['nodes'] = getNodesInSaoJoaoBlock();
+            $block['content'] = theme('custom_block_saojoao', $vars);
+            break;
+    }
+    return $block;
+}

@@ -1,0 +1,63 @@
+<?php
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+// incluindo os arquivos necessários
+module_load_include('inc', 'widgetig', 'widgetig');
+
+function widgetig_theme() {
+/*$current_theme = variable_get('theme_default','none');
+
+$themes = list_themes();
+$theme_object = $themes[$current_theme];
+
+$GLOBALS['theme'] = $theme_object->name;*/
+
+  $path = drupal_get_path('module', 'widgetig');
+  $pathTheme = "sites/igpernambuco.leiaja.com/themes/ig";
+  //$pathTheme = drupal_get_path('theme', variable_get('theme_default', NULL));
+  
+  return array(
+    'bloco-maislidas' => array(
+      'template' => 'bloco-maislidas',
+      'path' => $path."/theme/",
+    ),
+     'bloco-climatempo' => array(
+      'template' => 'bloco-climatempo',
+      'path' => $path."/theme/",
+    ),
+  );
+}
+
+
+## hook block_info ##
+function widgetig_block_info(){
+  
+  $blocks = array();
+  $blocks['bloco-maislidas'] = array(
+    'info' => 'Bloco de mais lidas do IG',
+  );
+  $blocks['bloco-climatempo'] = array(
+    'info' => 'Bloco de Clima Tempo',
+  );
+  
+  return $blocks;
+}
+
+## hook block_view ## 
+function widgetig_block_view($delta){
+  module_load_include('inc','widgetig','widgetig');
+  $block = array();
+  
+  switch($delta){
+    case 'bloco-maislidas':
+      $block['content'] = api_bloco_renderiza_bloco('bloco-maislidas');
+      break;
+    case 'bloco-climatempo':
+        $block['content'] = api_bloco_renderiza_bloco('bloco-climatempo');
+        break;
+  }
+  return $block;
+}

@@ -1,0 +1,97 @@
+/* $Id: print.css,v 1.2 2010/09/09 15:27:08 webchick Exp $ */
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fildset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,images{border:0;}
+img{border:medium none;float:left;}
+ul{list-style:none;}
+caption,th{text-align:left;}
+
+/* ---------- General Layout ---------- */
+
+body,
+input,
+textarea,
+select {
+  color: #000;
+  background: none;
+}
+body.two-sidebars,
+body.sidebar-first,
+body.sidebar-second,
+body {
+  width: 640px;
+}
+#sidebar-first,
+#sidebar-second,
+.navigation,
+#toolbar,
+#footer-wrapper,
+.tabs,
+.add-or-remove-shortcuts,
+.compartilhaTop,
+ul.leiaTambem,
+.containerAcoes, 
+.tagsExibir,
+.ultimasExibir,
+.compartilhaBottom,
+.adsense{
+	display: none;
+}
+.one-sidebar #content,
+.two-sidebars #content {
+  width: 100%;
+}
+#triptych-wrapper {
+  width: 960px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+#triptych-first, #triptych-middle, #triptych-last {
+  width: 250px;
+}
+
+/* ---------- Node Pages ---------- */
+
+#comments .title,
+#comments form,
+.comment_forbidden {
+  display: none;
+}
+.autorNoticia {
+	float: left;
+  margin: 0 0 10px;
+  width: 100%;
+}
+
+.autorNoticia img{
+	margin:-5px 6px 0 0;
+}
+.creditoFoto { 
+	float: right;
+  font-size: 11px;
+  margin: 0 15px 5px 0;
+}
+
+.gallery-thumbs{display:none;}
+
+.gallery-frame ul li{display:none;}
+
+.gallery-frame ul li:first-child{display:block;}
+
+.tituloNoticia{font-size:30px;float:left;margin:0 0 10px;width:100%;}
+
+.tituloFoto{float:left;margin:5px 0 9px;width:100%;}
+
+.descricaoNoticiaInterna{font-size:17px;margin:0 0 10px;float:left;width:100%;}
+
+.divConteudoExibir img{margin:0 0 10px;}
+
+.textoExibir{width:100%;float:left;}
+
+.textoExibir p{font-size:14px;line-height:17px;color:#333;margin:10px 0 0;}
+
+.textoExibir p a{font-weight:bold;text-decoration:underline;}
+
+.textoExibir p img{float:none;margin:15px 0;text-align:center;}

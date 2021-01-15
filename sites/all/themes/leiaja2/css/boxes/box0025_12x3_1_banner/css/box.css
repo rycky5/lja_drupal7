@@ -1,0 +1,4 @@
+.banner960x100 { float:left;width:960px !important;border-bottom:0px !important;overflow:hidden;height:auto !important;min-height:100% !important; margin-left:-10px !important; }
+.banner960x100 .chapeu { display:none; }
+.banner960x100 pre { background:url(../box.jpg) no-repeat;height:100px; }
+.banner960x100 iframe {margin-left:10px;float:left;}

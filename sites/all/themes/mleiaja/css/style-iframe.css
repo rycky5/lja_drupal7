@@ -1,0 +1,30 @@
+body {
+    background-color: #e0eeef;
+}
+
+#smartphone {
+    background: #e0eeef url(../img/smartphone.png) 55.3% -3.6% no-repeat;
+    height: 771px;
+    width: 683px;
+    top: 55%;
+    right: 45%;
+    position: absolute;
+    margin-top: -385px;
+    margin-right: -341px;
+}
+
+#screen {
+    background-color: #ccc;
+    width: 280px;
+    height: 500px;
+    margin-left: 73px;
+    margin-top: 68px;
+    overflow: hidden;
+    border: none;
+}
+
+iframe {
+    border: none;
+    height: 500px;
+    width: 280px;
+}

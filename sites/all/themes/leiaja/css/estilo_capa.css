@@ -1,0 +1,142 @@
+/*comum a tudo */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,tt,img, button, a {  
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  text-decoration:none;
+  list-style:none;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:12px;
+}
+body { background-color:#fff;margin:0px !important;padding:0px !important; min-width: 0 !important; }
+body .nodeloading { background: url(../images/nodeloading.gif) center center no-repeat !important;text-indent:-5000px; }
+body .nodeloading * { display:none }
+.divContainerGrande{
+	float:left;
+	padding:20px 0px;
+	margin:20px 0px 20px 0px;
+	width:100%;
+}
+.divContainerGrande .divisorBoxTop{
+	position:absolute;
+	left:0px;
+	top:-61px;
+}
+.divContainerGrande .divisorBoxBottom{
+	position:absolute;
+	left:0px;
+	bottom:-21px;
+}
+.blue{background:blue;}
+.yellow{background:yellow;}
+.red{background:red;}
+.green{background:green;}
+.gray{background:gray;}
+.containerLinha{
+	border-bottom: 1px solid #D7D7D7;
+	border-top: 1px solid #D7D7D7;
+}
+.centroContainer{
+	float:left;
+	position:relative;
+}
+/* chapéus bg*/
+  .video a{padding-left:17px; background:url('iconsMidiaG.png') 0px 3px no-repeat;}
+  h1.chapeu, a.chapeu {
+  	float:left;
+	margin:5px 0px 5px 0px; 
+	width:100%;
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+
+/* /comum a tudo */
+
+/* abre/fecha box */
+div.abreBox.wgd12,
+div.fechaBox.wgd12{
+ width:100% !important;
+}
+div.abreBox{float:left; margin:10px 0px 10px 0px; width:100%;}
+div.abreBox div,
+div.fechaBox{
+	border-bottom:solid 1px #798E94;
+}
+div.fechaBox div{margin:0px 10px 0px 10px;}
+div.abreBox div h1,
+div.fechaBox div h1{
+	float:left;
+	padding-right:3px;
+	text-transform:uppercase;
+	font-size:15px;
+	color:#7f7f7f;
+}
+
+.wgdlinha:first-child .wgd12div:first-child .fechaBox:first-child { border-bottom:1px solid #fff; }
+.wgdlinha:first-child .wgd12div:first-child .fechaBox:first-child  div h1 { border-bottom: 3px solid #fff;}
+.wgdlinha.classbg .fechaBox { border-bottom:1px solid #fff !important; }
+.wgdlinha.classbg .fechaBox div h1 { border-bottom: 3px solid #fff;}
+
+
+.zbox { border-bottom:1px dotted #D7D7D7 }
+.zbox.hgd1 { border:0px; }
+.zbox a.img img { background-color:#ccc; }
+/* /abre/fecha box */
+iframe.zbox { margin:0px;border:0px;border-bottom:1px dotted #D7D7D7 !important }
+.boxbanner h1 {
+	float:left;
+	margin:5px 0px 5px 0px; 
+	width:100%;
+	font-size:10px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.boxbanner pre { float:left;width:100%;padding:0px;margin:0px;text-align:center;color:#f1f1f1; }
+
+.zbox .preto, .zbox .preto a { color:#000 !important}
+.zbox h1.preto { border-bottom:solid 3px #000; }
+.zbox .preto .btnlink { background-color:#000;color:#fff; }
+.zbox .cinza, .zbox .cinza a { color:#6c7274 !important}
+.zbox h1.cinza { border-bottom:solid 3px #6c7274; }
+.zbox .cinza .btnlink { background-color:#6c7274;color:#fff; }
+.zbox .vermelho, .zbox .vermelho a { color:#EA0C25 !important}
+.zbox h1.vermelho { border-bottom:solid 3px #EA0C25; }
+.zbox .vermelho .btnlink { background-color:#EA0C25;color:#fff; }
+.zbox .verde, .zbox .verde a { color:#060 !important}
+.zbox h1.verde { border-bottom:solid 3px #060; }
+.zbox .verde .btnlink { background-color:#060;color:#fff; }
+.zbox .azulclaro, .zbox .azulclaro a { color:#2CB4ED !important}
+.zbox h1.azulclaro { border-bottom:solid 3px #2CB4ED; }
+.zbox .azulclaro .btnlink { background-color:#2CB4ED;color:#fff; }
+.zbox .azulescuro, .zbox .azulescuro a { color:#405CA8 !important}
+.zbox h1.azulescuro { border-bottom:solid 3px #405CA8; }
+.zbox .azulescuro .btnlink { background-color:#405CA8;color:#fff; }
+.zbox .laranja, .zbox .laranja a{ color:#E77D19 !important}
+.zbox h1.laranja { border-bottom:solid 3px #E77D19; }
+.zbox .laranja .btnlink { background-color:#E77D19;color:#fff; }
+.zbox .roxo, .zbox .roxo a { color:#639 !important}
+.zbox h1.roxo { border-bottom:solid 3px #639; }
+.zbox .roxo .btnlink { background-color:#639;color:#fff; }
+
+div.abreBox div h1{
+  border-bottom:solid 3px #798E94 !important;
+}
+div.fechaBox div {
+  border-bottom:1px solid #798E94 !important;
+}
+div.fechaBox div h1{
+	float:right;
+	border-bottom:3px solid #798E94 !important;
+	padding-right:100px;
+}
+
+.zbox .passador { display:none; }
+.wgdlinha { float:left;width:960px;margin:0px auto; }
+.wgdcol { margin-left: 10px;margin-right: 10px;}
+
+

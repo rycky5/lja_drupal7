@@ -1,0 +1,111 @@
+<?php
+
+
+function especiais_custom_theme() {
+  if(strstr($_SERVER["SERVER_NAME"].$_SERVER['REQUEST_URI'],$_SERVER["SERVER_NAME"].'/carnaval-2012')){
+    return 'carnaval';
+  }elseif(strstr($_SERVER["SERVER_NAME"].$_SERVER['REQUEST_URI'],$_SERVER["SERVER_NAME"].'/especial/')){
+    if(strstr($_SERVER['REQUEST_URI'],'/parques')){
+      return 'espparques';
+    }elseif(strstr($_SERVER['REQUEST_URI'],'/portasabertas')){
+      return 'portasabertas';
+    }elseif(strstr($_SERVER['REQUEST_URI'],'/retrospectiva')){
+      return 'retrospectiva';
+    }elseif(strstr($_SERVER['REQUEST_URI'],'/mulher')){
+      return 'mulher';
+    }
+  }elseif(strstr($_SERVER["SERVER_NAME"].$_SERVER['REQUEST_URI'],$_SERVER["SERVER_NAME"].'/eleicoes-2012') || arg(0) == "eleicoes"){
+    return 'eleicoes';
+  }
+  
+}
+
+function especiais_theme(){
+  
+  $path = drupal_get_path('module', 'especiais');
+  
+  return array(
+    'list_promos' => array(
+      'template' => 'list_promos',
+      'path' => "$path/theme",
+    ),
+    'list_parti' => array(
+      'template' => 'emails_parti',
+      'path' => "$path/theme",
+    ),
+      'block_promocoes' => array(
+      'template' => 'block_promocoes',
+      'path' => "$path/theme",
+    ),
+  );
+}
+
+
+function especiais_menu(){
+  $items = array();
+  $items['promocoes'] = array(
+    'title' => 'Promoções do LeiaJá',
+    'description' => 'Página responsável por pesquisar o resultado do vestibular da UFPE.',
+    'page callback' => 'lista_promocoes',
+    'access arguments' => array('access content'),
+    'file' => 'promocoes.inc' 
+  );
+  $items['participarpromo'] = array(
+    'title' => 'Participar das Promoções do LeiaJá',
+    'page callback' => 'participar_promo',
+    'access arguments' => array('access content'),
+    'file' => 'promocoes.inc' 
+  );
+  
+    /**
+   *
+   */
+  $items['admin/people/sorteio'] = array(
+    'title' => 'Lista de Participantes.',
+    'description' => t('Administrador da lista de Participantes.'),
+    'page callback' => 'listagem_promo',
+    'access arguments' => array('administer capa'),
+    'file' => 'promocoes.inc',
+    'type' => MENU_LOCAL_TASK
+  );
+  
+  return $items;
+}
+
+
+function especiais_preprocess_page(&$vars){
+  $vocabulary_machine_name = '';
+  if(!empty($vars["page"]["content"]["system_main"]["term_heading"]["term"]["#term"]->vocabulary_machine_name)){
+    $vocabulary_machine_name = $vars["page"]["content"]["system_main"]["term_heading"]["term"]["#term"]->vocabulary_machine_name;
+  }
+  if(arg(0) == 'promocoes'){
+    $vars['vCadernoNome'] = 'Promoções';
+    $vars['is_caderno'] = 'true';
+    $vars['vSubCategorias'] = null;
+    
+  }
+  if($vocabulary_machine_name == 'promocoes'){
+    $vars['theme_hook_suggestions'][] = 'page__promocoes';
+  }
+  //echo '|0:'.arg(0).'|1:'.arg(1).'|2:'.arg(2).'|3:'.arg(3);
+  //var_dump($vars['theme_hook_suggestions']);
+}
+## hook block_info ##
+function especiais_block_info(){
+  $blocks = array();
+  $blocks['widget-promocoes'] = array(
+    'info' => 'Widget de Promoções',
+  );  
+  return $blocks;
+}
+## hook block_view ## 
+function especiais_block_view($delta){
+  module_load_include('inc','especiais','promocoes.api');
+  $block = array();
+  switch($delta){
+    case 'widget-promocoes':
+      $block['content'] = api_widget_promocoes();
+      break;
+  }
+  return $block;
+}

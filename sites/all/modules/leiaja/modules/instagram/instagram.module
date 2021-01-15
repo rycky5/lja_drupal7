@@ -1,0 +1,75 @@
+<?php
+
+module_load_include('inc', 'instagram', 'instagram');
+module_load_include('inc', 'instagram', 'instagram.api');
+$path = drupal_get_path('module', 'instagram');
+
+function instagram_permission() {
+  return array(
+      'administer instagram' => array(
+          'title' => t('Administrar a Hashtag'),
+          'description' => t('Permite realizar alteração do Hashtag do Instagram.'),
+          ));
+}
+
+/**
+ * HOOK_MENU()
+ */
+function instagram_menu() {
+
+  $items = array();
+  $items['instagram/result'] = array(
+      'title' => 'Resultado do instagram para página',
+      'description' => '',
+      'page callback' => 'instagramResult',
+      'access arguments' => array('access content'),
+      'file' => 'instagram.inc'
+  );
+
+  $items['instagram/result/ajax'] = array(
+      'title' => 'Resultado do instagram para página',
+      'description' => '',
+      'page callback' => 'instagramResultAjax',
+      'access arguments' => array('access content'),
+      'file' => 'instagram.inc'
+  );
+
+  $items['admin/config/system/instagram'] = array(
+      'title' => 'Hashtag do Instagram',
+      'description' => 'Configure a hashtag de busca do Instagram.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('instagram_admin'),
+      'access arguments' => array('administer instagram'),
+      'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+function instagram_admin() {
+// configuração inicial do módulo
+  $form['config_inicial'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Configuração da Hashtag do Instagram'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+  );
+
+  $form['config_inicial']['hashtag'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Hashtag'),
+      '#default_value' => variable_get('instagram_hashtag'),
+      '#size' => 60,
+      '#maxlength' => 60,
+      '#description' => t("Informe a Hashtag do Instagram."),
+      '#required' => TRUE,
+  );
+
+  $form['config_inicial']['salvar'] = array(
+      '#type' => 'submit',
+      '#value' => t('Save'),
+      '#weight' => 15,
+      '#submit' => array('instagram_save_hashtag_submit'),
+  );
+  return $form;
+}

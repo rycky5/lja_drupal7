@@ -1,0 +1,191 @@
+/*----- Zerando CSS ------*/
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fildset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,images{border:0;}
+img{border:medium none;float:left;}
+caption,dfn,th,var{font-style:normal;font-weight:normal;}
+ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+body{margin:0;padding:0;width:100%;height:100%;}
+iframe{position:relative;z-index:9999;}
+/*------ Fim Zerando CSS ------*/
+
+/*------ Top Css ------*/
+.divTop{width:100%;float:left;background:url(../images/bgTop.jpg) repeat-x;height:349px;margin:-6px 0 0;}
+.divTop .topContent{margin:0 auto;width:900px;height:349px;position:relative;z-index:2;}
+.divTop .divBgRightPai{background:url(../images/bgPreto.png) no-repeat 446px 26px;height:370px;position:absolute;right:0;top:0;width:50%;z-index:1;;}
+.topContent .divBgRightFilha{margin:0 auto;width:330px;height:349px;background:url(../images/bgContainerTop.png) no-repeat right;position:absolute;right:0;top:0;z-index:3;}
+.divBgRightFilha .facebook{float:left;margin:274px 0 0 80px;height:80px;width:116px;background:url(../images/facebook.png) no-repeat;}
+.topContent .logo{float:left;width:450px;margin:30px 0 0;}
+.topContent .logo a{text-decoration:none;font-family:Arial,sans-serif;color:#CF4A6D;}
+.topContent .logo a h1{font-size:120px;background:#fff;font-weight:bold;margin:-3px 0 0;padding:0 22px;float:left;text-shadow:-1px 0px 0px #5A182A;}
+.topContent .logo a h2{font-size:58px;padding:0 22px;background:#fff;font-weight:bold;float:left;text-shadow:-1px 0px 0px #5A182A;}
+.topContent .logo a h3{font-style:italic;font-size:51px;padding:5px;background:#fff;padding:0 27px;float:left;}
+.topContent ul{width:374px;height:38px;background:url(../images/bgMenuContent.png) repeat-x;margin:19px 122px 0 0;position:absolute;right:0;z-index:4;}
+.topContent ul li.inicio{width:57px;}
+.topContent ul li.oEspecial{width:95px;}
+.topContent ul li.expediente{width:87px;}
+.topContent ul li{font-size:17px;font-family:Arial,sans-serif;float:left;margin:8px 24px;}
+.topContent ul li span{float:right;width:22px;height:28px;background:url(../images/bgLiMenu.png) no-repeat;margin:-3px -30px 0 20px;}
+.topContent ul li a{color:#fff;text-decoration:none;font-style:italic;font-weight:bold;}
+.topContent ul li a:hover{text-decoration:none;color:#CF4A6D;}
+.topContent ul li:last-child{margin:0 -25px 0 0;padding:8px 44px 0 24px;background:url(../images/bgMenuRight.png) no-repeat right;height:30px;}
+.topContent ul li:first-child{margin:0 0 0 -25px;padding:8px 24px 0 44px;background:url(../images/bgMenuLeft.png) no-repeat;height:30px;}
+/*------ Fim Top Css ------*/
+
+/*------ Footer Css ------*/
+.divFooter{background:url(../images/bgFooterCarrocel.png) repeat;float:left;width:100%;height:60px;}
+.divFooter .divFooterContent{width:240px;margin:0 auto;}
+.divFooterContent p{color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:11px;text-align:center;margin:20px 0 0;padding:5px;background:#000;}
+/*------ Fim Footer Css ------*/
+
+/*------ Carrocel Css ------*/
+.divCarrocel{width:100%;float:left;background:url(../images/bgCarrocel.png) repeat-x #000 bottom;height:346px;border-top:3px solid #CF4A6D;margin:-8px 0 0;}
+.divCarrocelContainer{margin:0 auto;width:900px;}
+.divCarrocelContent{width:100%;float:left;}
+.divCarrocelContent .textoGeral{width:100%;float:left;margin:5px 0 4px;}
+.textoGeral h4{font-size:14px;font-family:Arial,sans-serif;float:left;color:#999;margin:0 0 0 362px;}
+.divCarrocelContent a.passadorLeft, .divCarrocelContent a.passadorRight{width:72px;height:56px;float:left;margin:56px 0  0;}
+.divCarrocelContent a.passadorLeft{background:url(../images/bgButtonCarrocelLeft.png) 0 -56px no-repeat;}
+.divCarrocelContent a.passadorRight{background:url(../images/bgButtonCarrocelRight.png) -1px -56px no-repeat;}
+.divCarrocelContent a.passadorLeft:hover{background-position: 0 0;}
+.divCarrocelContent a.passadorRight:hover{background-position: -1px 0;}
+.divCarrocelContent .divContainerUl{width:756px;height:182px;float:left;overflow:hidden;margin:5px 0 0;}
+.divCarrocelContent ul{width:999999px;float:left;}
+.divCarrocelContent ul li{width:189px;height:182px;float:left;}
+.divCarrocelContent ul li img{float:left;opacity:0.5;}
+.divCarrocelContent ul li span{display:none;width:189px;height:4px;float:left;clear:both;background:url(../images/bgContainerNome.png) repeat;margin:-4px 0 0;}
+.divCarrocelContent ul li:hover{cursor:pointer;}
+.divCarrocelContent ul li:hover img, .divCarrocelContent ul li.ativo img{opacity:1;margin:-1px 0 0;}
+.divCarrocelContent ul li:hover span, .divCarrocelContent ul li.ativo span{display:block;}
+.divCarrocelTextos{width:100%;float:left;height:160px;}
+.divCarrocelTextos .divContainerH2{width:300px;float:left;margin:16px 0 0;background:url(../images/bgContainerNome.png) repeat-y;height:96px;}
+.divContainerH2 h2{font-family:Verdana,sans-serif;float:left;color:#fff;background:url(../images/bgNomePessoa.png) repeat;font-size:37px;letter-spacing:3px;line-height:43px;margin:0 0 0 7px;padding:0 13px 5px 8px;}
+.divCarrocelTextos .divContainerH4{width:460px;float:left;background:#000;margin:24px 0 0;}
+.divContainerH4 h4{font-family:Verdana,sans-serif;color:#fff;font-size:15px;float:left;width:440px;padding:10px;}
+a.saibaMais{width:115px;float:right;font-family:Verdana,sans-serif;color:#fff;text-align:center;border:2px dashed #CF4A6D;text-decoration:none;background:url(../images/bgSaibaMais.png) repeat;font-size:18px;height:30px;letter-spacing:2px;line-height:27px;margin:58px 0 0;}
+a.saibaMais:hover{color:#999;}
+/*------ Fim Carrocel Css ------*/
+
+/*------ Carrocel Grande Notícias Css ------*/
+.main_view{float:left;position:relative;}
+.window{height:470px;overflow:hidden;position:relative;width:625px;}
+.image_reel{left:0;position:absolute;top:0;}
+.image_reel img{float:left;}
+.margin-bottom15{margin-bottom:15px;}
+.divContentImg{background:url(../images/bgContentImg.png) repeat;float:left;height:85px;margin:-100px 0 15px;width:625px;}
+.divContentImg .divContentImgEsquerda{float:left;width:370px;}
+.divContentImgEsquerda h3{float:left;margin:15px 10px 5px;width:353px;}
+.divContentImgEsquerda h3 a{color:#CF4A6D;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;text-decoration:none;}
+.divContentImgEsquerda h3 a:hover{color:#999;}
+.divContentImgEsquerda h4{float:left;margin:0 10px;width:353px;}
+.divContentImgEsquerda h4 a{color:#FFF;font-family:Arial,Helvetica,sans-serif;font-size:16px;text-decoration:none;}
+.divContentImg .divContentImgDireita{background-color:#000;float:left;width:255px;}
+.divContentImgDireita img{float:left;margin:5px 10px 0 5px;padding-bottom:5px;}
+.divContentImgDireita h5{float:left;height:75px;padding:5px 0;width:125px;}
+.divContentImgDireita h5 a{color:#FFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;text-decoration:none;}
+.divContentImgDireita h5 a:hover{text-decoration:underline;}
+.paging{bottom:72px;display:none;height:47px;line-height:40px;position:absolute;right:-7px;text-align:center;width:178px;z-index:0;}
+.paging a{background:url(../images/bgContentImg.png) repeat;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:18px;margin:0 3px;padding:4px 9px;text-align:center;text-decoration:none;}
+.paging a:hover{background:url(../images/bgContentUlA.png) repeat;}
+.paging a.active{background:url(../images/bgContentImgHover.png) repeat;color:#000;}
+/*------ Fim Carrocel Grande Notícias Css ------*/
+
+/*------ Coluna Esquerda Css ------*/
+.colunaEsquerda{margin:0 auto;width:800px;}
+h2.tituloNoticiaNode{color:#CF4A6D;float:left;font-family:Verdana,sans-serif;font-size:46px;line-height:52px;margin:20px 0 0;width:100%;}
+h3.descricaoNoticiaInterna{color:#414141;float:left;font-family:Verdana,sans-serif;line-height:17px;margin:10px 0 20px;width:100%;font-size:17px;}
+h5.autorNoticia{border-bottom:1px solid #E7E7E7;color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0 0 -10px;padding:0 0 10px;width:100%;}
+h5.autorNoticia img{margin:0 8px 0 0;}
+h5.autorNoticia{color:#666;font-family:Arial,Helvetica,sans-serif;font-size:12px;}
+h5.autorNoticia{color:#666;font-family:Arial,Helvetica,sans-serif;font-size:12px;}
+.compartilhaTop{float:left;margin:25px 0 0;width:800px;}
+.compartilhaRedes{float:right;width:117px;}
+.compartilhaRedes span{color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:11px;margin:2px 0 0;}
+.compartilhaRedes a{float:left;height:18px;margin:0 0 0 7px;width:18px;}
+.compartilhaRedes a.twitter{background:url(../images/image.png) no-repeat -335px -14px;}
+.compartilhaRedes a.facebook {background:url(../images/image.png) no-repeat -359px -14px;}
+span.creditoFotoGrande{color:#999;float:right;font-family:Arial,Helvetica,sans-serif;font-size:10px;margin:0 0 3px;}
+strong.tituloFoto{color:#666;float:left;font-family: Arial,Helvtica,sans-serif;font-size:12px;margin:3px 0 8px;width:100%;}
+.textoExibir{float:left;width:100%;}
+.textoExibir p{color:#333;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:17px;margin:10px 0 0;}
+.textoExibir p a{font-weight:bold;text-decoration:underline;color:#CF4A6D;}
+.field .field-items .field-item.even{color:#666;font-family:Arial,Helvetica,sans-serif;font-size:14px;}
+.compartilhaBottom{border-bottom:1px solid #E7E7E7;float:left;margin:10px 0 30px;padding:10px 0;width:800px;}
+.compartilhaBottom a{color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:11px;text-decoration:none;}
+.compartilhaBottom .spanCompartilhar{color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:11px;margin:0 7px 0 0;}
+.compartilhaBottom a.btImprimir{background:url(../images/image.png) no-repeat -336px -37px;height:15px;margin-right:7px;width:16px;}
+.compartilhaBottom a.btFaleConosco{background:url(../images/image.png) no-repeat -360px -40px;height:11px;margin-right:7px;margin-top:2px;width:16px;}
+.compartilhaBottom a.btCorrigir{background:url(../images/image.png) no-repeat -359px -56px;height:16px;margin-right:7px;margin-top:-1px;width:16px;}
+.compartilhaBottom a.btComentar{background:url(../images/image.png) no-repeat -383px -37px;height:16px;margin-right:7px;width:16px;}
+.compartilhaBottom a.btCompartilhar{background:url(../images/image.png) no-repeat -338px -56px;height: 14px;margin-right: 7px;width: 12px;}
+.bgInputLink{background:url(../images/image.png) no-repeat 0 -99px;float:left;height:18px;width:186px;}
+.bgInputLink input{background:url(../images/bgInputMenu.png) repeat-x;border:medium none;color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:10px;height:16px;margin:1px 0 0 1px;width:184px;}
+.compartilhaBottom .marginLink{margin-left:21px;}
+.containerAcoes{border:1px solid #E7E7E7;float:left;margin:35px 0 25px 76px;width:623px;}
+.containerAcoes a.fechar{float:right;margin:-23px -1px 0 0;padding:20px 0 0 23px;background: url(../images/image.png) no-repeat -272px -124px;}
+.containerAcoes a.fechar:hover{background-position:-299px -124px;}
+.contentAcoes{background-color:#F5F5F5;float:left;padding:25px 0;width:100%;}
+.contentAcoes h3{color:#333;float:left;font-family:Arial,Helvetica,sans-serif;font-size:19px;margin:0 0 20px 25px;width:575px;}
+.contentAcoes .contentFormEsquerda{float:left;margin:0 25px;width:275px;}
+.contentAcoes .inputGeral{float:left;margin:0 0 20px;width:275px;}
+.contentAcoes .i.contentAcoes .inputGeral .bgInputGeral{background:url(../images/image.png) no-repeat 0 -388px;float:left;height:37px;width:275px;}
+.contentAcoes .inputGeral .bgInputGeral input {background:none;border:medium none;color:#666;font-family:Arial,Helvetica,sans-serif;font-size:14px;height:35px;margin:0 0 0 6px;width:263px;}
+.contentAcoes .captcha{float:left;width:189px;}
+.contentAcoes .captcha img{float:left;margin:0 0 20px;}
+.contentAcoes .captcha a{color:#999;float:left;font-family:Arial,Helvetica,sans-serif;font-size:10px;margin:-10px 0 10px;text-decoration:none;}
+.contentAcoes .captcha a span.refresh{background:url(../images/image.png) no-repeat -292px -102px;float:left;height:15px;margin:-2px 6px 0 0;width:14px;}
+.contentAcoes .captcha span{color:#999;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0 0 9px;width:120px;}
+.contentAcoes .captcha .bgInputCaptcha{background:url(../images/image.png) no-repeat -107px -431px;float:left;height:31px;width:131px;}
+.contentAcoes .captcha .bgInputCaptcha input {background:none;border:medium none;color:#666;font-family:Arial,Helvetica,sans-serif;font-size:14px;height:29px;margin:0 0 0 6px;width:122px;}
+.contentAcoes .contentFormDireita{float:left;width:275px;}
+.contentAcoes .textAreaGeral{width:275px;float:left;margin:0 0 20px;}
+.contentAcoes .textAreaGeral .bgTextAreaGeral{background: url(../images/image.png) no-repeat 0 -472px;float:left;height:150px;width:275px;}
+.contentAcoes .textAreaGeral .bgTextAreaGeral textarea{background:none;border:medium none;color:#666;font-family:Arial,Helvetica,sans-serif;font-size:13px;height:140px;line-height:22px;margin:6px 0 0 6px;    resize:none;width:263px;}
+.contentAcoes .charleft{color:#999;float:right;font-family:Arial,Helvetica,sans-serif;font-size:12px;text-align:right;}
+.contentAcoes button.form{background:url(../images/image.png) no-repeat 0 -124px;}
+.contentAcoes button.form:hover{background-position:-133px -124px;}
+.contentAcoes button.form{border:medium none;cursor:pointer;float:right;height:31px;margin:0;width:131px;}
+.contentAcoes button.form span{float:right;font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:center;width:119px;color:#fff;}
+.contentAcoes .inputGeral label{color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0 0 10px;width:100%;}
+.contentAcoes .inputGeral .bgInputGeral{background:url(../images/image.png) no-repeat 0 -388px;float:left;height:37px;width:275px;}
+.contentAcoes .textAreaGeral label{color:#666;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0 0 10px;width:170px;}
+.contentFormEsquerda p{color:#666;float:left;font-family: rial,Helvetica,sans-serif;font-size:12px;line-height:17px;width:275px;}
+.contentFormEsquerda p a{color:#CF4A6D;}
+a.esqueceuSenha{float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;line-height:17px;margin:7px 0 0;color:#CF4A6D;}
+.listarComentarios{background-color:#FFF;float:left;padding:25px 0 10px;width:100%;}
+.listarComentarios h3{color:#333;float: eft;font-family:Arial,Helvetica,sans-serif;font-size:19px;margin:0 0 5px 25px;width:575px;}
+.listarComentarios ul{float:left;margin:0 0 0 25px;width:575px;}
+.listarComentarios ul li{float:left;width:575px;padding:0 0 15px;margin:15px 0 0;border-bottom:1px dotted #AAA}
+.listarComentarios ul li:last-child{border:none;}
+.listarComentarios ul li h5{color:#666;font-family:Arial,Helvetica,sans-serif;font-size:11px;margin:0 0 10px;}
+.listarComentarios ul li h5 strong{font-family:Arial,Helvetica,sans-serif;font-size:13px;}
+/*------ Fim Coluna Esquerda Css ------*/
+
+/*------ Peril Css ------*/
+.divPerfil{margin:0 auto;width:800px;}
+.divPerfil .divContainerH2{margin:20px 0;display:table;}
+.divPerfil .divContainerH2 h2{color:#CF4A6D;float:left;font-family:Verdana,sans-serif;font-size:62px;line-height:61px;margin:0;padding:0 13px 11px 8px;background:url(../images/bgNomePessoaH2.png) repeat;}
+.divImg{width:400px;float:left;height:393px;margin:15px 25px 15px 0;}
+.divPerfil .divImg img{width:400px;float:left;}
+.divPerfil .divImg .divImgBg{width:400px;position:absolute;margin:315px 0 0;height:78px;background:url(../images/bgImagePerfil.png) no-repeat;}
+.divPerfil p{color:#333;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:17px;margin:10px 0 0;}
+/*------ Fim Perfil Css ------*/
+
+/*------ Content Css ------*/
+.divContainerContent{background:#fff;float:left;width:100%;}
+.divContainerContent .divContent{width:900px;margin:0 auto;}
+.divContent .divContainerMain_view{height:485px;margin:20px 0;padding:14px 0 0 138px;width:762px;background:url(../images/bgCarrocelNoticias.png) no-repeat;}
+.divContainerNoticias{width:900px;float:left;padding:0 0 20px;}
+.bgContainerNoticias{background:url(../images/bgContent.png) bottom right no-repeat;}
+.contentCol{float:left;width:191.6px;background:url(../images/bgNoticiaHome.png)  0 32px no-repeat;padding:0 17px 22px;margin:0 0 0 60px}
+.imgH6Grande{float:left;height:143px;margin:0 0 7px;width:191px;}
+.contentCol h2{float:left;font-family:Arial,Helvetica,sans-serif;font-size:23px;margin:0 0 28px;text-align:right;width:100%;color:#4C4B4C;}
+.contentCol strong{float:left;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:14px;margin:0 0 5px;width:100%;}
+.contentCol strong a{text-decoration:none;color:#CF4A6D;}
+.noticiaH6{min-height:35px;float:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;margin:0;width:100%;}
+.contentCol .noticiaH6 a{float:left;line-height:17px;margin:0 0 1px;text-decoration:none;color:#4C4B4C;}
+.contentCol .noticiaH6 a:hover{text-decoration:underline;}
+/*------ Fim Content Css ------*/ 
+

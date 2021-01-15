@@ -1,0 +1,7 @@
+name = Blocos Especiais
+description = Montagem dos blocos dos especiais
+core = 7.x
+package = Leia Já
+dependencies[] = leiaja
+dependencies[] = capa
+dependencies[] = funcoes

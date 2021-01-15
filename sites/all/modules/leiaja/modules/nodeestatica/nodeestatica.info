@@ -1,0 +1,6 @@
+name = Node Estática
+description = Geração de arquivos HTML estáticos para conteúdos do Leiajá.
+core = 7.x
+package = Leia Já
+
+dependencies[] = pathauto

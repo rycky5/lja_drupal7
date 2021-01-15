@@ -1,0 +1,8 @@
+name = Instagram
+description = Modulo que contém as funções do Instagram
+core = 7.x
+package = Instagram
+configure = admin/config/system/instagram
+
+
+files[] = instagram.module

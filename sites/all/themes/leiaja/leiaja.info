@@ -1,0 +1,27 @@
+name = Leia já (beta)
+description = Portal de Comunicação
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][]   = css/estilo.css
+stylesheets[print][] = css/print.css
+;scripts[]            = js/script.js
+scripts[]            = js/css_browser_selector.js
+scripts[]            = js/jquery.ui.js
+
+
+regions[banner1] = Banner-1 Topo
+regions[content]  = Conteúdo Bloco 1
+regions[content2] = Conteúdo Bloco 2
+regions[colunaDireita] = Coluna Direita
+regions[mapaSite] = Mapa do Site
+regions[shop] = Area para shop.v
+regions[cobertura] = Cobertura
+
+settings[shortcut_module_link] = 0
+
+; Information added by drupal.org packaging script on 2011-01-05
+version = "0.1"
+project = "drupal"
+datestamp = "1294208756"

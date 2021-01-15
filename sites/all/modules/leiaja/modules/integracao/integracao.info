@@ -1,0 +1,4 @@
+name = Leia Já - Integração
+description = Integração com Agência Estado, AFP e Especiais.
+core = 7.x
+package = Leia Já

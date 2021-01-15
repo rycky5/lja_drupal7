@@ -1,0 +1,4 @@
+.banner970x90 { float:left;width:970px !important;height:90px !important;border-bottom:0px !important; }
+.banner970x90 .chapeu { display:none; }
+.banner970x90 pre { background:url(../box.jpg) no-repeat;height:90px; }
+.banner970x90 { margin-left:-10px !important; }

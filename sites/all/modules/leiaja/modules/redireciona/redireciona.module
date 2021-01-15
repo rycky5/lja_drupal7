@@ -1,0 +1,27 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do meu módulo
+ * 
+ * @author Thiago Galvão <galvao@sereducacional.com>
+ */
+
+/**
+ * Método que ira redirecionar a notíca caso o campo de redirecionamento esteja setado
+ * @param type $node
+ * @param type $view_mode
+ * @return type 
+ */
+function redireciona_node_view($node, $view_mode) 
+{
+  // Array de dominios
+  $arrDominios = array("sgc.igpernambuco.leiaja.com", "igpernambuco.leiaja.com", "www3.igpernambuco.leiaja.com", "www4.igpernambuco.leiaja.com");
+  
+  // Parse no id da node
+  $intNid = (int) arg(1);
+  
+  // Caso a notícia esteja sendo exibida em modo full = interna e o campo redireciona esteja setado
+  if(!empty ($node->field_redireciona['und'][0]['value']) && $view_mode == 'full' && !in_array($_SERVER['SERVER_NAME'], $arrDominios)   && arg(0) == "node"  && $intNid != 0){     
+      // Redireciono a notícia para o link setado no campo redireciona
+      header('Location: ' . $node->field_redireciona['und'][0]['value']);
+  }
+}

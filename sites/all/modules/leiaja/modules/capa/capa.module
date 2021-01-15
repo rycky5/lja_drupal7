@@ -1,0 +1,338 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do modulo capa
+ * 
+ * @author Alberto Medeiros
+ */
+
+
+// by Weydson Fraga
+function capa_theme() {
+/*$current_theme = variable_get('theme_default','none');
+
+$themes = list_themes();
+$theme_object = $themes[$current_theme];
+
+$GLOBALS['theme'] = $theme_object->name;*/
+
+  $path      = drupal_get_path('module', 'capa');
+  $pathTheme = path_to_theme();
+  
+  return array(
+    'block-multi-imagens-dest-II' => array(
+      'template' => 'block-multimidia-imagens-destaque-II',
+      'path' => "$path/theme",  
+    ),
+    'block-multi-dest-slideshow' => array(
+      'template' => 'block-multimidia-slideshow',
+      'path' => "$path/theme",
+    ),
+    'montagem-capa' => array(
+      'template' => 'montagem-capa',
+      'path' => "$path/theme",
+    ),
+    'block-multi-img-VII' => array(
+      'template' => 'block-multimidia-imagens-VII',
+      'path' => "$path/theme",
+    ),
+    'block-multi-podcast-V' => array(
+      'template' => 'block-multimidia-podcast-V',
+      'path' => "$path/theme",
+    ),
+    'block-multi-titulos' => array(
+      'template' => 'block-multimidia-titulos',
+      'path' => "$path/theme",
+    ),
+    'block-multi-titulos2' => array(
+      'template' => 'block-multimidia-titulos-bnII',
+      'path' => "$path/theme",
+    ),
+    'block-multi-img-vertical' => array(
+      'template' => 'block-multimidia-imagens-vertical',
+      'path' => "$path/theme",
+    ),
+    'block-multi-img-grande' => array(
+      'template' => 'block-multimidia-imagens-VIII',
+      'path' => "$path/theme",
+    ),
+    'block-multi-img-III' => array(
+      'template' => 'block-multimidia-img-III',
+      'path' => "$path/theme",
+    ),
+    'block-multi-6-img' => array(
+      'template' => 'block-multimidia-imagens-6noticias',
+      'path' => "$path/theme",
+    ),
+    'block-multi-sanfonado' => array(
+      'template' => 'block-multimidia-sanfonado',
+      'path' => "$path/theme",
+    ),
+    'block-multi-img-quadrado' => array(
+      'template' => 'block-multimidia-4noticias-img-e-tit-quadrada',
+      'path' => "$path/theme",
+    ),
+     'block-multi-videos' => array(
+      'template' => 'block-multimidia-videos',
+      'path' => "$path/theme",
+    ),
+      'block-multi-tv-bnV' => array(
+      'template' => 'block-multimidia-tvleiaja-slide-V',
+      'path' => "$path/theme",
+    ),
+      /*novos temas/blocos */
+      'block-multi-tv-bnI' => array(
+      'template' => 'block-multimidia-tvleiaja-slide-I',
+      'path' => "$path/theme",
+    ),
+       /*nova capa/bloco BN-IV */
+      'block-multi-tv-bnIV' => array(
+      'template' => 'block-multimidia-bn-IV',
+      'path' => "$path/theme",
+    ),    
+       /*nova capa/bloco BN-III */
+      'block-multi-tv-bnIII' => array(
+      'template' => 'block-multimidia-bn-III',
+      'path' => "$path/theme",
+    ),
+      'taxonomy-page' => array(
+      'template' => 'taxonomy-page',
+      'path' => "$path/theme",
+    ),
+  );
+}
+
+/**
+ * Hook de montagem de links
+ * 
+ * @return array 
+ */
+function capa_menu(){
+  $items = array();
+  
+  $items['admin/capacadernos'] = array(
+    'title' => 'Montagem de Capas dos Cadernos e Sub Cadernos',
+    'page callback' => 'montagem_capa',
+    'access arguments' => array('administer capa'),
+    'file' => 'capa.inc',
+  );
+  $items['admin/uploadcobertura'] = array(
+    'title' => 'Upload de Arquivos para cobertura',
+    'page callback' => 'upload_cobertura',
+    'access arguments' => array('administer capa'),
+    'file' => 'capa.inc',
+  );
+  
+  $items['admin/salvarcapa'] = array(
+    'title' => 'Page que salvará a capa na ordem escolhida pelo usuário',
+    'page callback' => 'salvar_capa',
+    'access arguments' => array('administer capa'),
+    'file' => 'capa.inc',
+    'type' => MENU_CALLBACK,
+  );
+  
+  return $items;
+}
+
+
+## hook block_info ##
+function capa_block_info(){
+  $blocks = array();
+  $blocks['block-multimidia-imagens'] = array(
+    'info' => 'Imagens Detaques II do Multimídia',
+    'pages' => 'multimidia-teste', 
+  ); 
+  $blocks['block-multimidia-slideshow'] = array(
+    'info' => 'Slideshow topo do Multimídia',
+    'pages' => 'multimidia',
+  ); 
+  $blocks['block-multimidia-img-VII'] = array(
+    'info' => 'Bloco VII da pagina Multimídia',
+    'pages' => 'multimidia',
+  );
+  $blocks['block-multimidia-titulos'] = array(
+    'info' => 'Bloco de Títulos sem fotos - Multimidia',
+    'pages' => 'multimidia',
+  ); 
+  $blocks['block-multimidia-pod-V'] = array(
+    'info' => 'Bloco V PODCAST da pagina Multimídia',
+  ); 
+  $blocks['block-multimidia-img-vertical'] = array(
+    'info' => 'Bloco Imagem Vertical da pagina Multimídia',
+  );
+   $blocks['block-multimidia-videos-IV'] = array(
+    'info' => 'Bloco com  Videos da pagina Multimídia',
+  );
+   $blocks['block-multimidia-video-VI'] = array(
+    'info' => 'Bloco com 3 Videos da pagina Multimídia - ordem recentes',
+  );
+   $blocks['block-multi-video-VI-mvistos'] = array(
+    'info' => 'Bloco com 3 Videos da pagina Multimídia - ordem mais vistos',
+  );
+   $blocks['block-multi-video-VI-mcoment'] = array(
+    'info' => 'Bloco com 3 Videos da pagina Multimídia - ordem mais comentadas',
+  );
+   $blocks['block-multimidia-img-grande'] = array(
+    'info' => 'Bloco VIII com 1 imagem grande',
+  );
+   $blocks['block-multimidia-img-III'] = array(
+    'info' => 'Bloco III com 4 imagens dos videos',
+  );
+   $blocks['block-multimidia-6-img'] = array(
+    'info' => 'Bloco com 6 imagens',
+  );
+   $blocks['block-multimidia-sanfonado'] = array(
+    'info' => 'Bloco sanfonado',
+  );
+   $blocks['block-multimidia-img-quadrado'] = array(
+    'info' => 'Bloco quadrado 4 imagens',
+  );
+  
+  return $blocks;
+}
+// Tentando passar configurações de págias
+//function capa_block($op='list'){
+//    $blocks = array();
+//    
+//    $blocks['block-multimidia-titulos'] = array(
+//    'info' => 'Bloco de Títulos sem fotos - Multimidia',
+//    'pages' => 'multimidia',
+//  ); 
+//    return $blocks;
+//}
+
+## hook block_view ## 
+function capa_block_view($delta){
+//adicionando os arquivos necessários  
+module_load_include('inc', 'capa', 'capa');
+  $block      = array();
+  $variaveis  = array();
+  switch($delta){
+    case 'block-multimidia-imagens':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-imagens-dest-II";
+      $variaveis['nome']="imagens_II";  
+      $variaveis['qtd']=2;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+  
+    case 'block-multimidia-slideshow':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-dest-slideshow";
+      $variaveis['qtd']=8;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+  
+    case 'block-multimidia-img-VII':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-img-VII";
+      $variaveis['qtd']=4;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+    case 'block-multimidia-pod-V':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-podcast-V";
+      $variaveis['qtd']=3;
+      $variaveis['viewname']='capa_multimidia_podcasts';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-titulos':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-titulos";
+      $variaveis['qtd']=3;
+      $variaveis['viewname']='capa_multimidia_titulos';
+      $block['content'] = get_nodes_viewsTt($variaveis);
+      break;
+     case 'block-multimidia-img-vertical':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-img-vertical";
+      $variaveis['qtd']=12;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-videos-IV':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-videos";
+      $variaveis['qtd']=6;
+      $variaveis['viewname']='capa_multimidia_videos';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-video-VI':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-videos";
+      $variaveis['qtd']=9;
+      $variaveis['viewname']='capa_multimidia_videos';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multi-video-VI-mvistos':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-videos";
+      $variaveis['qtd']=9;
+      $variaveis['viewname']='capa_multimidia_videos_mais_vistos';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multi-video-VI-mcoment':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-videos";
+      $variaveis['qtd']=9;
+      $variaveis['viewname']='multimidia_videos_mais_comentados';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-imagem-grande-VIII':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-img-grande";
+      $variaveis['qtd']=1;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-img-III':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-img-III";
+      $variaveis['qtd']=4;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-6-img':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-6-img";
+      $variaveis['qtd']=6;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+     case 'block-multimidia-sanfonado':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-sanfonado";
+      $variaveis['qtd']=4;
+      $variaveis['viewname']='capa_multimidia_titulos';
+      $block['content'] = get_nodes_viewsTt($variaveis);
+      break;
+     case 'block-multimidia-img-quadrado':
+      //indicar qual o tema/template será usado.
+      $variaveis['theme']="block-multi-img-quadrado";
+      $variaveis['qtd']=4;
+      $variaveis['viewname']='capa_multimidia_imagens';
+      $block['content'] = get_nodes_views($variaveis);
+      break;
+  }
+  return $block;
+}
+
+//método que retorna o tid do termo da categoria (chapeu) da notícia
+function getChapeuNoticia($arrayNode){
+  foreach ($arrayNode as $key =>$valor){
+    if(strpos($key,"field_cat")!== false &&!(empty($valor))){
+        $lang = key($arrayNode[$key]);
+        $tid = $arrayNode[$key][$lang][0]['tid'];
+       return $tid;
+    }
+  }
+  return false;
+}
+
+
+// //END// by Weydson Fraga
+
+
+?>

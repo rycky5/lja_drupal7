@@ -1,0 +1,72 @@
+<?
+/**
+ * Neste arquivo implementar apenas os hooks para uso do Drupal.
+ * Funções de callback, modelo e helper devem ser criados nos arquivos especificos:
+ * .inc, .db.inc e .api.inc, respectivamente, relativo a cada entidade. 
+ *
+ * Consulte sempre a documentação com especificações e padrões de desenvolvilemnto
+ * disponível em http://www.
+ */
+
+/**
+ * HOOK PERMISSION
+ */
+function relatorios_permission(){
+  $permissions = array();
+  $permissions = array(
+    'relatorio publicacoes' => array(
+      'title' => t('Relatório de publicações'),
+      'description' => t('Permite visualizar relatório das publicações.'),
+    )
+  );
+  return $permissions;
+}
+
+/**
+ * HOOK MENU
+ */
+function relatorios_menu(){  
+  $menus = array();
+  ## relatorios de publicacoes
+  // base
+  $menus['admin/reports/relatorios_de_publicacoes'] = array(
+      'title' => 'Relatórios de publicações',
+      'description' => 'Permite visualizar relatório das publicações.',
+      'access arguments' => array('relatorio publicacoes'),
+      'weight' => -300
+  );
+  // cadernos
+  $menus['admin/reports/relatorios_de_publicacoes/cadernos'] = array(
+      'title' => 'Cadernos',
+      'description' => 'Permite visualizar relatório das publicações em cadernos.',
+      'page callback' => 'relatorios_de_publicacoes_cadernos',
+      'access arguments' => array('relatorio publicacoes'),
+      'file' => 'relatorios.inc',
+  );
+  $menus['admin/reports/relatorios_de_publicacoes/cadernos_detalhe'] = array(
+      'title' => 'Cadernos (detalhe)',
+      'description' => 'Permite visualizar relatório das publicações em cadernos com detalhe das publicadas pelo Leia Já.',
+      'page callback' => 'relatorios_de_publicacoes_cadernos_detalhe',
+      'access arguments' => array('relatorio publicacoes'),
+      'file' => 'relatorios.inc',
+  );
+  // blogs da redacao
+  $menus['admin/reports/relatorios_de_publicacoes/blogs_da_redacao'] = array(
+      'title' => 'Blogs da redação',
+      'description' => 'Permite visualizar relatório das publicações nos blogs da redação.',
+      'page callback' => 'relatorios_de_publicacoes_blogs_da_redacao',
+      'access arguments' => array('relatorio publicacoes'),
+      'file' => 'relatorios.inc',
+  );
+  // especiais
+  $menus['admin/reports/relatorios_de_publicacoes/especiais'] = array(
+      'title' => 'Especiais',
+      'description' => 'Permite visualizar relatório das publicações nos especias.',
+      'page callback' => 'relatorios_de_publicacoes_especiais',
+      'access arguments' => array('relatorio publicacoes'),
+      'file' => 'relatorios.inc',
+  );
+  
+  
+  return $menus;
+}

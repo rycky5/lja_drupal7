@@ -1,0 +1,23 @@
+name = Esp. Mulher
+description = Tema para os especiais do Leija Já.
+package = Core
+version = VERSION
+core = 7.x
+;base theme = leiaja
+
+stylesheets[screen][] = css/estilo.css
+scripts[]            = js/carrossel.js
+scripts[]            = js/script.js
+
+settings[shortcut_module_link] = 0
+regions[content] = Content
+;regions[help] = Help
+;regions[page_top] = Page top
+;regions[page_bottom] = Page bottom
+;regions[sidebar_first] = First sidebar
+;regions_hidden[] = sidebar_first
+
+;Information added by drupal.org packaging script on 2011-06-30
+version = "0.1 BETA"
+project = "drupal"
+datestamp = "1309397516"

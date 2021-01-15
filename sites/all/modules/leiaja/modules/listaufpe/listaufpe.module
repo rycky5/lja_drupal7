@@ -1,0 +1,47 @@
+<?
+/**
+ * Neste arquivo implementar apenas os hooks para uso do Drupal.
+ * Funções de callback, modelo e helper devem ser criados nos arquivos especificos:
+ * .inc, .db.inc e .api.inc, respectivamente, relativo a cada entidade. 
+ *
+ * Consulte sempre a documentação com especificações e padrões de desenvolvilemnto
+ * disponível em http://www.
+ */
+
+/**
+ * HOOK_THEME
+ */
+function listaufpe_theme(){
+  
+  $path = drupal_get_path('module', 'listaufpe');
+  
+  return array(
+    'listaufpe-2011' => array(
+      'template' => 'listaufpe-2011',
+      'path' => "$path/themes",
+    )
+  );
+}
+
+/**
+ * HOOK_MENU()
+ */
+function listaufpe_menu(){
+    
+    $items = array();
+  
+    /**
+    * CRONS PARA ATUALIZAÇÃO
+    */
+    $items['listaufpe/resultado'] = array(
+        'title' => 'Resultado vestibular',
+        'description' => '`Página responsável por pesquisar o resultado do vestibular da UFPE.',
+        'page callback' => 'resultado_ufpe',
+        'access arguments' => array('access content'),
+        'file' => 'listaufpe.inc' 
+    );
+    
+    
+    
+    return $items;
+}

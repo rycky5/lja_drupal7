@@ -1,0 +1,33 @@
+
+.box0066 h2 a{
+	float:left;
+	margin:0px 0px 5px 0px; 
+	width:190px;
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.box0066 a:hover{
+	text-decoration:underline;
+}
+.box0066 a.titulo{
+	width: 190px;
+	float:left;
+	font-size:25px;
+	color:#f2352f;
+	height:; 
+	margin: 0 0 5px 0;
+}
+
+.box0066 a.chamada{
+	float:left;
+	font-size:14px;
+	color:#7f7f7f;
+	height:; 
+	margin: 10px 0 5px 0;
+	float:left;
+	width:100%;
+}
+
+.box0066 .img { float:right;margin-right:0px; }
+.box0066 .node { margin:0px !important;padding:0px !important; }

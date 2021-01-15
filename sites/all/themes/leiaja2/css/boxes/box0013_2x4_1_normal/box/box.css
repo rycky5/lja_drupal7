@@ -1,0 +1,26 @@
+
+/* boxNotImgP */
+.boxNotImgP ul li{
+	cursor:pointer;
+	position:relative;
+	margin:0px 5px 0px 5px;
+}
+.boxNotImgP ul li:hover .titulo{
+	display:none;
+}
+.boxNotImgP ul li a{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:140px;
+	height:140px;
+	background:url('../images/bgDark.png');
+}
+.boxNotImgP ul li a span{
+	float:left;
+	width:120px;
+	color:#fff;
+	font-size:18px;
+	margin:10px 0px 0px 10px;
+}
+/* /boxNotImgP */

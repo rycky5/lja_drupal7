@@ -1,0 +1,17 @@
+name = Leiaja2 - Colunistas
+description = Sub-tema do leiaja2 para colunistas 
+core = 7.x
+base theme = leiaja2
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+regions[banner_topo] = Banner Topo
+regions[skyscraper] = Skyscraper
+regions[content] = Content
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Includes
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][]   = css/colunistas.css

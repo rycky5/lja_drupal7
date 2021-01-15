@@ -1,0 +1,57 @@
+
+/* boxVerticalImagem */
+.boxVerticalImagem div{
+	margin:5px 0px 5px 0px;
+}
+.boxVerticalImagem ul li{
+	margin:5px 0px 0px 0px;
+	padding-top:5px;
+	border-top:solid 1px #d7d7d7;
+}
+.boxVerticalImagem ul li:first-child{
+	margin:0px;
+}
+.boxVerticalImagem li h1 a{
+	margin:0px; 
+}
+.boxVerticalImagem h1 a{
+	float:left;
+	margin:0px 0px 0px 0px;
+	width:100%; 
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.boxVerticalImagem h1 a:hover{
+	text-decoration:underline;
+}
+.boxVerticalImagem p a{
+	float:left;
+	color:#f2352f;
+	padding-top:5px;
+	font-size:17px;
+}
+.boxVerticalImagem p a:hover{
+	text-decoration:underline;
+}
+.boxVerticalImagem li img{
+	float:left;
+}
+.boxVerticalImagem li p a{
+	float:left;
+	width:180px;
+	margin:0px 0px 0px 10px;
+	color:#1cafdd;
+	font-size:15px;
+}
+.boxVerticalImagem li p a:hover{
+	text-decoration:underline;
+}
+.boxVerticalImagem .destaque{
+	margin:0px;
+}
+.boxVerticalImagem .destaque div{
+	margin:0px;
+}
+
+/* /boxVerticalImagem */

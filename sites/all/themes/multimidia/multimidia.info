@@ -1,0 +1,18 @@
+name = Multimídia
+description = Thema Customizado para o caderno de multimídia
+package = Core
+version = VERSION
+core = 7.x
+;base theme = leiaja
+
+;stylesheets[screen][] = css/estilo.css
+
+settings[shortcut_module_link] = 0
+regions[banner1] = Banner-1 Topo
+regions[content] = Content
+regions[bloco_centro] = Blocos Centrais para Transmissão ao vivo
+
+;Information added by drupal.org packaging script on 2011-06-30
+version = "0.1 BETA"
+project = "drupal"
+datestamp = "1309397516"

@@ -1,0 +1,4 @@
+name = Páginas - Leiajá
+description = Modulo de exibição e manipulação de páginas para o LeiaJá.
+core = 7.x
+package = Leia Já

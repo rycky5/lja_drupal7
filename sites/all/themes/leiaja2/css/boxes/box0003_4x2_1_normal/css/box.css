@@ -1,0 +1,34 @@
+
+.box0003 ul li{
+	margin:0px;
+	padding:2px 0px 7px 0px;
+	position:relative;
+	border-bottom:solid 1px #e6e6e6;
+}
+.box0003 ul li:last-child{
+	border-bottom:none;
+}
+.box0003 img{float:left;}
+.box0003 h1 a{
+	float:right;
+	width:210px;
+	margin-left:5px;
+	font-size:14px;
+	color:#1eb7e7;
+}
+.box0003 h1 a:hover{
+	text-decoration:underline;
+}
+.box0003 span { float:right;text-align:right;}
+.box0003 span a{
+	position:absolute;
+	right:0px;
+	bottom:6px;
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.box0003 span a:hover{
+	text-decoration:underline;
+}
+/* /boxNotList1 */

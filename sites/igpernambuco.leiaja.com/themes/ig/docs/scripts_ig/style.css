@@ -1,0 +1,248 @@
+*{margin:0;padding:0;border:0;outline:0;list-style:none;text-decoration:none}
+footer,nav,header,section,article{display:block}
+body{font:12px arial,helvetica;text-align:left;color:#333}
+
+a{color:#333}
+a:hover{text-decoration:underline}
+
+#barra-lateral h3,#barra-lateral h3 a,
+#barraLateral h3,#barraLateral h3 a{color:#333!important}
+
+.E13706  h3 {
+    font: normal 18px/22px Arial;
+    color: #005088;
+    text-transform: uppercase;
+    float: left;
+    margin: 0 0 13px -1px;
+}
+
+.E13706  h4 {
+    float: left;
+    font: bold 12px/15px Arial;
+    color: #666;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    background-color: #F8F8F8;
+    height: auto;
+    width: 292px;
+    padding: 7px 12px;
+}
+
+.E13706  h4 cite {
+    font-style: normal;
+    width: 175px;
+    float: left;
+}
+
+.E13706  h4 a {
+    font-weight: 400;
+    color: #666;
+    float: right;
+}
+
+.E13706  h5 {
+    font: bold 11px/15px Arial;
+    color: #666;
+    text-align: center;
+    margin: -3px 1px 6px;
+}
+
+.E13706  img {
+    float: right;
+    margin-top: 5px;
+    width: 88px;
+    height: 14px;
+    border: none;
+}
+
+.E13706  {
+    float: left;
+    width: 316px;
+    clear: both;
+    position: relative;
+    height: 232px;
+}
+
+.E13706  span {
+    display: block;
+    width: 52px;
+    height: 35px;
+    margin: 0 auto;
+}
+
+.E13706  span.img1 {
+    background-position: 0 -127px;
+}
+
+.E13706  span.img2 {
+    background-position: -52px -127px;
+}
+
+.E13706  span.img3 {
+    background-position: -104px -127px;
+}
+
+.E13706  span.img4 {
+    background-position: -156px -127px;
+}
+
+.E13706  span.img5 {
+    background-position: -208px -127px;
+}
+
+.E13706  span.img6 {
+    background-position: -260px -127px;
+}
+
+.E13706  span.img7 {
+    background-position: -312px -127px;
+}
+
+.E13706  span.img8 {
+    background-position: -364px -127px;
+}
+
+.E13706  span.img9 {
+    background-position: -416px -127px;
+}
+
+.E13706  span.img10 {
+    background-position: -468px -127px;
+}
+
+.E13706  span.img11 {
+    background-position: -520px -127px;
+}
+
+.E13706  span.img12 {
+    background-position: -572px -127px;
+}
+
+.E13706  span.img13 {
+    background-position: -624px -127px;
+}
+
+.E13706  span.img14 {
+    background-position: -676px -127px;
+}
+
+.E13706  span.img15 {
+    background-position: -728px -127px;
+}
+
+.E13706  span.img16 {
+    background-position: -780px -127px;
+}
+
+.E13706  span.img17 {
+    background-position: -832px -127px;
+}
+
+.E13706  span.img18 {
+    background-position: -884px -127px;
+}
+
+.E13706  span.img19 {
+    background-position: -936px -127px;
+}
+
+.E13706  ul {
+    float: left;
+    margin: 20px 0;
+}
+
+.E13706  ul li {
+    float: left;
+    width: 104px;
+    height: 83px;
+    border-right: 1px solid #E9E9E9;
+}
+
+.E13706  ul.prev {
+    padding: 1px 0 0 11px;
+}
+
+.E13706  ul.prev li {
+    height: 10px;
+    font: bold 11px/10px Arial;
+    color: #333;
+    float: left;
+}
+
+.E13706  ul.prev li.esc {
+    text-align: right;
+    border-right: 1px solid #D6D6D6;
+    padding-right: 4px;
+    width: 36px;
+}
+
+.E13706  ul.prev li.dir {
+    text-align: left;
+    border-left: 1px solid #E7E7E7;
+    padding-left: 5px;
+    width: 35px;
+}
+
+.E13706  ul.prev li span {
+    height: 10px;
+    width: 7px;
+}
+
+.E13706  ul.prev li cite {
+    font-style: normal;
+}
+
+.E13706  div {
+    background-color: #F8F8F8;
+    float: left;
+    padding-left: 9px;
+    height: 43px;
+    width: 307px;
+}
+
+.E13706  div input.text {
+    width: 292px;
+    height: 19px;
+    font: normal 12px/15px Arial;
+    color: #999;
+    margin-top: 10px;
+    padding: 3px 0 0 3px;
+}
+
+.E13706  div input.submit {
+    background: url(http://i0.ig.com/css/images/form-bg-botoes.gif) repeat-x;
+    width: 36px;
+    height: 24px;
+    font: bold 12px/15px Arial;
+    margin-top: 10px;
+}
+
+.E13706 .load {
+    display: none;
+    background: #FFF url(http://i0.ig.com/css/images/loading.gif) no-repeat 143px 40px;
+    height: 105px!important;
+    position: absolute;
+    width: 316px!important;
+    top: 79px;
+    left: 0;
+    padding: 0!important;
+}
+
+.E13706  .sprite,.E13706  .sprite,.E17412 .sprite,  .E16812 .sprite,.E16712 .sprite {
+    background: url(http://i0.ig.com/css/images/USGclima_todos.gif) no-repeat;
+}
+
+.E13706  ul.prev li span.queda,.E13706  ul.prev li span.queda,.E17412 ul.prev li span.queda, .E16812 ul.prev li span.queda {
+    float: left;
+    background-position: -1542px -151px;
+}
+
+.E13706  ul.prev li span.alta,.E13706  ul.prev li span.alta,.E17412 ul.prev li span.alta, .E16812 ul.prev li span.alta {
+    float: right;
+    background-position: -1534px -151px;
+}
+
+.E13706  div input,#barra-lateral .E16306 div input,.E13706  div input,#barra-lateral .E16306 div input {
+    border: 1px solid #CCC;
+    float: left;
+}

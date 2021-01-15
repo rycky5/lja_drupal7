@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<style>
+
+/*Reset*/
+*{margin:0;padding:0;border:0;outline:0;list-style:none;text-decoration:none}
+footer,nav,header,section,article{display:block}
+body{font:12px arial,helvetica;text-align:left;color:#333}
+
+a{color:#08629a}
+a:hover,a.hover{text-decoration:underline}
+                  
+/*usados nos componentes*/
+.gd6{width:316px}
+
+/*RTI26706 - Top5*/
+@media all{
+.RTI26706 .headRetranca{
+margin-bottom:20px;
+border-top: 2px solid #6D8495;
+background: url(http://i0.ig.com/ig/images/bg-retranca.gif);
+padding: 10px 10px;
+}
+.RTI26706 .headRetranca h2{color:#39454e}
+.RTI26706 #rt_top .top_item {width:316px;background:#fff;margin:0 0 15px;}
+.RTI26706 #rt_top .top_item a.title {display:block;color:#08629A;font:normal 14px Arial;margin:0 0 8px;overflow-y:hidden;max-height:32px;}
+.RTI26706 #rt_top .num_viewers_bar {background:#5fbce7;height:5px;width:0;margin-bottom:2px;overflow:hidden;-webkit-transition-property:width;-moz-transition-property:width;transition-property:width;-webkit-transition-duration:.8s;-moz-transition-duration:.8s;transition-duration:.8s;}
+.RTI26706 #rt_top{width:316px;height:460px;overflow:hidden;position:relative;}
+.RTI26706 ul.folders {float:left;margin-bottom:10px;width:100%;height:31px;display:inline;border-bottom:1px solid #d8d8d8;}
+.RTI26706 ul.folders li {float:left;width:83px;margin-left:2px;}
+.RTI26706 ul.folders li.first {margin-left:10px;}
+.RTI26706 ul.folders li.active a{
+border-bottom: 1px solid #fff;
+background-image: linear-gradient(bottom, rgb(255,255,255) 35%, rgb(241,241,241) 100%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 35%, rgb(241,241,241) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 35%, rgb(241,241,241) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 35%, rgb(241,241,241) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 35%, rgb(241,241,241) 100%);
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.35, rgb(255,255,255)),
+    color-stop(1, rgb(241,241,241))
+);
+}
+.RTI26706 ul.folders li span.logo-RT {display:block;width:19px;height:19px;background:url(http://i0.ig.com/ig/images/logo-RT.png) no-repeat scroll 0 0 transparent;text-indent:-999999px;margin:-15px 0 0 42px;}
+.RTI26706 ul.folders li a {float:left;height:10px;text-decoration:none;background:url(http://i0.ig.com/ig/images/bg-folders.png) repeat-x scroll 0 -32px transparent;outline:0;border:1px solid #dbdbdb;border-radius:4px 4px 0 0;-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;color:#08629a;cursor:pointer;display:inline;font:bold 10px Arial;text-transform:uppercase;border-color:#dbdbdb #dbdbdb #fff;border-width:1px 1px 0;padding:10px;}
+.RTI26706 div.online_users,.RTI26706 div.pageviews {display:none;position:absolute;top:40px;left:0;height:400px;width:316px;}
+.RTI26706 .items .stats {float:left;clear:both;font:normal 11px/16px Arial;color:#999;text-transform:lowercase;}
+.RTI26706 div.ie6.top-right {right:auto;bottom:auto;left:expression((0-jGrowl.offsetWidth+(document.documentElement.clientWidth?document.documentElement.clientWidth:document.body.clientWidth) 0 (ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft) ) 0 px );top:expression((0+(ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop) ) 0 px );}
+.RTI26706 div.ie6.top-left {left:expression((0+(ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft) ) 0 px );top:expression((0+(ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop) ) 0 px );}
+.RTI26706 div.ie6.bottom-right {left:expression((0-jGrowl.offsetWidth+(document.documentElement.clientWidth?document.documentElement.clientWidth:document.body.clientWidth) 0 (ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft) ) 0 px );top:expression((0-jGrowl.offsetHeight+(document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight) 0 (ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop) ) 0 px );}
+.RTI26706 div.ie6.bottom-left {left:expression((0+(ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft) ) 0 px );top:expression((0-jGrowl.offsetHeight+(document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight) 0 (ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop) ) 0 px );}
+.RTI26706 div.ie6.center {left:expression((0+(ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft) ) 0 px );top:expression((0+(ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop) ) 0 px );width:100%;}
+.RTI26706 div.jGrowl {position:fixed;}
+.RTI26706 div.jGrowl.top-left {left:0;top:0;}
+.RTI26706 div.jGrowl.top-right {right:0;top:0;}
+.RTI26706 div.jGrowl.bottom-left {left:0;bottom:0;}
+.RTI26706 div.jGrowl.bottom-right {right:0;bottom:0;}
+.RTI26706 div.jGrowl.center {top:0;width:50%;left:25%;}
+.RTI26706 .jGrowl-closer,.jGrowl-notification {position:relative;left:400px;}
+.RTI26706 .jGrowl-notification {width:256px;background:url(http://rt01.ig.com.br/realtime/ibtx_v1/module/announcements/img/jgrowl/alert_top.png) center top no-repeat;overflow:hidden;z-index:9999;margin-bottom:10px;}
+.RTI26706 .jGrowl-close {float:right;padding-top:4px;padding-bottom:4px;cursor:pointer;font-weight:700;text-align:center;margin:5px 5px 0 0;}
+.RTI26706 .jGrowl-header {padding-top:10px;margin-bottom:10px;text-indent:5px;font-weight:700;font-size:12px;color:#fff;}
+.RTI26706 .jGrowl-message {color:#fff;background:url(http://rt01.ig.com.br/realtime/ibtx_v1/module/announcements/img/jgrowl/alert_bottom.png) center bottom no-repeat;padding:0 5px 35px;}
+.RTI26706 .jGrowl-message a:hover {color:#eee;}
+.RTI26706 .jGrowl-message img {float:left;border:1px solid #f82;margin-right:5px;}
+.RTI26706 .jGrowl-closer {background-color:#000;opacity:.85;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=85);filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=85);zoom:1;width:235px;margin-top:5px;margin-bottom:5px;font-family:Tahoma,Arial,Helvetica,sans-serif;font-size:1em;-moz-border-radius:5px;-webkit-border-radius:5px;cursor:pointer;color:#fff;text-align:center;padding:10px;}
+.RTI26706 .isotope-hidden.isotope-item{pointer-events:none;z-index:1;}
+.RTI26706 .isotope,.RTI26706 .isotope .isotope-item{-webkit-transition-duration:.8s;-moz-transition-duration:.8s;transition-duration:.8s;}
+.RTI26706 .isotope{-webkit-transition-property:height, width;-moz-transition-property:height, width;transition-property:height, width;}
+.RTI26706 .isotope .isotope-item{-webkit-transition-property:0 opacity;-moz-transition-property:0 opacity;transition-property:transform, opacity;}
+.RTI26706 .isotope.no-transition,.RTI26706 .isotope.no-transition .isotope-item,.RTI26706 .isotope .isotope-item.no-transition{-webkit-transition-duration:0;-moz-transition-duration:0;transition-duration:0;}
+.RTI26706 .isotope.infinite-scrolling{-webkit-transition:none;-moz-transition:none;transition:none;}
+.RTI26706 div.ie6,.RTI26706 div.jGrowl {position:absolute;}
+}
+
+.top_item{height: 60px;}
+
+</style>
+
+<!-- COMPONENTE MAIS LIDAS -->
+<div class="RTI26706 gd6 fl" id="D7BD6EE2-5AF2-4DFF-93F8-8E6BCD23B806">
+    <div class="headRetranca">
+        <h2>Mais lidas</h2>
+    </div>
+    <div id="rt_top">
+        <ul id="folders" class="folders">
+            <li class="active first">
+                <a title="Agora" href="#rt_top .online_users" class="ativo">Agora <span class="logo-RT"></span></a>
+            </li>
+            <li>
+                <a title="Hoje" href="#rt_top .pageviews">Hoje</a>
+            </li>
+        </ul>
+        <div class="online_users">
+            <div class="items"></div>
+        </div>
+        <div class="pageviews">
+            <div class="items"></div>
+        </div>
+    </div>
+</div>
+<!-- /COMPONENTE MAIS LIDAS -->
+
+<script src="http://rt01.ig.com.br/realtime/min/?g=load_home_v24"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+name = Montagem de Capa iG
+description = Montagem de Capa iG
+core = 7.x
+package = LeiaJá | IG
+dependencies[] = capa
+dependencies[] = funcoes

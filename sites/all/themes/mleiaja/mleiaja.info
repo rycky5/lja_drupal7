@@ -1,0 +1,20 @@
+name = Leiajá (mobile)
+description = Versão mobile do Portal de Comunicação.
+package = Core
+version = 1.0
+core = 7.x
+
+;stylesheets[all][]   = css/estilo.css
+;stylesheets[print][] = css/print.css
+;scripts[]            = js/script.js
+;scripts[]            = js/css_browser_selector.js
+;scripts[]            = js/jquery.ui.js
+
+
+regions[banner1] = Banner-1 Topo
+regions[content]  = Conteúdo Bloco 1
+regions[content2] = Conteúdo Bloco 2
+regions[colunaDireita] = Coluna Direita
+regions[mapaSite] = Mapa do Site
+regions[shop] = Area para shop.v
+regions[cobertura] = Cobertura

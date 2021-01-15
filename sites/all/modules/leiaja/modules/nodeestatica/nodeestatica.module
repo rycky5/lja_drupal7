@@ -1,0 +1,96 @@
+<?php
+
+/**
+ * Arquivo que conterá os hook do modulo de node leiajá 
+ * 
+ * @author Thiago Galvão <galvao@sereducaconal.com>
+ * @version 2.0
+ */
+
+/**
+ * Hook para themas do modulo
+ * 
+ * @return array 
+ */
+function nodeestatica_theme() 
+{
+  $path      = drupal_get_path('module', 'nodeestatica');
+  $pathTheme = path_to_theme();
+
+  return array(
+      'estrutura-node' => array(
+          'template' => 'estrutura-node',
+          'path' => "$path/theme",
+      ),
+  );
+}
+
+/**
+ * HOOK_MENU()
+ */
+function nodeestatica_menu() 
+{
+
+  $items = array();
+
+  $items['nodeestatica/htmlnode'] = array(
+      'title' => 'Gera arquivo',
+      'description' => 'Gera arquivo estático para notícia.',
+      'page callback' => 'page_htmlnode',
+      'access arguments' => array('access content'),
+      'file' => 'nodeestatica.inc'
+  );
+  
+  $items['nodeestatica/cron'] = array(
+      'title' => 'Gera Estrutura para notícias',
+      'description' => 'Gera as Estrutura de capa para notícias',
+      'page callback' => 'page_cronestrutura',
+      'access arguments' => array('access content'),
+      'file' => 'nodeestatica.inc'
+  );
+
+  $items['nodeestatica/htmlestrutura'] = array(
+      'title' => '',
+      'description' => 'Estrutura de capa para notícias do tipo esportes',
+      'page callback' => 'page_htmlestrutura',
+      'access arguments' => array('access content'),
+      'file' => 'nodeestatica.inc'
+  );  
+  
+  return $items;
+}
+
+/**
+ * Hook que irá ser chamado após a node ser inserida.
+ * 
+ * @param stdClass $node 
+ */
+function nodeestatica_node_insert($node) 
+{
+  module_load_include('inc', 'nodeestatica', 'nodeestatica.api');
+
+  api_gerarEstatico($node);
+}
+
+/**
+ * Hook que irá ser chamado após a node ser atualizada.
+ * 
+ * @param stdClass $node 
+ */
+function nodeestatica_node_update($node) 
+{
+  module_load_include('inc', 'nodeestatica', 'nodeestatica.api');
+  
+  api_gerarEstatico($node, true);
+}
+
+/**
+ * Hook que irá rodar o agendaro de tarefas.
+ */
+function nodeestatica_cron() 
+{
+  module_load_include('inc', 'nodeestatica', 'nodeestatica.api');
+
+  // Atualizando dados de PageViews do GetClicky
+  api_contabilizaGetClick();
+}

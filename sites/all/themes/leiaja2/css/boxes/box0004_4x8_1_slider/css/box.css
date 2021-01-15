@@ -1,0 +1,115 @@
+.boxVerVideo { border-bottom:0px !important; }
+
+.boxVerVideo .container{
+	border-radius:8px;
+	background:#ebebeb;
+	width:100%;
+}
+.boxVerVideo ul{
+	position:relative;
+}
+.boxVerVideo ul li{
+	float:left;
+	margin:0px;
+}
+.boxVerVideo h3 a{
+	float:left;
+	margin:5px 0px 5px 10px; 
+	width:100%;
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.boxVerVideo h3 a:hover{
+	text-decoration:underline;
+}
+.boxVerVideo p a{
+	float:left;
+	width:265px;
+	margin:13px 0px 0px 20px;
+	font-size:17px;
+	text-align:center;
+	color:#f2352f;
+}
+.boxVerVideo p a:hover{
+	text-decoration:underline;
+}
+.boxVerVideo div{margin:0px 0px 5px 0px;}
+.boxVerVideo .visualizarVideo div{
+	float:left;
+	margin:0px 0px 0px 6px;
+	padding:0px 5px 0px 5px;
+	width:276px;
+	height:191px;
+	background:url('../images/bgVerVideo.png');
+}
+.boxVerVideo .visualizarVideo div span{
+	float:left;
+	margin:12px 0px 0px 14px;
+}
+.boxVerVideo a.passadorGrandeEsq,
+.boxVerVideo a.passadorGrandeDir{
+	width:30px;
+	height:152px;
+}
+.boxVerVideo a.passadorGrandeEsq:hover,
+.boxVerVideo a.passadorGrandeDir:hover{
+	opacity:0.7;
+}
+.boxVerVideo.wgd4 a.passadorGrandeEsq,
+.boxVerVideo.wgd4 a.passadorGrandeDir{
+	display:none;
+}
+.boxVerVideo a.passadorGrandeEsq{position:absolute; left:-12px; top:80px; background:url('../images/bgPassadorGrandeEsq.png');}
+.boxVerVideo a.passadorGrandeDir{position:absolute; right:-12px; top:80px; background:url('../images/bgPassadorGrandeDir.png');}
+.boxVerVideo div.carrossel{
+	float:left;
+	overflow:hidden;
+	width:300px;
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+}
+.boxVerVideo div.carrossel ul { width:1000px; }
+.boxVerVideo.wgd12 div.carrossel{
+	margin:0px 0px 0px 20px;
+}
+.boxVerVideo.wgd8 div.carrossel{
+	margin:0px 0px 0px 12px;
+}
+.boxVerVideo a.passadorPequenoEsq,
+.boxVerVideo a.passadorPequenoDir{
+	width:30px;
+	height:82px;
+}
+.boxVerVideo.wgd12 a.passadorPequenoEsq,
+.boxVerVideo.wgd12 a.passadorPequenoDir,
+.boxVerVideo.wgd8 a.passadorPequenoEsq,
+.boxVerVideo.wgd8 a.passadorPequenoDir{
+	display:none;
+}
+.boxVerVideo a.passadorPequenoEsq, .boxVerVideo2 a.passadorPequenoEsq{position:absolute; left:-12px; top:210px; background:url('../images/bgPassadorPequenoEsq.png');}
+.boxVerVideo a.passadorPequenoDir, .boxVerVideo2 a.passadorPequenoDir{position:absolute; right:-12px; top:210px; background:url('../images/bgPassadorPequenoDir.png');}
+/*/boxVerVideo1*/
+
+a.passadorPequenoEsq span , a.passadorPequenoDir span {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	top:27px;
+}
+a.passadorPequenoEsq span {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #d7d7d7;
+	border-width: 14px;
+	margin-left:-7px;
+}
+a.passadorPequenoDir span {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #d7d7d7;
+	border-width: 14px;
+	margin-left:9px;
+}
+

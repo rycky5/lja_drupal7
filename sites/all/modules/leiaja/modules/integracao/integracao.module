@@ -1,0 +1,57 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do meu módulo
+ * 
+ * @author Thiago Galvão <galvao@sereducacional.com>
+ */
+/**
+ * Implementação da função hook_menu().
+ *
+ *
+ */
+function integracao_menu()
+{
+  $items = array();
+
+  $items['integra/aestado'] = array(
+    'title' => 'Integração Agência Estado',
+    'page callback' => 'page_aestado',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'integracao.inc'
+  );
+
+  $items['integra/nowdigital'] = array(
+    'title' => 'Integração Agência Estado',
+    'page callback' => 'page_nowdigital',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'integracao.inc'
+  );
+
+//  $items['integra/especiais'] = array(
+//    'title' => 'Integração Especiais',
+//    'page callback' => 'page_especiais',
+//    'access arguments' => array('access content'),
+//    'type' => MENU_CALLBACK,
+//    'file' => 'integracao.inc'
+//  );
+  
+  $items['integra/afp'] = array(
+    'title' => 'Integração com a Agencia AFP',
+    'page callback' => 'integra_afp',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'integracao.inc'
+  );
+  
+  $items['integra/especiais'] = array(
+    'title' => 'Integração com a Agencia AFP',
+    'page callback' => 'integra_especiais',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'integracao.inc'
+  );
+  
+  return $items;
+}

@@ -1,0 +1,41 @@
+
+/* boxNotListHor*/
+.boxNotListHor ul li{
+	margin:0px 6px 0px 6px;
+	padding-top:5px;
+}
+.boxNotListHor ul li:first-child{
+	border:none;
+}
+.boxNotListHor li h1 a:hover{
+	text-decoration:underline;
+}
+.boxNotListHor h1 a{
+	float:left;
+	margin:0px 0px 5px 0px;
+	width:100%; 
+	font-size:11px;
+	color:#989898;
+	text-transform:uppercase;
+}
+.boxNotListHor .node { margin:0px !important; padding:0px !important; }
+.boxNotListHor img{
+	float:left;
+	height:75px;
+}
+.boxNotListHor p a{
+	float:left;
+	color:#f2352f;
+	font-size:15px;
+}
+.boxNotListHor li p a:hover{
+	text-decoration:underline;
+}
+.boxNotListHor li p a{
+	float:left;
+	width:180px;
+	margin:0px 0px 0px 10px;
+	color:#1cafdd;
+	font-size:15px;
+}
+/* boxNotListHor */

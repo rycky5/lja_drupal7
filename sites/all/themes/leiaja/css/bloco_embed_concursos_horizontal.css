@@ -1,0 +1,274 @@
+body {
+        margin:0;
+        padding:0;	
+        font-family: Verdana,Arial,Helvetica,sans-serif;
+        font-size:14px;
+    }
+    a{
+        text-decoration: none;
+        color: #7a7979;
+    }
+    h1,h2,h3,h4,a,p,span,select,strong{
+        font-family: 'Roboto Condensed', Verdana,Arial,Helvetica,sans-serif; 
+        margin: 0;
+        padding: 0;
+    }
+    .linha-provas {
+      display: none !important;
+    }
+    .concursos_box {
+        width:100%;
+        height: 250px;
+        float:left;
+        overflow: hidden;
+        font-size: 0;
+    }
+    .concursos_box_titulo h2{ 
+        font-weight: bold;
+        font-size: 26px;
+        color: #7A7979;
+        margin: 0 0px 5px;
+    }
+    .concursos_box_titulo h2 .azul { color: #43B5E4; }
+    .concursos_box_titulo h2 .vermelho { color: #EC1C24; }
+    .concursos_box .concurso {
+        width: 30%;
+        min-width: 250px;
+        max-width: 300px;
+        height: 165px;
+        display: inline-block;
+        vertical-align: top;
+        border: 3px solid #e5e5e5;
+        margin: 0 2px;
+        white-space: initial;
+    }
+    .concursos_box .concurso:hover{background: #f6f6f6;}
+
+    .concursos_box_titulo {
+        width: 40%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .concursos_box .concurso_dia{
+      width: 60%;
+      display: inline-block;
+      padding: 8px 0;
+      box-sizing: border-box;
+      text-align: right;
+    }
+    .concursos_box .concurso_dia > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .concursos_box .concurso_dia p{
+        font-size: 18px;
+        line-height: 18px;
+        margin-right: 10px;
+    }
+    .concursos_box .concurso_dia select{
+        color: #999;
+        font-size: 16px;
+        padding: 7px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .concurso_categoria_cinza{
+        background: #f6f6f6;
+        padding: 7px 10px 0px 10px;
+    }
+    .concurso_categoria_cinza h3{
+        color: #46758d;
+        font-size: 16px;
+        font-weight: normal;
+        font-weight: bold;
+    }
+    .concurso_categoria_cinza h3 a{
+        color: #46758d;
+        display: block;
+    }
+    .concurso_desc{
+        background: #F6F6F6;
+        padding: 0 10px 8px 10px;
+    }
+    .concurso_desc p{
+        font-size: 13px;
+        color: #7A7979;
+        line-height: 1.1em;
+    }
+    .concurso_infos .concurso_linha{
+        border-top: 1px solid #e5e5e5; 
+        padding: 6px 10px;
+        display: block;
+        font-size: 13px;
+        color: #7a7979;
+    }
+    .concurso_infos .concurso_linha span{font-size: 13px;}
+    .concurso_infos .concurso_linha span img{
+        margin-right: 4px; 
+        float: left;
+    }
+    .ver-todos{
+      background: #3b84a2;
+      padding: 10px 16px;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 25px;
+      text-align: center;
+    }
+    .ver-todos:hover{
+        background: #357792;
+    }
+    .ver-todos a{
+        color: #fff;
+        display: block;
+    }
+    .concursos_box_scroll_horizontal {
+        height: 194px !important;
+        float:left;
+        overflow-y: hidden;
+        white-space: nowrap;
+        width:100%;
+        margin-top: 5px;
+        outline: none;
+    }
+    .concursos_box_scroll_horizontal > *,
+    .jspContainer,
+    .jspPane {
+      width: 100% !important;
+    }
+    .jspPane {
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      height: 190px;
+    }
+    ._mCS_3 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {width: 15px !important;}
+    .mCSB_container {width:286px;}
+    .advertpro{
+        position: absolute; 
+        float: right; 
+        margin: -42px 0 0 210px;
+    }
+
+   
+    /*
+    * CSS Styles that are needed by jScrollPane for it to operate correctly.
+    *
+    * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+    * may not operate correctly without them.
+    */
+
+   .jspContainer
+   {
+           overflow: hidden;
+           position: relative;
+           height: 100% !important;
+   }
+
+   .jspPane
+   {
+           position: absolute;
+   }
+
+   .jspVerticalBar
+   {
+          /* position: absolute;
+           top: 0;
+           right: 0;
+           width: 10px;
+           height: 100%;
+           background: red;*/
+           display: none;
+   }
+
+   .jspHorizontalBar
+   {
+           position: absolute;
+           bottom: 0;
+           left: 0;
+           width: 100%;
+           height: 10px;
+           background: red;
+   }
+
+   .jspCap
+   {
+           display: none;
+   }
+
+   .jspHorizontalBar .jspCap
+   {
+           float: left;
+   }
+
+   .jspTrack
+   {
+           background: #f6f6f6;
+           position: relative;
+   }
+
+   .jspDrag
+   {
+           background: #e5e5e5;
+           position: relative;
+           top: 0;
+           left: 0;
+           cursor: pointer;
+   }
+
+   .jspHorizontalBar .jspTrack,
+   .jspHorizontalBar .jspDrag
+   {
+           float: left;
+           height: 100%;
+   }
+
+   .jspArrow
+   {
+           background: #50506d;
+           text-indent: -20000px;
+           display: block;
+           cursor: pointer;
+           padding: 0;
+           margin: 0;
+   }
+
+   .jspArrow.jspDisabled
+   {
+           cursor: default;
+           background: #80808d;
+   }
+
+   .jspVerticalBar .jspArrow
+   {
+           height: 16px;
+   }
+
+   .jspHorizontalBar .jspArrow
+   {
+           width: 16px;
+           float: left;
+           height: 100%;
+   }
+
+   .jspVerticalBar .jspArrow:focus
+   {
+           outline: none;
+   }
+
+   .jspCorner
+   {
+           background: #eeeef4;
+           float: left;
+           height: 100%;
+   }
+
+   /* Yuk! CSS Hack for IE6 3 pixel bug :( */
+   * html .jspCorner
+   {
+           margin: 0 -3px 0 0;
+   }

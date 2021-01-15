@@ -1,0 +1,166 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do módulo de montagem de capa
+ * 
+ * @author Alberto Medeiros <alberto.medeiros@sereducacional.com>
+ */
+
+
+/**
+ * Método que irá  implementar os temas do meu módulo
+ * 
+ * @return Themas 
+ */
+function montarcapa_theme() {
+
+  $path = drupal_get_path('module', 'montarcapa');
+  $pathTheme = "sites/igpernambuco.leiaja.com/themes/ig";
+  //$pathTheme = drupal_get_path('theme', variable_get('theme_default', NULL));
+  
+  return array(
+    'montarcapa' => array(
+      'template' => 'montarcapa',
+      'path' => "$path/theme",
+    ),'montarcapaig' => array(
+      'template' => 'montarcapaig',
+      'path' => "$path/theme",
+    ),'capa_montada' => array(
+      'template' => 'capa_montada',
+      'path' => "$path/theme",
+    ),
+  );
+}
+
+/*
+ * Implement hook_permission().
+ */
+function montarcapa_permission() {
+  return array(
+    'administer sms' => array(
+      'title' => t('Administrar SMS'),
+      'description' => t('Permite realizar download dos números de telefone.'),
+    ),
+    'administer capa' => array(
+      'title' => t('Configurar Capa'),
+      'description' => t('Permite configurar as capas.'),
+    ),
+    'change node type' => array(
+      'title' => t('Trocar caderno'),
+      'description' => t('Permite alterar caderno da publicação.')
+     ),
+     'baixar arquivos' => array(
+      'title' => t('Download Arquivos Enviados.'),
+      'description' => t('Permite listar e baixar os arquivos enviados.'),
+    )
+  );
+}
+
+function montarcapa_menu(){
+  $items = array();
+  
+  $items['admin/structure/montarcapa'] = array(
+    'title' => t('Montar Capa'),
+    'page callback' => 'montarcapa',
+    'type' => MENU_CALLBACK,      
+    'access arguments' => array('administer capa'),
+    'file' => 'montarcapa.inc',
+    'weight' => -1
+  );
+  $items['admin/structure/montarcapaig'] = array(
+    'title' => t('Montar Capa'),
+    'type' => MENU_CALLBACK, 
+    'page callback' => 'montarcapaig',
+    'access arguments' => array('administer capa'),
+    'file' => 'montarcapa.inc',
+    'weight' => -1
+  );
+  
+  $items['admin/ajaxnoticiasporcaderno'] = array(
+    'title' => t('Ajax de montagem de capa'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_noticiasPorCaderno',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['admin/ajaxtemplateig'] = array(
+    'title' => t('Ajax pra carregar o template do IG'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_templateig',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['admin/ajaxcarreganode'] = array(
+    'title' => t('Ajax pra carregar a node'),
+    'type' => MENU_LOCAL_TASK,      
+    'page callback' => 'ajax_carreganode',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['admin/ajaxsalvarcapa'] = array(
+    'title' => t('ajax pra salvar a capa'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_salvarcapa',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['admin/populartemplate'] = array(
+    'title' => t('Ajax pra popular o template'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_populartemplate',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['admin/alterarchamada'] = array(
+    'title' => t('Ajax que ira alterar a chamada de capa'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_alterarchamada',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('administer capa'),
+  );
+  
+  $items['integracaoig'] = array(
+    'title' => t('Integracao IG'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'ajax_integracao_ig',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('access content'),
+  );
+  
+  $items['cachenoticia'] = array(
+    'title' => t('Limpar cache node'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'limparCacheNode',
+    'file' => 'montarcapa.inc',
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+
+## hook block_info ##
+function montarcapa_block_info(){
+  
+  $blocks = array();
+  $blocks['bloco_montarcapa'] = array(
+    'info' => 'Bloco do parceiro Agenda Recife',
+  ); 
+  
+  return $blocks;
+}
+
+## hook block_view ## 
+function montarcapa_block_view($delta){
+  $block = array();
+  
+  switch($delta){
+    case 'bloco_montarcapa':
+      $block['content'] = bloco_montarcapa();
+      break;
+  }
+  return $block;
+}

@@ -1,0 +1,361 @@
+<?php
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+// incluindo os arquivos necessários
+module_load_include('inc', 'widget', 'widget');
+
+function widget_theme() {
+/*$current_theme = variable_get('theme_default','none');
+
+$themes = list_themes();
+$theme_object = $themes[$current_theme];
+
+$GLOBALS['theme'] = $theme_object->name;*/
+
+  $path = drupal_get_path('module', 'widget');
+  $pathTheme = "sites/all/themes/leiaja";
+  //$pathTheme = drupal_get_path('theme', variable_get('theme_default', NULL));
+  
+  return array(
+    'bloco-getcolunistas' => array(
+      'template' => 'block-block-getcolunistas',
+      'path' => $pathTheme."/templates/blocoColunista/",
+    ),
+    'bloco-colunista' => array(
+      'template' => 'block-block-colunistas',
+      'path' => $pathTheme."/templates/",
+    ),
+     'bloco-colunista-blogs' => array(
+      'template' => 'block-block-colunistas-blogs',
+      'path' => $pathTheme."/templates/",
+    ),
+    'bloco-arquivos-blogs' => array(
+      'template' => 'block-block-arqs-blogs',
+      'path' => $pathTheme."/templates/",
+    ),
+    'bloco-area-opcoes' => array(
+      'template' => 'block-block-area-opcoes',
+      'path' => $pathTheme."/templates/arquivos/",
+    ),
+    'bloco-as-mais-lidas' => array(
+      'template' => 'block-as-mais-lidas',
+      'path' => $path."/theme/",
+    ),
+    'bloco-as-mais-lidas-clean' => array(
+      'template' => 'block-as-mais-lidas-clean',
+      'path' => $path."/theme/",
+    ),
+    'block-ultimas-noticias-caderno' => array(
+      'template' => 'block-ultimas-noticias-caderno',
+      'path' => $path."/theme/",
+    ),
+    'block-promov-destac-caderno' => array(
+      'template' => 'block-promov-destac-caderno',
+      'path' => $path."/theme/",
+    ),
+    'block-promov-destac-caderno-10' => array(
+      'template' => 'block-promov-destac-caderno-10',
+      'path' => $path."/theme/",
+    ),
+    'block-noticias-rel-3' => array(
+      'template' => 'block-noticias-rel-3',
+      'path' => $path."/theme/",
+    ),
+    'bloco_ultimas_dinamico' => array(
+      'template' => 'block_ultimas_dinamico',
+      'path' => $path."/theme/",
+    ),
+    'bloco_ultimas_carnaval' => array(
+      'template' => 'block_ultimas_carnaval',
+      'path' => $path."/theme/",
+    ),
+    'iframe_ultimas_dinamico' => array(
+      'template' => 'iframe_ultimas_dinamico',
+      'path' => $path."/theme/",
+    ),
+    'blogs-parceiros' => array(
+      'template' => 'blogs-parceiros',
+      'path' => $path."/theme/",
+    ),
+    'blogs-parceiros-horizontal' => array(
+      'template' => 'blogs-parceiros-horizontal',
+      'path' => $path."/theme/",
+    )
+  );
+}
+
+/**
+ * hook widget_menu
+ */
+function widget_menu(){
+    
+    $itens = array();
+    
+    $itens['as-mais'] = array(
+        'title' => 'As Mais Lidas',
+        'description' => 'Págia que vai retornar as notícias mais lidas',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageMaisLidas',
+    );
+    $itens['as-mais-clean'] = array(
+        'title' => 'As Mais Lidas - limpo',
+        'description' => 'Págia que vai retornar as notícias mais lidas com layout limpo',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageMaisLidasClean',
+    );
+    $itens['ultimas-noticias'] = array(
+        'title' => 'Últimas Notícias',
+        'description' => 'Págia que vai retornar as últimas notícias',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageUltimasNoticias',
+    );
+    $itens['ultimas-noticias-clean'] = array(
+        'title' => 'Últimas Notícias - limpo',
+        'description' => 'Págia que vai retornar as últimas notícias com layout limpo',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageUltimasNoticiasClean',
+    );
+    $itens['blogs-redacao'] = array(
+        'title' => 'Blogs da Redação',
+        'description' => 'Págia que vai retornar a listagem com os blogs da redação',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageBlogsRedacao',
+    );
+    $itens['blogs-redacao-clean'] = array(
+        'title' => 'Blogs da Redação - limpo',
+        'description' => 'Págia que vai retornar a listagem com os blogs da redação com layout limpo',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageBlogsRedacaoClean',
+    );
+    $itens['colunistas-block'] = array(
+        'title' => 'Colunistas',
+        'description' => 'Págia que vai retornar os colunistas e sua ultima materia',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageColunistas',
+    );
+    $itens['colunistas-clean'] = array(
+        'title' => 'Colunistas',
+        'description' => 'Págia que vai retornar os colunistas e sua ultima materia',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPageColunistasClean',
+    );
+    $itens['ultimas-noticias-caderno-clean'] = array(
+        'title' => 'Ultimas notícias por caderno',
+        'description' => 'Págia que vai retornar as ultimas notícias por caderno',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getUltimasPorCaderno',
+    );
+    $itens['block-promov-destac-caderno'] = array(
+        'title' => 'Bloco Promovidas e destacadas por caderno',
+        'description' => 'Página que vai retornar as notícias promovidas e destacadas por caderno',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPromovDestac',
+    );
+    $itens['block-promov-destac-caderno-10'] = array(
+        'title' => 'Bloco Promovidas e destacadas por caderno com 10 noticias',
+        'description' => 'Página que vai retornar as notícias promovidas e destacadas por caderno',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getPromovDestac10',
+    );
+    $itens['block_concursos_clean'] = array(
+        'title' => 'Bloco Concursos',
+        'description' => 'Página que vai retornar o bloco dos concursos limpo',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getConcursosClean',
+    );
+    $itens['bloco_ultimas_dinamico'] = array(
+        'title' => 'Bloco de ultimas notícias dinamico',
+        'description' => 'Bloco que vai retornar as ultimas notícias ',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getUltimasDinamicoBloco',
+    );
+    $itens['bloco_ultimas_carnaval'] = array(
+        'title' => 'Bloco de ultimas notícias carnaval',
+        'description' => 'Bloco que vai retornar as ultimas notícias do carnaval.',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getUltimasCarnavalBloco',
+    );
+    $itens['ultimas_dinamico'] = array(
+        'title' => 'Bloco de ultimas notícias dinamico',
+        'description' => 'Bloco que vai retornar as ultimas notícias ',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getUltimasDinamicoIframe',
+    );
+    $itens['blogs-rss'] = array(
+        'title' => 'Feed dos blogs da redação',
+        'description' => 'Pagina que vai ler os rss e salvar no banco',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'getRssBlogs',
+    );
+    $itens['blogs-parceiros'] = array(
+        'title' => 'Blogs parceiros',
+        'description' => 'Ultimas notícias dos blogs parceiros',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'blogsParceiros',
+    );
+    $itens['blogs-parceiros-horizontal'] = array(
+        'title' => 'Blogs parceiros',
+        'description' => 'Ultimas notícias dos blogs parceiros na horizontal',        
+        'access arguments' => array('access content'),
+        'file' => 'widget.inc',
+        'page callback' => 'blogsParceirosHorizontal',
+    );
+    
+    return $itens;
+    
+}
+
+/**
+ * hook_preprocess_html
+ */
+function widget_preprocess_html(&$vars){
+    
+    if(isset($_GET['response_type']) && $_GET['response_type'] == 'embed'){
+        $vars['theme_hook_suggestions'][] = 'html__embed';
+    }
+    
+}
+
+/**
+ * hook_preprocess_page
+ */
+function widget_preprocess_page(&$vars){
+    
+    if(isset($_GET['response_type']) && $_GET['response_type'] == 'embed'){
+        $vars['theme_hook_suggestions'][] = 'page__embed';
+    }
+    
+}
+
+
+//function widget_cron() {
+////  atualiza_medalhas();
+//}
+
+///**
+// * Hook que irá criar o as crons executadas pelo ADM
+// * 
+// * @return array 
+// */
+//function widget_cron_queue_info() {
+//  // Lista de de crons que serão execultadas
+//  $queues['atualiza_medalhas'] = array(
+//    'worker callback' => 'atualiza_medalhas', 
+//    'time' => 900,
+//  );
+//  
+//  return $queues;
+//}
+
+//function atualiza_medalhas(){
+//  // Incluindo a o leiaja db
+//  module_load_include('inc','especiais','leiaja.db');
+//  
+//  $strHost = "http://globoesporte.globo.com/servico/resultado/esportes/f9c4d8d1-bffb-467d-b4e8-d09599cf5e1f/classificacao.jsonp?callback=obter_resultado";
+//  
+//  // Acessando a url e jogando o conteudo na variável
+//  $strResultado = file_get_contents($strHost);
+//
+//  // Pegando o objeto JSON e passando pra php
+//  $objQuadroMedalha  = json_decode( preg_replace("/obter_resultado\(|\)$/", "", $strResultado));
+//  
+//  // Apagando os dados anteriores
+//  db_apaga_quadro_medalhas();
+//      
+//  foreach($objQuadroMedalha as $intChave=>$objMedalhas){
+//      $intChave = (int) $intChave;
+//      // Se a chave for igual a 10 pulo a contagem
+//      if($intChave > 9 && $objMedalhas->nome != "Brasil")
+//        continue;
+//
+//      $arrDados = array();
+//      $arrDados["nome"] = $objMedalhas->nome;
+//      $arrDados["ouro"] = $objMedalhas->medalhas->ouro;
+//      $arrDados["bronze"] = $objMedalhas->medalhas->bronze;
+//      $arrDados["prata"] = $objMedalhas->medalhas->prata;
+//      $arrDados["total"] = $objMedalhas->medalhas->total;
+//      $arrDados["posicao"] = ++$intChave;
+//      $arrDados["data_hora"] = date("Y-m-d H:i:s");
+//      
+//      // Salvando os dados no banco
+//      db_atualizar_medalhas($arrDados);
+//
+//      if($objMedalhas->nome == "Brasil" && $intChave > 9)
+//        break;
+//  }
+//}
+
+
+## hook block_info ##
+function widget_block_info(){
+  
+  $blocks = array();
+  $blocks['bloco-getcolunistas'] = array(
+    'info' => 'Bloco de Colunistas sem paginação',
+  );
+  $blocks['bloco-colunista'] = array(
+    'info' => 'Bloco de Colunistas Paginado - v2',
+  );
+  $blocks['bloco-colunista-blogs'] = array(
+    'info' => 'Bloco de Colunistas com 2 elementos',
+  );
+  $blocks['bloco-arquivos-blogs'] = array(
+    'info' => 'Bloco dos Arquivos de Blogs',
+  );
+  $blocks['bloco-area-opbloco-colunistacoes'] = array(
+    'info' => 'A área de opções chamada via jquery',
+  );
+  $blocks['bloco-as-mais-lidas'] = array(
+    'info' => 'As Mais Lidas',
+  );
+  
+  return $blocks;
+}
+
+## hook block_view ## 
+function widget_block_view($delta){
+  module_load_include('inc','leiaja','leiaja.api');
+  $block = array();
+  
+  switch($delta){
+    case 'bloco-getcolunistas':
+      $block['content'] = theme('bloco-getcolunistas');
+      break;
+    case 'bloco-colunista':
+      $block['content'] = api_bloco_colunista_v2('bloco-colunista', NULL);
+      break;
+    case 'bloco-colunista-blogs':
+        $block['content'] = api_bloco_colunista_v2('bloco-colunista-blogs', 2);
+        break;
+     case 'bloco-arquivos-blogs':
+        $block['content'] = conteudoArqsBlogs();
+        break;
+    case 'bloco-area-opcoes':
+        $block['content'] = theme('bloco-area-opcoes');
+        break;
+    case 'bloco-as-mais-lidas':
+        $block['content'] = theme('bloco-as-mais-lidas');
+        break;
+  }
+  return $block;
+}

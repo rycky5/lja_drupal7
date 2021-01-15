@@ -1,0 +1,4 @@
+name = Manunteção Nodes
+description = Modulo para excluir nodes antigas.
+core = 7.x
+package = Leia Já

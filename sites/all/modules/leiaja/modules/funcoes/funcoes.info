@@ -1,0 +1,5 @@
+name = Funcões
+description = Modulo com funções internas no leiaja.
+core = 7.x
+package = Leia Já
+version = "7.x-2.0"

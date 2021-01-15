@@ -1,0 +1,80 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do módulo de montagem de capa
+ * 
+ * @author Alberto Medeiros <alberto.medeiros@sereducacional.com>
+ */
+
+
+/**
+ * Método que irá  implementar os temas do meu módulo
+ * 
+ * @return Themas 
+ */
+function comentario_theme() {
+
+  $path = drupal_get_path('module', 'comentario');
+  $pathTheme = "sites/igpernambuco.leiaja.com/themes/ig";
+  //$pathTheme = drupal_get_path('theme', variable_get('theme_default', NULL));
+  
+  return array(
+//    'comentario' => array(
+//      'template' => 'comentario',
+//      'path' => "$path/theme",
+//    ),'capa_montada' => array(
+//      'template' => 'capa_montada',
+//      'path' => "$path/theme",
+//    ),
+//    'bloco-esportes' => array(
+//      'template' => 'block-block-esportes',
+//      'path' => "$path/theme",
+//    ),
+//      'bloco-politica' => array(
+//      'template' => 'block-block-politica',
+//      'path' => "$path/theme",
+//    ),
+  );
+}
+
+/*
+ * Implement hook_permission().
+ */
+function comentario_permission() {
+  return array(
+//    'administer sms' => array(
+//      'title' => t('Administrar SMS'),
+//      'description' => t('Permite realizar download dos números de telefone.'),
+//    ),
+//    'administer capa' => array(
+//      'title' => t('Configurar Capa'),
+//      'description' => t('Permite configurar as capas.'),
+//    ),
+//    'change node type' => array(
+//      'title' => t('Trocar caderno'),
+//      'description' => t('Permite alterar caderno da publicação.')
+//     ),
+//     'baixar arquivos' => array(
+//      'title' => t('Download Arquivos Enviados.'),
+//      'description' => t('Permite listar e baixar os arquivos enviados.'),
+//    )/*,
+//     'admin cadernos' => array(
+//      'title' => t('Bloco de Cobertura Cadernos.'),
+//      'description' => t('Permite configurar bloco de cobertura dos cadernos.'),
+//    )*/
+  );
+}
+
+function comentario_menu(){
+  $items = array();
+  
+  $items['comentario/salvar'] = array(
+    'title' => 'Salvar Comentários',
+    'page callback' => 'salvar_comentario',
+    'access arguments' => array('access content'),
+    'file' => 'comentario.inc',
+    'weight' => -1
+  );
+  
+  
+  return $items;
+}

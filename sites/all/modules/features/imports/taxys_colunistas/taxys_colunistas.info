@@ -1,0 +1,16 @@
+name = Taxys Colunistas
+description = As taxynomias de colunistas
+core = 7.x
+package = taxonomies
+php = 5.2.4
+version = 7.x-1.0
+project = taxys_colunistas
+dependencies[] = features
+dependencies[] = list
+dependencies[] = options
+dependencies[] = taxonomy
+features[features_api][] = api:1
+features[field][] = taxonomy_term-colunistas-field_coluna
+features[field][] = taxonomy_term-colunistas-field_parent
+features[field][] = taxonomy_term-colunistas-field_perfil
+features[taxonomy][] = colunistas

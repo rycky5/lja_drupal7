@@ -1,0 +1,60 @@
+<?php
+
+
+/**
+ * Implementação do hook_theme().
+ *
+ */
+function usuario_theme()
+{
+  $pathTheme  = path_to_theme();
+  $path      = drupal_get_path('module', 'usuario');
+  return array(
+    'usuario' => array(
+      'template' => 'usuario',
+      'path' => "$pathTheme/template"
+    ),'cadastro' => array(
+      'template' => 'cadastro',
+      'path' => "$path/template",
+    ),
+    'alteracao' => array(
+      'template' => 'user_edit',
+      'path' => "$path/template",
+    ),
+
+  );
+}
+
+/**
+ * Implementação da função hook_menu().
+ *
+ */
+function usuario_menu()
+{
+  $items = array();
+  // Login de usuário node normal.
+  $items['usuario/login'] = array(
+    'title' => 'Página Inicial',
+    'page callback' => 'usuario_login',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc' 
+  );
+  // Login de usuário para node estatica
+  $items['usuario/estatico'] = array(
+    'title' => 'Usuário Estatico',
+    'page callback' => 'usuario_login_estatico',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc' 
+  );
+  // Página inicial.
+  $items['usuario/logout'] = array(
+    'title' => 'Página Inicial',
+    'page callback' => 'user_sair',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc' 
+  );
+  
+  return $items;
+  
+}
+

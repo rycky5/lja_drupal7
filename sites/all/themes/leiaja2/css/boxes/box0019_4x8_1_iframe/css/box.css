@@ -1,0 +1,45 @@
+.box0019 { padding:0px;margin:0px;overflow:hidden !important;float:left;border-bottom:0px; }
+.box0019 h1 { font: 20px arial;color:#444;padding-bottom:10px;border-bottom:1px solid #ccc; }
+.box0019 h1 a { font: 20px arial;color:#444; }
+.box0019 h1 b {  border-bottom:5px solid #444;padding-bottom:6px; }
+.box0019 .ultimasNoticiasLista { padding-top:7px; }
+.box0019 .ultimasNoticiasLista li a { padding:6px 0px;border-bottom:1px solid #f1f1f1;font-size:14px !important;display:block;width:100%; }
+.box0019 .ultimasNoticiasLista li:last-child a { border-bottom:0px !important; }
+
+.box0019node { height:auto !important;width:325px; }
+.box0019node h1{
+	float:left;
+	width:100%;
+	margin-bottom:6px !important;
+	padding-bottom:0px;
+	border-bottom:solid 1px lightgray;
+}
+.box0019node h1 b, .box0019node h1 span {
+	float:left;
+	padding:10px 0px;
+	margin-bottom:-2px;
+	color:gray;
+	font-size:18px;
+	font-weight: normal;
+	text-transform:uppercase;
+	border-bottom:solid 3px gray;
+}
+.box0019node ul li{
+	float: left;
+	padding:14px 0px;
+	width:100%;
+	font-size:18px;
+	border-bottom:solid 1px lightgray;
+}
+.box0019node ul li:last-child{
+  border-bottom:none;
+}
+.zbox.box0019node ul.cinza li a{
+	float: left;
+	color:#0582b6 !important;
+	font-size:15px;
+}
+.box0019node ul li a { border-bottom:0px !important;}
+.box0019node ul li a:hover{
+	text-decoration:underline;
+

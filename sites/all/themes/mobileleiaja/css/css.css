@@ -1,0 +1,207 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body,div,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td,tt,img, input, button, textarea {  
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+a img, a:hover img { text-decoration:none;; }
+.ul, .ul li, .dl, .dl dd, .dl dt, .ul dl, .ul dt, .ul dl, .ul dd , .paginacao ul, .paginacao li{
+  padding:0px;
+  margin:0px;
+  list-style:none;
+  float:left;
+}
+
+a { text-decoration:none }
+a:hover { text-decoration:underline }
+
+a:focus { outline: none }
+.ul li, .ul { display:inline-block;list-style:none;padding:0px; }
+
+/* Principal */
+
+#pagina { width:100%;min-width:320px;float:left;font-size:1em;overflow:hidden; }
+
+#areaTopo { display:block;margin:0px;width:100%; }
+#imgLogo { float:left;margin:10px;height:34px;overflow:hidden; }
+#areaBusca { float:left;margin:10px 0 0 5%;width:53%; }
+#areaBusca ul { width:100%; }
+#areaBusca li.campoBusca, #areaBusca .campoBusca input, #areaBusca .submit, #areaBusca .submit input { float:left;height:30px;border:0px;background:url(../images/sprite.png) repeat-x;  }
+#areaBusca li { width:5%; }
+#areaBusca li.campoBusca { width:80%;background-position: 0px -66px;padding-left:2%; }
+#areaBusca .campoBusca input { width:100%;background-position: 0px -97px; }
+#areaBusca .submit, #areaBusca .submit input { width:30px;background-position: -70px -128px;text-indent:-5000px;cursor:pointer; }
+
+
+#topoMenu, #rodapeMenu { width:102%;border-top: 1px solid #e6e5e6; }
+#topoMenu li, #rodapeMenu li { width:33%; }
+#topoMenu a { width:100%;display:block;border-top:1px solid #fff;border-left:1px solid #e6e5e6;border-bottom: 1px solid #e6e5e6; background-color:#f4f4f4;color:#4c4b4c;font: bold 0.75em arial;text-transform:uppercase }
+#rodapeMenu a { width:100%;display:block;font: bold 0.75em arial;color:#4c4b4c; }
+#topoMenu span, #rodapeMenu span { display:block; padding:4% 0;cursor:pointer;text-align:center; }
+#rodapeMenu span { padding:5px 0; }
+
+#breadcumb { width:100%;font:0.85em arial;border-bottom: 1px dotted #aeaeae;background-color:#fffdf2 }
+#breadcumb .home a { width:25px;text-indent:-5000px;background:url(../images/sprite.png) -73px -33px no-repeat; }
+#breadcumb li a { height:20px; float:left;color:#4c4b4c;padding-top:5px; }
+#breadcumb li span { float:left;padding:5px 5px;color:#ccc }
+
+/* Home */
+
+#noticias, #ultimasNoticias, #ultimasNoticias ul, #ultimasNoticias li, #colunasBlogs, #multimidia, #multimidia .principal, #multimidia .principal p, #rodape, #copyright, #colunista { float:left;width:100%; }
+#noticias div, #colunasBlogs div, #colunista div { float:left;width:94%; padding:3%;border-bottom: 1px solid #e6e5e6;float:left;margin-top:1px; }
+#noticias h1.bg { border:0px;padding:5px 5%;font:bold 0.90em arial;width:90%;border-bottom: 1px solid #e6e5e6; }
+
+.noticias { border-left:3px solid #EA0C25; }
+.noticias h1, h1.noticias { color:#EA0C25; }
+.bg.noticias { background-color:#fff1f3; }
+.esportes { border-left:3px solid #006600; }
+.esportes h1, h1.esportes { color:#006600; }
+.bg.esportes { background-color:#f4fff0 }
+.tecnologia { border-left:3px solid #2CB4ED; }
+.tecnologia h1, h1.tecnologia { color:#2CB4ED; }
+.bg.tecnologia { background-color:#f1fbff; }
+.carreiras { border-left:3px solid #663399; }
+.carreiras h1, h1.carreiras { color:#663399; }
+.bg.carreiras { background-color: #f9f0ff }
+.cultura { border-left:3px solid #E77D19; }
+.cultura h1, h1.cultura { color:#E77D19; }
+.bg.cultura { background-color:#fff7ef }
+.multimidia { border-left:3px solid gray; }
+.multimidia h1, h1.multimidia { color:gray; }
+.bg.multimidia { background-color:#f5f5f5 }
+
+.cabecalho, .cabecalho2 { font:bold 1em arial;float:left;width:100%;padding:8px 0px;text-align:center; }
+.cabecalho { color:#525252;border-bottom: 1px dotted #aeaeae; }
+.cabecalho2 { color:#fff;border-bottom: 1px solid #404340;border-top:1px solid #404340 }
+.cabecalho span, .cabecalho2 span { position:relative;margin-left:-15px; }
+.cabecalho a, .cabecalho2 a { text-indent:-5000px;background: url(../images/sprite.png) no-repeat;width:26px;height:26px;overflow:hidden;position:absolute;margin:-4px 0px 0px 10px }
+.cabecalho a { background-position: -36px -30px }
+.cabecalho2 a { background-position: 0px -30px }
+#ultimasNoticias li a { width:96%; padding:2%;border-bottom: 1px dotted #aeaeae;float:left;background-color:#f1fbff;font: normal 0.85 arial; }
+#ultimasNoticias li a:hover { background-color: #fffef1; }
+#ultimasNoticias li { margin-top:1px;  }
+#ultimasNoticias .cabecalho span em { font-weight:normal;font-size:0.90em; }
+#ultimasNoticias.resultado li a { background-color:#fff; }
+
+.destaque1 h1, .destaque2 h1, .destaques h1, #colunista h1 { font: bold 0.80em arial;float:left; }
+#noticias *, #ultimasNoticias ul *, #colunasBlogs div *, #multimidia div *, #colunista * { float:left; }
+#noticias table *, #colunasBlogs div table *, #multimidia div table *, #colunista table * { float:none }
+#noticias a, #ultimasNoticias a, #colunasBlogs a { color:#808080; }
+#noticias .foto img, #noticias .foto a, #colunasBlogs .foto img, #colunasBlogs .foto a, #colunista .foto a, .foto a, .foto img { width:100%; }
+.destaque1 h1 { margin: -3px 0px 0px 3%; }
+.destaque1 .foto { width:39%; }
+.destaque1 .titulo { width:52%;padding: 0% 1.5% 0% 3%;font: bold 0.96em arial; }
+.destaque2 h1 { margin: -3px 0px 0px 3%;width:64%; }
+.destaque2 .foto { width:29%; }
+.destaque2 .titulo { width:64%;padding: 1% 1.5% 0% 3%;font: normal 0.96em arial; }
+.destaques h1 { margin: -2px 0px 0px 0.5% }
+.destaques .titulo { width:96%;padding: 1% 0.5% 0% 0.5%;font: normal 0.96em arial; }
+.destaquesmini h1 { font: bold 0.70em arial;float:left;margin: -2px 0px 0px 0.5%; }
+.destaquesmini .titulo { width:96%;padding: 1% 0.5% 0% 0.5%;font: normal 0.85em arial; }
+
+#multimidia { background-color:#525252; }
+#multimidia a { color:#fff;font: normal 0.85em arial; }
+#multimidia .principal, #multimidia li { border-top:1px solid #6f6f6f;border-bottom: 1px solid #404340;float:left;width:100%;padding:6px 0; }
+#multimidia .principal p, #multimidia .principal img { width:100% }
+#multimidia .principal a img { margin-top:-130px }
+#multimidia .principal a { width:92%;margin:0% 4%;text-align:center; }
+#multimidia .principal span { width:95%;cursor:pointer;background: url(../images/bg24.png) repeat-x;position:relative;margin-top:-48px;padding:3%;display:block;text-align:left; }
+#multimidia li a { width:90%;padding:0 5%;float:left; }
+#multimidia a em { text-indent:-5000px;width:100%;height:99px;position:relative;z-index:2;margin-top:30px}
+#multimidia .odd { background-color:#5c5c5c }
+#multimidia .cabecalho2 { background-color:#3c3c3c }
+#multimidia .video { background: url(../images/icongvideo.png) center center no-repeat }
+
+#rodape { height:64px;background:url(../images/sprite.png) 0px -165px repeat-x;float:left; }
+#rodapeMenu  { padding-top:5px; }
+#copyright { background-color:#f1fbff;padding:7px;text-align:center;font: normal 0.80em arial;color:#4c4b4c;border-top: 1px solid #e9e9e9; }
+
+/* Views! */
+
+
+#verMateria, #verMateria .conteudo .titulo, #verMateria .conteudo .foto, #verMateria .conteudo .video, #verMateria .conteudo .foto img, #verMateria .conteudo .texto { float:left;width:100%;border:0px; }
+#verMateria { border-bottom: 1px dotted #aeaeae; }
+#verMateria .conteudo { width:90%;margin:0% 5%;float:left; }
+#verMateria .conteudo h1 { font-weight:bold;width:68%;margin-top:10px; }
+#socialbar { float:right;width:34%;margin:5px -4% 0px 0px;visibility:hidden; }
+#socialbar  .label { position:absolute;font: normal 0.75em arial;margin: 6px 0px 0px -75px; }
+#socialbar li { float:right; }
+#socialbar li a { width:30px;height:30px;margin-left:3%;float:right;background: url(../images/sprite.png) no-repeat;overflow:hidden;text-indent:-5000px; }
+#socialbar .facebook a { background-position: -4px -232px; }
+#socialbar .google a { background-position: -34px -232px; }
+#socialbar .twitter a { background-position: -64px -232px; }
+#verMateria .conteudo .titulo, #multimidia .titulo { padding:5px 0px 10px 0px;font:bold 1em arial; }
+#verMateria .conteudo .foto, #verMateria .conteudo .video { padding-bottom:0px; }
+#verMateria .conteudo .foto span { position:absolute;z-index:2;background: url(../images/bg24.png) repeat-x;display:block;padding:2px 5px;color:#f1f1f1;font:normal 0.70em arial;text-decoration:none; }
+#verMateria .conteudo .video {}
+#verMateria .texto { padding:7px 0px; }
+#verMateria .conteudo .foto img { float:left;margin-top:0px; }
+#verMateria .conteudo .texto, #verMateria .conteudo .chamada, , #multimidia .chamada { font:0.85em arial; }
+#verMateria .conteudo .fonte, #multimidia .fonte { font:0.75em arial;text-align:right; }
+#verMateria .conteudo p, #multimidia p { padding:7px 0px;display:block }
+
+#verMateria.blog .conteudo { border-top: 1px dotted #aeaeae;color:#4c4b4c; }
+#verMateria h1.titulo { padding:0px;margin:0px;height:50px;overflow:hidden; }
+#verMateria.blog .conteudo h1 b { color:#fff;padding:4px 10px;float:left;font:0.80em arial; }
+#verMateria.blog p.titulo { padding-bottom:0px; }
+#verMateria.blog .bg h4 { display:none; }
+#verMateria.blog .fonte { width:100%;float:left; }
+#verMateria.blog p.chamada { float:left;width:100%; }
+#verMateria.blog .vermais { text-align:right;font:bold 0.80em arial;width:100%;float:left;padding-top:0px; }
+#verMateria.blog .label { padding-top:3px; }
+
+.blog.noticias .conteudo h1 b { background-color: #EA0C25; }
+.blog.noticias a { color:#EA0C25; }
+.blog.esportes .conteudo h1 b { background-color: #006600; }
+.blog.esportes a { color:#006600; }
+.blog.tecnologia .conteudo h1 b { background-color: #2CB4ED; }
+.blog.tecnologia a { color:#2CB4ED; }
+.blog.carreiras .conteudo h1 b { background-color: #663399; }
+.blog.carreiras a { color:#663399; }
+.blog.cultura .conteudo h1 b { background-color: #E77D19; }
+.blog.cultura a { color:#E77D19; }
+
+.blog.esportes h1.titulo { background:url(../images/blogbgesportes.jpg) repeat-x; }
+.blog.cultura h1.titulo { background:url(../images/blogbgcultura.jpg) repeat-x; }
+.blog.carreiras h1.titulo { background:url(../images/blogbgcarreiras.jpg) repeat-x; }
+
+#colunista { padding: 10px 0px; }
+#colunista div { border:0px;padding:3% 0px;margin: 1px 3%;border:1px solid #f1f1f1 }
+#colunista h1 { font:bold 0.90em arial;margin-top:0px }
+#colunista p { font:0.80em arial; }
+#colunista .foto { overflow:hidden; }
+
+#multimidia .principal p { width:92%;padding-left:4%;padding-right:4%;color:#eeeeee; }
+#multimidia.view .principal .titulo, #multimidia.view .principal .fonte { border-bottom: 1px solid #404340; }
+#multimidia.view .principal .fonte, #multimidia.view .principal .foto, #multimidia.view .principal .chamada { border-top: 1px solid #6F6F6F; }
+#multimidia.view .principal { border-bottom: 1px solid #6F6F6F; }
+#multimidia.view p b { float:none }
+
+#multimidia.galeria .principal .foto span { margin-top:-35px; }
+#multimidia .galeria, #galerialista, #multimidia .galeria .lista { float:left;width:100%; }
+#galerialista { margin-top:0px;overflow:hidden;float:left; }
+
+#multimidia #divPaginaFoto { position:absolute;width:100%;left:0px; }
+#multimidia #paginaFoto { float:left;width:100%;position:absolute;z-index:9999; }
+#multimidia #paginaFoto li { cursor:pointer;height:20px;width:10%;overflow:hidden;background-color:#71c4ea;text-align:center;color:#fff;border:0px;display:hidden}
+#multimidia #paginaFoto li b { cursor:pointer;text-align:center;float:none;display:block; }
+#multimidia li#proximaFoto { float:right; }
+#multimidia li#voltarFoto { float:left;  }
+
+#multimidia .galeria #paginacao { float:left;width:100%;position:relative;height:30px; }
+#multimidia .galeria #paginacao li { left:0px;width:100%;height:17px;overflow:hidden;background-color:#71c4ea;text-align:center;position:absolute;color:#fff;}
+#multimidia .galeria #proximaPagina { position:absolute; }
+#multimidia .galeria .lista li { width:33%;height:20%;overflow:hidden; }
+#multimidia .galeria .lista img { width:100%;float:left; }
+#multimidia .galeria .lista span  { width:95%;padding: 1% 1.5% 0% 3%;font: normal 0.80em arial;float:left; }
+#multimidia .galeria #paginacao li { border:0px; }
+
+#multimidia td { width:33%; }

@@ -1,0 +1,4 @@
+name = Integração Nova Capa - Leiajá
+description = Módulo responsavel pela criação da nova capa
+core = 7.x
+package = Leia Já

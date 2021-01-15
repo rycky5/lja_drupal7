@@ -1,0 +1,5 @@
+name = Capa
+description = Módulo que irá conter as funcionabilidades de montagem de capa ordenando os blocos
+core = 7.x
+package = Leia Já
+;dependencies[] = leiaja

@@ -1,0 +1,884 @@
+<?php
+
+//Incluindo o arquivo funcoes.inc
+module_load_include('inc', 'funcoes', 'funcoes');
+
+/**
+ * Neste arquivo implementar apenas os hooks para uso do Drupal.
+ * FunÃ§Ãµes de callback, modelo e helper devem ser criados nos arquivos especificos:
+ * .inc, .db.inc e .api.inc, respectivamente, relativo a cada entidade. 
+ * @author Henrique da Penha (henrique.penha@sereducacional.com)
+ * @version 1.0
+ * @
+ */
+/**
+ * Retorna a URL para uma imagem derivada de um estilo de imagem definido por parametro.
+ *
+ * @param $imgStyle
+ *   O nome do estilo que serï¿½ usado por esta imagem.
+ * @param $url
+ *   O caminnho da imagem i.e.: 'public://nome-da-imagem.jpg'
+ * @return
+ *   A url absoluta no servidor "static1" onde a imagem pode ser baixada e pronta para ser renderizada
+ *   na tag <img>. A imagem serï¿½ gerada a partir do momento que for acessada a primeira vez
+ * @see image_style_url()
+ */
+function image_static_url($imgStyle = "thumbnail",$url){
+  // Iniciando variÃ¡vel de retorno
+  $string = "";
+  
+  // Caso nï¿½o seja ambiente de desenvolvimento
+  if(!preg_match("/www[0-9]/", $_SERVER["HTTP_HOST"])){
+      //gerando img no estilo desejado.
+      $string = image_style_url($imgStyle, $url);
+      //  Verificando se a img existe
+      if(file_get_contents($string) !== false){
+        $patterns = array();
+        $patterns[0] = '/sgc/';
+        $patterns[1] = '/www/';
+        $patterns[2] = '/igpernambuco./';
+        $patterns[3] = '/pernambuco.ig.com.br/';
+        $patterns[4] = '/static1.static1./';
+        $replacements = array();
+        $replacements[0] = 'static1';
+        $replacements[1] = 'static1';
+        $replacements[2] = 'static1.';
+        $replacements[3] = 'static1.leiaja.com';
+        $replacements[4] = 'static1.';
+        
+        // Tratando a url para apontar para o servidor de arquivos staticos
+        $string =  preg_replace($patterns, $replacements, $string);
+      }
+  }else{
+    // Retornaodo o estilo
+     $string =  image_style_url($imgStyle, $url);
+  }
+ 
+  // Retornando a imagem
+  return $string;
+}
+
+/**
+ * Retorna a URL para uma imagem derivada de um estilo de imagem definido por parametro.
+ *
+ * @param $img
+ *   Recebe um array(); mapeado com os atributos da imagem
+ *   i.e.: $img = array(
+ *                'style'=>'estilo_image',
+ *                'uri'=>'public://nome-da-imagem.jpg',
+ *                'class'=>array('class1','class2'),
+ *                'alt'=>'texto alternativo',
+ *                'title'=>'title da imagem',
+ *                'width'=>"191",
+ *                'height'=>"143");
+ * @return
+ *   A url absoluta no servidor "static1" onde a imagem pode ser baixada e pronta para ser renderizada
+ *   na tag <img>. A imagem serÃ¡ gerada a partir do momento que for acessada a primeira vez
+ * @see image_static_url()
+ */
+function image_static_lazy($img = array())
+{
+  $tagImg = "";
+  if(!empty($img['uri'])){
+    $urlImg     = image_static_url($img['style'], $img['uri']);
+    $thumbStyle = (empty($img['stylethumb'])) ? 'thumbnail' : '';
+    $thumbnail  = image_static_url($thumbStyle,$img['uri']);
+    $atributes  = array("");
+    
+    if(!empty($img['class']) && is_array($img['class'])){
+        array_push($img['class'],'lazy');
+        $img['class'] = implode(' ', $img['class']);
+    }else{
+        $img['class'] ="lazy";
+    };  
+
+    if(!empty($img['atribute'])){
+      foreach ($img['atribute'] as $key => $value) {
+        $atributes[] = $key."=".$value;
+      }
+    $atributes = implode(' ', $atributes);
+    }else{
+      $atributes ='';
+    }
+
+    $tagImg = '<img class="'.$img['class'].'" '.$atributes.' src="'.$thumbnail.'" data-original="'.$urlImg.'" width="'.$img['width'].'" height="'.$img['height'].'" alt="'.$img['alt'].'" title="'.$img['title'].'">
+               <noscript><img src="'.$urlImg.'" width="'.$img['width'].'" height="'.$img['height'].'" alt="'.$img['alt'].'" title="'.$img['title'].'"></noscript>';
+  }
+  print $tagImg;
+}
+
+
+//funÃ§Ã£o para limitar um texto considerando as palavras
+function limitaTextoTags($string, $limit, $break=" ", $pad="...") {
+	// return with no change if string is shorter than $limit
+	if(strlen($string) <= $limit)
+		return $string; 
+ 
+	// is $break present between $limit and the end of the string?
+	if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+		if($breakpoint < strlen($string) - 1) {
+			$string = substr($string, 0, $breakpoint) . $pad;
+		}
+	}
+    return $string;
+}
+
+
+/**
+ *  MÃ©todo que receberÃ¡ a notÃ­cia e o body como parametro e irÃ¡ verificar se a mesma possui o campo recomenda se sim cria o html
+ *  e reorna a estrutura de recomendaÃ§Ã£o para ser substituida na TPL da notÃ­cia
+ * 
+ * @param stdClass $objNode
+ * @param Boolean $bolIg
+ * @return string
+ */
+function recomenta($objNode, $bolIg = false){
+  // Iniciando a variavel que conterÃ¡ o html do recomenda
+  $strLeiaTambem = "";
+  
+  // Caso a notÃ­cia seja de algum dos cadernos abaixo e possua o recomenda setado
+  if(in_array($objNode->type, array_flip(getCadernos())) && (strstr($objNode->body[$objNode->language][0]["value"], "##RECOMENDA##") || $bolIg)){
+    // Criando variavel que conterÃ¡ o array de TIDs
+    $arrTid = array();
+    // Recuperando o tid das tags
+    foreach($objNode->field_tags[$objNode->language] as $objTag){
+      if(!empty($objTag['taxonomy_term']->tid)){
+        $arrTid[] = $objTag['taxonomy_term']->tid;
+      }
+    }
+    
+    // Implodindo os tid
+    $strTids = implode(",", $arrTid);
+    
+    // Recuperando o id da notÃ­cia
+    $intNid = $objNode->nid;
+    
+    //Pegando o recomenda
+    $view = views_get_view('recomenda');
+    
+    // Setando o id da node a ser ignorada e os tids das tags para busca
+    $view->display["default"]->display_options["arguments"]["nid"]["default_argument_options"]["argument"] = $intNid;
+    $view->display["default"]->display_options["arguments"]["field_tags_tid"]["default_argument_options"]["argument"] = $strTids;
+    
+    //setando o display desejado.
+    $view->set_display('recomenda');
+    $view->pre_execute();
+    $view->execute();
+    $strLeiaTambem = $view->render("recomenda");
+  }
+
+  // Retornando o conteÃºdo
+  return $strLeiaTambem;
+}
+
+/**
+ * MÃ©todo que irÃ¡ receber a notÃ­cia e o content por parametro e ira retornar o conteÃºdo montando os conteudo multimÃ­dia da notÃ­cia
+ * 
+ * @param type $content
+ * @param stdClass $node 
+ */
+function api_rederMultimidia(&$content, &$node){
+    
+  hide($content['field_image']);
+
+  // Recuperando alinguagem
+  if(empty($node->field_galeria_full)){
+      $strLinguagemGaleria = 'und';
+  }else{
+    $strLinguagemGaleria = key($node->field_galeria_full);  
+  }
+    
+  // Caso esteja marcado alguma posiÃ§Ã£o de galeria 
+  if(preg_match("/\[\@\#galeria\#\@\]/",  $content["body"][0]["#markup"])){
+    // Array que conterÃ¡ as hash para ser bustituida
+    $strBucaGaleria   = "[@#galeria#@]";
+
+    if(isset($node->field_galeria_full[$strLinguagemGaleria]) && $node->field_galeria_full[$strLinguagemGaleria][0]["value"] == 0 && count($node->field_image[$node->language]) > 0){
+      // Array que conterÃ¡ os valores que a serem subistituidos
+      $strSubstituicaoGaleria      = render($content['field_image']) . getEmbedNoticia($node, "imagem");
+
+      // Substituindo a hash de galeria pela prÃ³pria galeria rederizada
+      $content["body"][0]["#markup"] = str_replace($strBucaGaleria,(empty($strSubstituicaoGaleria)) ? '' : $strSubstituicaoGaleria, $content["body"][0]["#markup"]);
+    }
+    
+    $content["body"][0]["#markup"] = str_replace($strBucaGaleria, "", $content["body"][0]["#markup"]);
+  }else{
+    // Liguagem
+    $strLinguagem = (!empty ($node->field_image[$node->language])) ? $node->language : "und";
+    
+    // Caso tenha um campo de imagem setada
+    if(!empty($node->field_galeria_full[$strLinguagemGaleria][0]["value"]) && $node->field_galeria_full[$strLinguagemGaleria][0]["value"] == 0 && count($node->field_image[$strLinguagem]) > 1){
+      // Array que conterÃ¡ os valores que a serem subistituidos
+      $strSubstituicaoGaleria      = render($content['field_image']) . getEmbedNoticia($node, "imagem");
+
+      // Concatenando a galeria mais o copor da notÃ­cia
+      $content["body"][0]["#markup"] =  $content["body"][0]["#markup"] . $strSubstituicaoGaleria;
+    }
+  }
+
+  // Caso esteja marcado alguma posiÃ§Ã£o e vÃ­deo sambatech
+  if(preg_match("/\[\@\#video\#\@\]/", $content["body"][0]["#markup"])){
+
+    // Array que conterÃ¡ as hash para ser bustituida
+    $strBucaVideo     = "[@#video#@]";
+
+    // linguagem
+    $strLinguagem = (!empty ($node->field_videost[$node->language][0]["value"])) ? $node->language : "und";
+    
+    if(!empty ($node->field_videost[$strLinguagem][0]["value"])){
+      // Embed de vÃ­deo
+      $strSubstituicaoVideo        = $node->field_videost[$strLinguagem][0]["value"] . getEmbedNoticia($node, "videost");
+
+      // realizando a substituiÃ§Ã£o
+      $content["body"][0]["#markup"] = str_replace($strBucaVideo,(empty($strSubstituicaoVideo)) ? '' : $strSubstituicaoVideo, $content["body"][0]["#markup"]);
+    }
+    
+    // Removendo o resto das tags
+    $content["body"][0]["#markup"] = str_replace($strBucaVideo, "", $content["body"][0]["#markup"]);
+  }else{
+    
+    // Liguagem
+    $strLinguagem = (!empty ($node->field_videost[$node->language][0]["value"])) ? $node->language : "und";
+    
+    // Caso tenha algum vÃ­deo
+    if(!empty ($node->field_videost[$strLinguagem])){
+      // Embed de vÃ­deo
+      $strSubstituicaoVideo        = $node->field_videost[$strLinguagem][0]["value"] . getEmbedNoticia($node, "videost");
+
+      // realizando a substituiÃ§Ã£o
+      $content["body"][0]["#markup"] = $strSubstituicaoVideo . $content["body"][0]["#markup"];
+    }
+  }
+
+  // Caso esteja marcado alguma posiÃ§Ã£o e audio sambatech
+  if(preg_match("/\[\@\#podcast\#\@\]/", $content["body"][0]["#markup"])){
+
+    // Array que cont=erÃ¡ as hash para ser bustituida
+    $strBucaVideo     = "[@#podcast#@]";
+
+    // linguagem
+    $strLinguagem = (!empty ($node->field_audiost[$node->language][0]["value"])) ? $node->language : "und";
+    $audioST= "<div class='audio-sambatech'>".$node->field_audiost[$strLinguagem][0]["value"]."</div>";
+    // Embed de vÃ­deo
+    $strSubstituicaoVideo        = $audioST . getEmbedNoticia($node, "audiost");
+
+    // Caso tenha algum podcast
+    if(!empty ($node->field_audiost)){
+      // realizando a substituiÃ§Ã£o
+      $content["body"][0]["#markup"] = str_replace($strBucaVideo,(empty($strSubstituicaoVideo)) ? '' : $strSubstituicaoVideo, $content["body"][0]["#markup"]);
+    }
+    
+    $content["body"][0]["#markup"] = str_replace($strBucaVideo, "", $content["body"][0]["#markup"]);
+  }  else{
+    // linguagem
+    $strLinguagem = (!empty ($node->field_audiost[$node->language][0]["value"])) ? $node->language : "und";
+    
+    // Caso tenha algum podcast
+    if(!empty ($node->field_audiost[$strLinguagem])){
+      
+      // div de audio st
+      $audioST= "<div class='audio-sambatech'>".$node->field_audiost[$strLinguagem][0]["value"]."</div>";
+     
+      // Embed de vÃ­deo
+      $strSubstituicaoVideo        = $audioST . getEmbedNoticia($node, "audiost");
+
+      // realizando a substituiÃ§Ã£o
+      $content["body"][0]["#markup"] = $content["body"][0]["#markup"] . $strSubstituicaoVideo;
+    }
+    
+  }
+  
+}
+
+/**
+ * MÃ©todo que irÃ¡ receber a notÃ­cia e irÃ¡ retornar a galeria full pra ela
+ * @param stdClass $objNode 
+ */
+function getGaleriaFull($objNode){
+// http://static1.leiaja.com/sites/all/libraries/galleria/galleria-1.2.8.min.js
+  // Incluindo o arquivo necessÃ¡rio
+  $scriptGalleria = "http://static1.leiaja.com/sites/all/libraries/galleria/galleria-1.2.8.min.js";
+  $scriptThemeGalleria = "http://static1.leiaja.com/sites/all/libraries/galleria/themes/azur/galleria.azur.min.js";
+  
+  // Linguagem do field imagem
+  $strLinguagem = key($objNode->field_image);
+  
+?>
+  <script src="<?print $scriptGalleria;?>" type="text/javascript"></script>
+  <style>
+    .interna_topo{margin: 10px 0;border-bottom: 1px solid rgb(214, 214, 214);}
+    #galleria{height: 650px;}
+    .hidden{clear: both;visibility: hidden;}
+    .compartilhaTop{width:100%}
+    .compartilhaTop * {vertical-align: middle;}
+  </style>
+  <div id="galleria">
+    <?php 
+      $arrImagens = $objNode->field_image[$strLinguagem];
+      foreach ($arrImagens as $key => $item) :
+        $item['title'] = empty($item['title'])?$destaque['titulo']:$item['title'];
+        $item['alt'] = empty($item['alt'])?$destaque['conteudo']:$item['alt'];
+
+        $imgReal = file_create_url($item["uri"]);
+        
+        // Caso nï¿½o seja ambiente de desenvolvimento
+        if(!preg_match("/www[0-9]/", $_SERVER["HTTP_HOST"])){
+            //  Verificando se a img existe
+            if(file_get_contents($imgReal) !== false){
+              $patterns = array();
+              $patterns[0] = '/sgc/';
+              $patterns[1] = '/www/';
+              $patterns[2] = '/igpernambuco./';
+              $patterns[3] = '/pernambuco.ig.com.br/';
+              $patterns[4] = '/static1.static1./';
+              $replacements = array();
+              $replacements[0] = 'static1';
+              $replacements[1] = 'static1';
+              $replacements[2] = 'static1.';
+              $replacements[3] = 'static1.leiaja.com';
+              $replacements[4] = 'static1.';
+
+              // Tratando a url para apontar para o servidor de arquivos staticos
+              $imgReal =  preg_replace($patterns, $replacements, $imgReal);
+            }
+        }
+    ?>
+    <a href="<?= $imgReal; ?>">
+        <img 
+        <?php if (!empty($item['title'])): ?>
+            title="<?= $item['title']; ?>"
+          <?php endif; ?>
+          <?php if (!empty($item['alt'])): ?>
+            alt="<?= $item['alt']; ?>"
+          <?php endif; ?>
+          src="<?= image_static_url('thumbnail', $item["uri"]); ?>" />
+      </a>
+    <?php endforeach;?>
+  </div>
+  
+  <script>
+
+    // Load the Azur theme
+    Galleria.loadTheme('<?php print $scriptThemeGalleria;?>');
+    
+    //configurando a Galleria
+    Galleria.configure({
+      _locale: {
+        show_captions: 'Mostrar legendas',
+        hide_captions: 'Ocultar legendas',
+        play: 'Iniciar slideshow',
+        pause: 'Parar slideshow',
+        enter_fullscreen: 'Ver em fullscreen',
+        exit_fullscreen: 'Sair do  fullscreen',
+        next: 'PrÃ³xima imagem',
+        prev: 'Imagem anterior',
+        showing_image: 'Mostrando imagem %s a %s'
+      }
+    });
+    // Initialize Galleria
+    Galleria.run('#galleria', {
+      autoplay: 7000 // will move forward every 7 seconds
+    });
+
+  </script>
+<?php
+}
+
+
+/**
+ * MÃ©todo que irÃ¡ retornar o nome do fiel do caderno
+ * 
+ * @param String $strCaderno 
+ * @return String $strField
+ */
+function api_getCategoriaNode($strCaderno){
+  
+  // Iniciando a variÃ¡vel field
+  $strField = "";
+  
+  // Selecioando o nome do field
+  switch($strCaderno){
+    case "caderno_cultura":
+        $strField =  "field_catcultura";
+      break;
+    case "caderno_esportes":
+        $strField =  "field_catesporte";
+      break;
+    case "caderno_carreiras":
+        $strField =  "field_catnegocios";
+      break;
+    case "caderno_noticias":
+        $strField =  "field_catnoticia";
+      break;
+    case "caderno_tecnologia":
+        $strField =  "field_cattecnologia";
+      break;
+    case "caderno_multimidia":
+        $strField =  "field_catradiotv";
+      break;
+    case "caderno_politica":
+        $strField =  "field_catpolitica";
+      break;
+    
+    
+  }
+  // Retornando o field
+  return $strField;
+}
+
+
+//funÃ§Ã£o para limitar um texto considerando as palavras
+function limitaTexto($string, $limit, $break=" ", $pad="...") {
+	// return with no change if string is shorter than $limit
+	if(strlen($string) <= $limit)
+		return $string; 
+ 
+	// is $break present between $limit and the end of the string?
+	if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+		if($breakpoint < strlen($string) - 1) {
+			$string = substr($string, 0, $breakpoint) . $pad;
+		}
+	}
+    return $string;
+}
+
+function retiraHashII($string) {
+    // Retirando as hash de marcaÃ§Ã£o
+    return retiraHash($string);
+}
+
+/**
+ * FunÃ§Ã£o para validaÃ§Ã£o do Captcha
+ * @param array $arrDados
+ * @return boolean
+ */
+function validaCaptha(array $arrDados){
+    
+    // Incluindo o arquivo necessÃ¡rio
+    require_once $_SERVER['DOCUMENT_ROOT']."/sites/all/libraries/recaptcha/recaptchalib.php";
+    
+    // Chave publica do leiajÃ¡
+    $privatekey = "6Ld8j9oSAAAAAJLdUPymsxsC8zv9pd1b5IE8N4lj";
+
+    // Validando
+    $resp = recaptcha_check_answer (
+                                   $privatekey,
+                                   $_SERVER["REMOTE_ADDR"],
+                                   $arrDados["recaptcha_challenge_field"],
+                                   $arrDados["recaptcha_response_field"]
+                                );
+    
+    // Validando o captach
+    if($resp->is_valid === FALSE){
+     $retorno = FALSE;
+    }else{
+     $retorno = TRUE;
+    }
+    
+    return $retorno;
+}
+
+/**
+ * Retorna array com cadernos disponÃ­veis para ediÃ§Ã£o do node.
+ *
+ * @return Array
+ */
+function getCadernos()
+{
+    $vCadernos['caderno_noticias']   = 'Notícias';
+    $vCadernos['caderno_politica']   = 'Política';
+    $vCadernos['caderno_carreiras']  = 'Carreiras';
+    $vCadernos['caderno_esportes']   = 'Esportes';
+    $vCadernos['caderno_cultura']    = 'Cultura';
+    $vCadernos['caderno_tecnologia'] = 'Tecnologia';
+    $vCadernos['caderno_multimidia'] = 'Multimídia';
+    $vCadernos['carnaval_2012'] = 'Carnaval 2012';
+    $vCadernos['caderno_copaamerica'] = 'Copa America';
+    $vCadernos['caderno_rio2016'] = 'Rio 2016';
+    $vCadernos['caderno_pa'] = 'Pará';
+    $vCadernos['caderno_sp'] = 'São Paulo';
+    $vCadernos['caderno_pe'] = 'Pernambuco';
+    $vCadernos['caderno_ce'] = 'Ceará';
+    $vCadernos['caderno_rj'] = 'Rio de Janeiro';
+    $vCadernos['caderno_ba'] = 'Bahia';
+    $vCadernos['caderno_cl'] = 'Classificação Livre';
+    $vCadernos['caderno_nasocial'] = 'NaSocial';
+    $vCadernos['caderno_enem'] = 'Vai cair no Enem';
+    $vCadernos['caderno_oab'] = 'OAB';
+
+    return $vCadernos;
+}
+
+/**
+ * Método que irá receber o array de objetos de views e irá retornar os nids dos nodes do array
+ * 
+ * @param array $arrViews
+ * @return String
+ */
+function getNidsByViews($arrViews){
+    
+  $arrTam = count($arrViews);
+    $nidsPass = '';
+    foreach ($arrViews as $key => $value) {
+        if($key < ($arrTam-1)){
+            $nidsPass.= $value->nid.',';
+        }else{
+            $nidsPass.= $value->nid;
+        }
+    }
+    
+    return $nidsPass;
+}
+
+/**
+ * Método que irá receber o array de notícias e irá validar a montagem para a imagem de capa
+ * 
+ * @param array $arrObjNodes
+ * @return Array
+ */
+function api_getImageCapaViewTratado($objNode){
+  // Criando a variavel de retorno
+  $strUrlImagem = null;
+  $tempChave = key($objNode->_field_data);
+  $base = $objNode->_field_data[$tempChave]['entity'];
+  
+  if(!empty ($base->field_capa[key($base->field_capa)][0]['uri'])){
+      
+    $ttImg = @$base->field_capa[key($base->field_capa)][0]['title'];
+    $altImg = @$base->field_capa[key($base->field_capa)][0]['alt'];
+    // Recuperando a img original
+    $strUrlImagem = @$base->field_capa[key($base->field_capa)][0]['uri'];
+    
+  }elseif(!empty ($base->field_image[key($base->field_image)][0]['uri'])){
+    
+    $ttImg = @$base->field_image[key($base->field_image)]['title'];
+    $altImg = @$base->field_image[key($base->field_image)]['alt'];
+    // Imagem de galeria
+    $strUrlImagem = @$base->field_image[key($base->field_image)][0]['uri'];
+    
+    
+  }else{
+      $ttImg        = $node->node_title;
+      $altImg       = $node->node_title;
+      $strUrlImagem = '';
+      
+  }
+  
+  $retorno = array(
+      'ttImg'  => $ttImg,
+      'altImg' => $altImg,
+      'uriImg' => $strUrlImagem
+  );
+  
+  // Retornando a url da imagem de capa
+  return $retorno;
+}
+
+/**
+ * Método que irá retornar a uri da imagem de capa
+ * 
+ * @param array $objNode
+ * @return Array
+ */
+function newGetImageCapaView($objNode){
+  // Criando a variavel de retorno
+  $strUrlImagem = null;
+  
+  if(!empty ($objNode->field_field_capa[0]['rendered']['#item']['uri'])){
+    // Recuperando a img original
+    $strUrlImagem = $objNode->field_field_capa[0]['rendered']['#item']['uri'];
+  }elseif(!empty ($objNode->field_field_image[0]['rendered']['#item']['uri'])){
+    // Imagem de galeria
+    $strUrlImagem = $objNode->field_field_image[0]['rendered']['#item']['uri'];
+  } 
+  
+  // Retornando a url da imagem de capa
+  return $strUrlImagem;
+}
+
+function ignoreNoticia($arrObjNode = null, $strNid = null){
+  
+  // Validações
+  if($arrObjNode == null)    throw new Exception("Array não informado");
+  if($strNid == null)        throw new Exception("String Nid não informado");
+  
+  // Criando o array de nid para verificar se a notícia não está sendo repetida
+  $arrNid = explode(",", $strNid);
+  
+  // Criando o array  retorno
+  $arrObjNodeRetorno = array();
+  
+  // Percorrendo o id das notícias
+  foreach($arrObjNode as $intChave => $objNode){
+    // Caso o nid não exista no array ignore
+    if(!in_array($objNode->nid, $arrNid)){
+      $arrObjNodeRetorno[] = $objNode;
+    }
+  }
+  
+  
+  return $arrObjNodeRetorno;
+}
+
+/**
+ * Método que irá remover as hashs de marcação
+ * @param String $string
+ * @return String 
+ */
+function retiraHash($string) {
+    // Retirando as hash de marcação
+    return str_replace("[@#galeria#@]", "", str_replace("[@#podcast#@]", "", str_replace("[@#video#@]", "", $string)));
+}
+
+/**
+ * Metodo que irá , atraves de uma vires, retornar uma string com o value field da categoria
+ * OBS: observer se a views tem a categoria como campo 
+ * 
+ * @param String $arrObjNode 
+ * @return String $key
+ */
+ function getCategoria($arrObjViews){  
+  foreach ($arrObjViews as $key =>$valor):
+    if(strpos($key,"field_field_cat")!==false &&!(empty($valor))):
+       return $key;
+    endif;
+  endforeach;   
+  return false;
+}
+
+function getDadosCategoria($node){
+    
+    $arrRetorno = array();
+    
+    //pegando o chapeu (categoria)
+    $tempNode = $node;
+    $tempChave = key($tempNode->_field_data);
+    $base = $tempNode->_field_data[$tempChave]['entity'];
+    $strSubCategoria = api_getFieldCategoriaPorNodeType($base->type);
+    
+    if($strSubCategoria){
+        $tempTerm = $base->$strSubCategoria;
+        $langTerm = key($tempTerm);
+        $tid = $tempTerm[$langTerm][0]['tid'];
+        $objTerm = taxonomy_term_load($tid);
+
+        $arrRetorno['nome'] = $objTerm->name;
+        $urlChapeu = drupal_lookup_path('alias','taxonomy/term/'.$tid);
+        //substituindo antigas url pela novas
+        if($urlChapeu === 'multimidia/fotos_old'){$urlChapeu = 'multimidia/fotos';}
+        if($urlChapeu === 'multimidia/tv_old'){$urlChapeu = 'multimidia/tv';}
+        if($urlChapeu === 'multimidia/videos_old'){$urlChapeu = 'multimidia/videos';}
+        if(!strstr($urlChapeu, 'http')){$urlChapeu = '/'.$urlChapeu;}
+
+        $arrRetorno['url'] = $urlChapeu;
+    }else{
+        $arrRetorno = FALSE;
+    }
+    
+//    if($node->nid === '206423'){
+//        
+//        echo '<pre> asdasdad';
+//        var_dump($langTerm);
+//        die;
+//    }
+    
+return $arrRetorno;
+}
+
+/**
+ * Método que irá retornar o nome do fiel de categoria do caderno pela node informada
+ * 
+ * @param sdtClass $node 
+ * @return String $strField
+ */
+function api_getFieldCategoriaPorNodeType($node_type){
+  
+  // Iniciando a variável field
+  $strField = "";
+  
+  // Selecioando o nome do field
+  switch($node_type){
+    case "caderno_esportes":
+        $strField =  "field_catesporte";
+      break;
+    case "caderno_carreiras":
+        $strField =  "field_catnegocios";
+      break;
+    case "caderno_cultura":
+        $strField =  "field_catcultura";
+      break;
+    case "caderno_tecnologia":
+        $strField =  "field_cattecnologia";
+      break;
+    case "caderno_noticias":
+        $strField =  "field_catnoticia";
+      break;
+    case "caderno_multimidia":
+        $strField =  "field_catradiotv";
+      break;
+    case "caderno_colunistas":
+        $strField =  "field_catcolunista";
+      break;
+    case "caderno_politica":
+        $strField =  "field_catpolitica";
+      break;
+    case "blogs_da_redacao":
+        $strField =  "field_catblog";
+      break;
+  }
+  // Retornando o field
+  return $strField;
+}
+
+function get_top_getclick($intTipo) {
+  $sqlQuery = db_select('top_view_getclick', 't')
+                  ->distinct('url')
+                  ->fields('t', array('titulo', 'url'))
+                  ->condition('tipo', $intTipo, '=')
+                  ->orderBy('visitas', 'DESC')
+                  ->range(0, 4)
+                  ->execute()->fetchAll();
+  return $sqlQuery;
+}
+
+/**
+ * Método que irá receber a notícia por parametro e irá retornar dizendo se ela ira abrir no leiaja ou não;
+ * @param stdClass $objNode
+ * @param bolean $debug
+ * @return stdClass 
+ */
+function verificaConteudoMultimidia(&$objNode, $debug = false){
+  // Liguagem
+  $strLinguagem = (!empty ($objNode->field_image[$objNode->language])) ? "pt-br" : "und";
+  
+  // Pegando a linguagem do vídeo
+  $strLinguavemVideo = key($objNode->field_videost);
+  $strLinguavemAudio = key($objNode->field_audiost);
+  
+  // Caso tenha algum vídeo ou galeria
+  if(!empty ($objNode->field_image[$strLinguagem]) && count($objNode->field_image[$strLinguagem]) >1){
+    // Setando a flag para que a notícia abra no leiaja
+    @$objNode->abrirLeiaja = true;
+  }else  if(!empty ($objNode->field_videost[$strLinguavemVideo][0]["value"])){
+    // Setando a flag para que a notícia abra no leiaja
+    @$objNode->abrirLeiaja = true;
+  }elseif (!empty ($objNode->field_audiost[$strLinguavemAudio][0]["value"])){
+    // Setando a flag para que a notícia abra no leiaja
+    @$objNode->abrirLeiaja = true;
+  }else    // Setando a flag para abrir em modal
+    @$objNode->abrirLeiaja = false;
+  
+  // Retornando a node modificada
+  return $objNode;
+}
+
+//Função que vai verificar o tipo e retornar o caderno
+function getCadernoNode($type){
+    
+    $cadernoTipoCor = array();
+    
+    switch ($type) {
+        case "caderno_esportes":
+            $cadernoTipoCor = array(
+                'tipo' => 'Esportes',
+                'cor' => 'verde',
+                'field' => 'field_catesporte',
+                'url' => '/esportes/'
+            );
+            break;
+        case "caderno_carreiras":
+            $cadernoTipoCor = array(
+                'tipo' => 'Carreiras',
+                'cor' => 'cinza',
+                'field' => 'field_catnegocios',
+                'url' => '/carreiras/'
+            );
+            break;
+        case "caderno_cultura":
+            $cadernoTipoCor = array(
+                'tipo' => 'Cultura',
+                'cor' => 'amarelo',
+                'field' => 'field_catcultura',
+                'url' => '/cultura/'
+            );
+            break;
+        case "caderno_tecnologia":
+            $cadernoTipoCor = array(
+                'tipo' => 'Tecnologia',
+                'cor' => 'azul',
+                'field' => 'field_cattecnologia',
+                'url' => '/tecnologia/'
+            );
+            break;
+        case "caderno_noticias":
+            $cadernoTipoCor = array(
+                'tipo' => 'Notícias',
+                'cor' => 'vermelho',
+                'field' => 'field_catnoticia',
+                'url' => '/noticias/'
+            );
+            break;
+        case "caderno_politica":
+            $cadernoTipoCor = array(
+                'tipo' => 'Política',
+                'cor' => 'azulescuro',
+                'field' => 'field_catpolitica',
+                'url' => '/politica/'
+            );
+            break;
+        case "caderno_multimidia":
+            $cadernoTipoCor = array(
+                'tipo' => 'Multimídia',
+                'cor' => 'azulescuro',
+                'field' => 'field_catmultimidia',
+                'url' => ''
+            );
+            break;
+        case "caderno_colunistas":
+            $cadernoTipoCor = array(
+                'field' => 'field_catcolunista',
+            );
+            break;
+        default:
+            $cadernoTipoCor = array(
+                'cor' => 'cinza'
+            );
+            break;
+    }
+    
+    return $cadernoTipoCor;
+    
+}
+
+//Retorna a url do subcaderno
+function getUrlSubCaderno($subCaderno){
+    
+    $url = '';
+    
+    switch ($subCaderno) {
+        case 'Brasil':
+            $url = '/noticias/brasil';
+            break;
+        case 'Cidades':
+            $url = '/noticias/cidades';
+            break;
+        case 'Ciência e Saúde':
+            $url = '/noticias/cienciasesaude';
+            break;
+        case 'Economia':
+            $url = '/noticias/economia';
+            break;
+        case 'Mundo':
+            $url = '/noticias/mundo';
+            break;
+    }
+    
+}
+
+//Função para recuperar a revisão
+function funcoes_getRevisao($nid = NULL){
+    
+    //Retornando o valor da função
+    return get_revisao($nid);
+    
+}

@@ -1,0 +1,40 @@
+.box0047 {
+	overflow: hidden
+}
+.box0047 .transparent {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height:150px;
+	background-color: rgba(0,0,0,0.7);
+	top:240px;
+}
+
+.box0047 h2 a{
+	position:relative;
+	bottom:140px;
+	left:10px;
+	z-index:2;
+	float:left;
+	margin:10px 0px 10px 0px; 
+	width:100%;
+	font-size:11px;
+	color:white; /* #989898 */
+	text-transform:uppercase;
+}
+.box0047 a:hover{
+	text-decoration:underline;
+}
+.box0047 a.titulo{
+	padding:0 10px 0 10px;
+	position:relative;
+	bottom:140px;
+	z-index:2;
+	float:left;
+	font-size:25px;
+	color:white; /* #f2352f */
+	margin:0px 0px 0px 0px;
+	height:;
+}
+.box0047 .img { float:left;margin-right:10px; }
+.box0047 .node { margin:0px !important;padding:0px !important; }

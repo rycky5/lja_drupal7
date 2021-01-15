@@ -1,0 +1,741 @@
+<?php
+/**
+ * Definição das constantes usada em todo o mÃ³dulo.
+ *
+ */
+define('EMAIL_CORRIGIR', 'redacao@leiaja.com.br');
+define('EMAIL_FALECONOSCO', 'redacao@leiaja.com.br');
+
+function leiaja_theme() 
+{
+  $path = drupal_get_path('module', 'leiaja');
+  $pathTheme = path_to_theme();
+
+  return array(
+      'tplImprimir' => array(
+          'template' => 'imprimir',
+          'variables' => array('conteudo' => NULL),
+      ),
+      'multimidia-embed' => array(
+          'template' => 'multimidia_embed',
+          'path' => "$path/theme",
+      ),
+      'galeria-embed' => array(
+          'template' => 'galeria_embed',
+          'path' => "$path/theme",
+      ),
+      'noticia-embed' => array(
+          'template' => 'noticia_embed',
+          'path' => "$path/theme",
+      ),
+      'ultimas' => array(
+          'template' => 'ultimas',
+          'path' => "$pathTheme/templates",
+      ),
+      'assine' => array(
+          'template' => 'assine',
+          'path' => "$pathTheme/templates",
+      ),
+      'busca_google' => array(
+          'template' => 'busca_google',
+          'path' => "$path/theme",
+      ),
+      'feed2' => array(
+          'template' => 'feed2',
+          'path' => $path."/theme",
+      ),
+      'feed3' => array(
+          'template' => 'feed3',
+          'path' => $path."/theme",
+        )
+  );
+}
+
+/*
+ * Implement hook_permission().
+ */
+
+function leiaja_permission() {
+  return array(
+      'administer capa' => array(
+          'title' => t('Configurar Capa'),
+          'description' => t('Permite configurar as capas.'),
+      ),
+      'change node type' => array(
+          'title' => t('Trocar caderno'),
+          'description' => t('Permite alterar caderno da publicação.')
+      ),
+  );
+}
+
+/**
+ * Implementação da função hook_menu().
+ *
+ */
+function leiaja_menu() 
+{
+  $items = array();
+
+  $items['util/imprimir'] = array(
+      'title' => t('Versão de Impressão'),
+      'page callback' => 'page_utilImprimir',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+      'file' => 'leiaja.inc'
+  );
+
+  $items['ultimas'] = array(
+      'title' => 'Exibição das ultimas notícias.',
+      'page callback' => 'exibe_ultimas',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+      'file' => 'ultimas.inc'
+  );
+
+  // Manutenção. Cria links encurtados para conteudo que estejam faltando.
+  $items['manutencao/permlink'] = array(
+      'title' => t('Corrige links encurtados.'),
+      'page callback' => 'page_manutencaoPermlink',
+      'access arguments' => array('access administration pages'),
+      'type' => MENU_CALLBACK,
+      'file' => 'leiaja.inc'
+  );
+
+  // Página embed para incorporação de conteúdo multimidia.
+  $items['embed'] = array(
+      'title' => t('Página embed para incorporação de conteúdo multimidia.'),
+      'page callback' => 'page_multimidiaEmbed',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+      'file' => 'leiaja.inc'
+  );
+
+  // Página embed para incorporação de conteúdo multimidia.
+  $items['galeria'] = array(
+      'title' => t('Página embed para incorporação de galeria.'),
+      'page callback' => 'page_galeriaEmbed',
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+      'file' => 'leiaja.inc',
+  );
+
+  $items['assinar'] = array(
+      'title' => 'RSS - Leia Já',
+      'page callback' => 'exibirFeed',
+      'access arguments' => array('access content'),
+      'file' => 'feed.inc'
+  );
+
+  $items['assine'] = array(
+      'title' => 'Assine',
+      'page callback' => 'page_assine',
+      'access arguments' => array('access content'),
+      'file' => 'feed.inc'
+  );
+
+  $items['embed/noticia'] = array(
+      'title' => 'Embed do corpo da notícia.',
+      'description' => t('Embed do corpo da notícia.'),
+      'page callback' => 'noticia_embed',
+      'access arguments' => array('access content'),
+      'file' => 'noticia_embed.inc',
+      'type' => MENU_CALLBACK
+  );
+
+  $items['busca'] = array(
+      'title' => 'Leia Já',
+      'access arguments' => array('access content'),
+      'page callback' => 'theme',
+      'page arguments' => array('busca_google'),
+      'description' => t('Leia Já')
+  );
+  
+  $items['feed2'] = array(
+        'title' => 'RSS - Leia Já',
+        'access arguments' => array('access content'),
+        'file' => 'feed.inc',
+        'page callback' => 'page_feed2'
+    );
+    
+    $items['feed2/rss'] = array(
+        'title' => 'RSS - Leia Já',
+        'access arguments' => array('access content'),
+        'file' => 'feed.inc',
+        'page callback' => 'exibirFeed2'
+    );
+  
+    $items['feed3'] = array(
+        'title' => 'RSS - Leia Já',
+        'access arguments' => array('access content'),
+        'file' => 'feed.inc',
+        'page callback' => 'page_feed3'
+    );
+    
+    $items['feed3/rss'] = array(
+        'title' => 'RSS - Leia Já',
+        'access arguments' => array('access content'),
+        'file' => 'feed.inc',
+        'page callback' => 'exibirFeed3'
+    );
+    
+    return $items;
+}
+
+/**
+ * Implementação da função para envio de e-mails de acordo com o Template.
+ *
+ * @param $key
+ * @param $message
+ * @param $params
+ */
+function leiaja_mail($key, &$message, $params) 
+{
+
+  $vBody = '';
+  $headers = array(
+      'MIME-Version' => '1.0',
+      'Content-Type' => 'text/html; charset=UTF-8; format=flowed; delsp=yes',
+      'Content-Transfer-Encoding' => '8Bit',
+      'X-Mailer' => 'LeiaJa'
+  );
+
+  if (!empty($params['from']))
+    $message['from'] = $params['from'];
+
+  if (!empty($params['fromName']))
+    $headers['sender'] = $params['fromName'];
+
+  $message['headers'] = $headers;
+  switch ($key) {
+    case 'corrigir':
+      $message['subject'] = '[Leia Já] - Sugestão de Correção de conteúdo.';
+      $vBody = "Foi enviado uma sugestão de correção pelo site.<br />";
+      $vBody .= "De:{$params['de']}<br />";
+      $vBody .= "Em:" . date("d/m/Y H:i") . "<br />";
+      $vBody .= "EndereÃ§o IP:" . ip_address() . "<br />";
+      $vBody .= "<a href='{$_SERVER['HTTP_REFERER']}'>Link da matÃ©ria</a><br />";
+      $vBody .= "Mensagem:<br/>" . $params['mensagem'];
+
+      $message['body'][] = formataEmail('Correção de conteúdo', $vBody);
+
+      break;
+    case 'faleconosco':
+      $message['subject'] = "[Leia Já Fale Conosco] - {$params['assunto']}.";
+      $vBody = "Nome:{$params['de']} ({$params['sexo']})<br />";
+      $vBody .= "Local: {$params['cidade']}/{$params['uf']}<br />";
+      $vBody .= "Em:" . date("d/m/Y H:i") . "<br />";
+      $vBody .= "EndereÃ§o IP:" . ip_address() . "<br />";
+      $vBody .= "<a href='{$_SERVER['HTTP_REFERER']}'>Link da matÃ©ria</a><br />";
+      $vBody .= "Assungo: {$params['assunto']}<br/>";
+      $vBody .= "Mensagem:<br/>{$params['mensagem']}";
+
+      $message['body'][] = formataEmail('Fale Conosco', $vBody);
+      break;
+    case 'recomendar':
+      $message['subject'] = '[Leia Já] - ' . $params['de'] . ' recomendou um link para vocÃª.';
+      $vBody = "Foi enviado uma recomendação de uma página. Clique no link abaixo para acessar.<br />";
+
+      if (!empty($params['comentario']))
+        $vBody .= "<strong>{$params['comentario']}</strong><br/>";
+
+      $vBody .= "<a href='{$_SERVER['HTTP_REFERER']}'>Link da matÃ©ria</a><br />";
+
+      $message['body'][] = formataEmail('Recomendação', $vBody);
+      break;
+    case 'senha':
+      $message['subject'] = '[Leia Já] - Recuperação de senha.';
+      $vBody = "Foi solicitada uma recuperação de senha no portal Leia Já.<br />Click no link abaixo para cadastrar uma nova senha.<br />O link expirará em um dia, apÃ³s a solicitação.<br/>";
+      //$vBody = "Foi solicitada uma recuperação de senha no portal Leia Já.<br />";
+      $vBody .= "<a href='" . url("senha/{$params['uid']}/{$params['data']}/{$params['hash']}", array('absolute' => TRUE)) . "'>Leia Já</a><br />";
+
+      $message['body'][] = formataEmail('Recuperar Senha', $vBody);
+      break;
+    case 'recomendar_post_colunista':
+      $message['subject'] = '[Leia Já] - ' . $params['de'] . ' recomendou um link para vocÃª.';
+      $vBody = "Foi enviado uma recomendação de uma página. Clique no link abaixo para acessar.<br />";
+
+      if (!empty($params['comentario']))
+        $vBody .= "<strong>{$params['comentario']}</strong><br/>";
+
+      $vBody .= "<a href='{$params['URL']}'>Link da matÃ©ria</a><br />";
+
+      $message['body'][] = formataEmail('Recomendação', $vBody);
+      break;
+    case 'integracao':
+      $message['subject'] = "[Leia Já Integração Especial].";
+
+      $vBody = "Total Integrados: " . count($params["arrIntegrado"]) . " <br />";
+      // Criando interação com as nodes importadas
+      $vBody .= "<ul>";
+      foreach ($params["arrIntegrado"] as $arrIntegrado) {
+        $vBody .= "<li>";
+        $vBody .= "NID: (" . $arrIntegrado["intNid"] . ") - ";
+        $vBody .= "Titulo: (" . $arrIntegrado["strTituloNode"] . ") - ";
+        $vBody .= "Data Hora: (" . $arrIntegrado["strDataHora"] . ") - ";
+        $vBody .= "</li>";
+      }
+      $vBody .= "</ul>";
+
+      $vBody .= "Total Erro: " . count($params["arrNodeErro"]) . " <br />";
+      // Criando interação com as nodes com erro
+      $vBody .= "<ul>";
+      foreach ($params["arrNodeErro"] as $arrErro) {
+        $vBody .= "<li>";
+        $vBody .= "Erro: (" . $arrErro["strErro"] . ") - ";
+        $vBody .= "NID: (" . $arrErro["intNid"] . ") - ";
+        $vBody .= "Titulo: (" . $arrErro["strTituloNode"] . ") - ";
+        $vBody .= "Data Hora: (" . $arrErro["strDataHora"] . ") - ";
+        $vBody .= "</li>";
+      }
+      $vBody .= "</ul>";
+
+      $message['body'][] = formataEmail('RelatÃ³rio de Integração', $vBody);
+      break;
+    //criando o email com a notÃ­cia a ser enviada para o ig 
+    case 'enviar_noticias_ig':
+
+      $message['subject'] = '***iG Pernambuco: ' . $params['titulo'] . ' ***';
+      $vBody .= $params['texto'];
+      $message['body'][] = formataEmail('segue sugestão para a home', $vBody);
+      break;
+  }
+}
+
+function formataEmail($pTitulo, $pCorpo) 
+{
+
+  $vHtml = implode('', file(drupal_get_path('module', 'leiaja') . '/email.html'));
+
+  $vHtml = str_replace('##TITULO##', $pTitulo, $vHtml);
+  $vHtml = str_replace('##MENSAGEM##', $pCorpo, $vHtml);
+
+  return $vHtml;
+}
+
+/**
+ * Remove hashtag especial para exibição do html de recomendação de conteúdo antes da exibição do form
+ * de edição na área administrativa.
+ *
+ * @param $pNode
+ */
+function leiaja_node_prepare(&$pNode) 
+{
+  if (!empty($pNode->body[$pNode->language][0]['value'])) {
+    $pNode->body[$pNode->language][0]['value'] = str_replace('##RECOMENDA##', '', $pNode->body[$pNode->language][0]['value']);
+    $pNode->body[$pNode->language][0]['value'] = str_replace('<p>##RECOMENDA##</p>', '', $pNode->body[$pNode->language][0]['value']);
+  }
+}
+
+/**
+ *
+ * Adiciona hashtag para exibição do html de recomendação de conteúdo no Frontend.
+ * Antes de salvar o conteúdo no banco Ã© feita a contagem de paragrafos `<p>` para inserir no local especificado.
+ *
+ * @param unknown_type $pNode
+ */
+function leiaja_node_presave(&$pNode)
+{
+  if (!empty($pNode->body[$pNode->language][0]['value']) && $pNode->type != 'page' && $pNode->type != 'caderno_colunistas' && $pNode->type != 'agenda' && $pNode->type != 'especial' && $pNode->type != 'cobertura' && $pNode->type != 'eleicoes_2012') {
+    $vDom = new DOMDocument;
+
+    $vHtmlBody = '<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>' . $pNode->body[$pNode->language][0]['value'] . '</body></html>';
+
+    $vDom->loadHTML($vHtmlBody);
+    $vParagraph = $vDom->getElementsByTagName('p');
+
+    $vCont = 0;
+    $vHtml = '';
+    foreach ($vParagraph as $p) {
+      $vCont++;
+      $vHtml .= $vDom->saveXML($p, LIBXML_NOEMPTYTAG);
+
+      if ($vCont == 2)
+        $vHtml .= "##RECOMENDA##";
+    }
+    if ($pNode->field_recomenda["und"][0]["value"] == '0') {
+      $vHtml = str_replace('##RECOMENDA##', '', $vHtml);
+    }
+
+    $pNode->body[$pNode->language][0]['value'] = $vHtml;
+  }
+}
+
+/**
+ * Após inserir um node atualiza o permlink. Apenas no insert.
+ *
+ * @param $node
+ */
+function leiaja_node_insert($node) 
+{
+  // Popula tabela taxonomy_chapeu
+  if (!empty($node->field_tags[$node->language][0])) {
+    $tid = $node->field_tags[$node->language][0]['tid'];
+    $name = $node->field_tags[$node->language][0]['name'];
+    $nid = $node->nid;
+
+    _taxonomy_chapeu($nid, $tid, $name);
+  }
+
+  // Caso o node esteja sendo publicado cria o permlink.
+  if ($node->status == '1') {
+    global $base_url;
+
+    $vUrlBase = (str_replace('sgc.', 'www.', $base_url));
+    $vLinkFull = $vUrlBase . '/' . drupal_lookup_path('alias', "node/" . $node->nid);
+    $vLinkPerm = file_get_contents('http://leiaja.me/ws/?url=' . $vLinkFull);
+
+    if(!empty($vLinkFull) && !empty($vLinkPerm)){
+        // setando o permilink
+        $node->field_permlink[key($node->field_permlink)][0]['value'] = $vLinkPerm;
+
+        // Atualizando o campo
+        field_attach_update('node', $node);        
+    }
+  }
+}
+
+/**
+ * Após atualizar um node atualiza o permlink.
+ *
+ * @param $node
+ */
+function leiaja_node_update($node) 
+{
+    
+   entity_get_controller('node')->resetCache(array($node->nid));
+  // Popula tabela taxonomy_chapeu
+  if (!empty($node->field_tags[$node->language][0])) {
+    $tid = $node->field_tags[$node->language][0]['tid'];
+    $name = $node->field_tags[$node->language][0]['name'];
+    $nid = $node->nid;
+
+    _taxonomy_chapeu($nid, $tid, $name);
+  }
+
+  if ($node->status == '1') {
+    global $base_url;
+    
+    $vUrlBase  = (str_replace('sgc.', 'www.', $base_url));
+    $vLinkFull = $vUrlBase . '/' . drupal_lookup_path('alias', "node/" . $node->nid);
+    $vLinkPerm = file_get_contents('http://leiaja.me/ws/?url=' . $vLinkFull);
+    
+    if(!empty($vLinkFull) && !empty($vLinkPerm)){
+        // setando o permilink
+        $node->field_permlink[key($node->field_permlink)][0]['value'] = $vLinkPerm;
+        
+        field_attach_presave('node', $node);
+        // Atualizando o campo
+        field_attach_update('node', $node);     
+    }
+  }
+ 
+}
+
+/**
+ * @file
+ * Makes IMCE available as plugin for client-side editors integrated via
+ * Wysiwyg API.
+ */
+
+/**
+ * Implementation of hook_wysiwyg_plugin().
+ */
+function leiaja_wysiwyg_plugin($editor, $version) 
+{
+  static $integrated = array();
+
+  switch ($editor) {
+    case 'tinymce':
+      return array(
+          'PDW File Browser' => array(
+              'extensions' => array('PDW File Browser' => t('PDW File Browser')),
+              'url' => 'http://www.leiaja.com',
+              'options' => array(
+                  'file_browser_callback' => 'filebrowser',
+                  'inline_styles' => TRUE,
+              ),
+              'load' => FALSE,
+          ),
+      );
+  }
+}
+
+/**
+ * Adicionando na edição de Carreiras a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_carreiras_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_carreiras',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de PolÃ­tica a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_politica_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_politica',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Noticias a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_noticias_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_noticias',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Esportes a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_esportes_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_esportes',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Multimidia a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_multimidia_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_multimidia',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Tecnologia a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_tecnologia_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_tecnologia',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Cultura a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_caderno_cultura_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'caderno_cultura',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Adicionando na edição de Carnaval a opção de troca de caderno.
+ *
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ */
+function leiaja_form_carnaval_2012_node_form_alter(&$form, &$form_state, $form_id) 
+{
+  $form['title']['#maxlength'] = 58;
+  if (user_access('change node type') && arg(1) != 'add') {
+    $form['type'] = array(
+        '#type' => 'select',
+        '#required' => true,
+        '#default_value' => 'carnaval_2012',
+        '#title' => 'Caderno:',
+        '#options' => getCadernos()
+    );
+  }
+}
+
+/**
+ * Sobrescreve a busca padrão para utilizar a busca do Apache Solr
+ * 
+ * @param type $form
+ * @param array $form_state
+ */
+function leiaja_search_box_form_submit($form, &$form_state) 
+{
+  if (isset($_REQUEST['destination'])) {
+    unset($_REQUEST['destination']);
+  }
+  if (isset($_REQUEST['edit']['destination'])) {
+    unset($_REQUEST['edit']['destination']);
+  }
+
+  $form_id = $form['form_id']['#value'];
+  $keys = $form_state['values'][$form_id];
+
+  // Handle Apache webserver clean URL quirks.
+  if (variable_get('clean_url', '0')) {
+    $keys = str_replace('+', '%2B', $keys);
+  }
+
+  $form_state['redirect'] = array('search/site/' . trim($keys));
+}
+
+/**
+ * Customização para indexar campos de imagem no ApacheSolr.
+ * 
+ * @param type $document
+ * @param type $node
+ * @param type $namespace
+ */
+function leiaja_apachesolr_index_document_build($document, $node, $namespace) 
+{
+  if (isset($node->field_image[$node->language][0]['uri']))
+    $document->addField('ss_field_image_uri', $node->field_image[$node->language][0]['uri']);
+
+  if (isset($node->field_capa[$node->language][0]['uri']))
+    $document->addField('ss_field_image_capa_uri', $node->field_capa[$node->language][0]['uri']);
+
+  if (isset($node->field_fonte[$node->language]))
+    $document->addField('ss_field_fonte', $node->field_fonte[$node->language][0]['value']);
+
+  if (isset($node->field_videost[$node->language]))
+    $document->addField('ss_field_video', $node->field_videost[$node->language][0]['value']);
+
+  if (isset($node->field_audiost[$node->language]))
+    $document->addField('ss_field_audio', $node->field_audiost[$node->language][0]['value']);
+}
+
+/**
+ * Adiciona os campos customizados nos resultados da busca.
+ * 
+ * @param type $query
+ * @param type $params
+ * @param type $caller
+ */
+function leiaja_apachesolr_query_alter(&$query, &$params, $caller) 
+{
+  $query->addParam('fl', 'ss_field_image_uri');
+  $query->addParam('fl', 'ss_field_image_capa_uri');
+  $query->addParam('fl', 'ss_field_fonte');
+  $query->addParam('fl', 'ss_field_video');
+  $query->addParam('fl', 'ss_field_audio');
+}
+
+/**
+ * Retira acentos e Espa;os de uma String
+ */
+function semAcentos($string) {
+  $a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
+  $b = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
+  $string = utf8_decode($string);
+  $string = strtr($string, utf8_decode($a), $b); //substitui letras acentuadas por &quot;normais&quot;
+  $string = str_replace(' ', '', $string); // retira espaco
+  $string = strtolower($string); // passa tudo para minusculo
+  return utf8_encode($string); //finaliza, gerando uma saída para a funcao
+}
+
+/**
+ * Salva a primeira tag adicionada para posterior uso como tag ChapÃ©u da noticia.
+ *
+ * @param type $pNid
+ * @param type $pTid
+ * @param type $pName
+ * @return boolean
+ */
+function _taxonomy_chapeu($pNid, $pTid, $pName) 
+{
+  $vSelect = db_select('taxonomy_chapeu', 'tc')
+                  ->fields('tc', array('nid', 'tid', 'name'))
+                  ->condition('nid', $pNid)
+                  ->execute()->fetchAll();
+
+  if (empty($pName))
+    return false;
+
+  if (empty($vSelect)) {
+    db_insert('taxonomy_chapeu')
+            ->fields(array('nid' => $pNid, 'tid' => $pTid, 'name' => $pName))
+            ->execute();
+  } else {
+    db_update('taxonomy_chapeu')
+            ->fields(array('tid' => $pTid, 'name' => $pName))
+            ->condition('nid', $pNid, '=')
+            ->execute();
+  }
+
+  return true;
+}

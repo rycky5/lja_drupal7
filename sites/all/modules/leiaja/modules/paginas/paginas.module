@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Implementação do hook_theme 
+ */
+function paginas_theme(){
+    
+  //Path do módulo paginas  
+  $path = drupal_get_path('module', 'paginas');
+
+  return array(
+    'especiais' => array(
+        'template' => 'pagina_especiais',
+        'path' => $path . "/theme",
+    ),
+    'assine' => array(
+        'template' => 'assine',
+        'path' => $path . "/theme",
+    )
+  );
+}
+
+/**
+ *  Implementação do hook_menu 
+ */
+function paginas_menu(){
+  $items = array();
+  
+  $items['colunistas'] = array(
+    'title' => 'Colunistas',
+    'page callback' => 'page_colunistas',
+    'access arguments' => array('access content'),
+    'file' => 'paginas.inc'
+  );
+  $items['especiais'] = array(
+    'title' => 'Especiais',
+    'page callback' => 'page_especiais',
+    'access arguments' => array('access content'),
+    'file' => 'paginas.inc'
+  );
+  $items['assine'] = array(
+    'title' => 'Especiais',
+    'page callback' => 'page_assine',
+    'access arguments' => array('access content'),
+    'file' => 'paginas.inc'
+  );
+  
+  
+  return $items;
+}

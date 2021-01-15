@@ -1,0 +1,5 @@
+name = Relatorios
+description = Exibe os relatórios do portal.
+core = 7.x
+package = Leia Já
+;dependencies[] = leiaja

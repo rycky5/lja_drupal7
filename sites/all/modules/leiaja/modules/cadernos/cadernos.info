@@ -1,0 +1,5 @@
+name = Cadernos - Leiajá
+description = Modulo de exibição dos cadernos do LeiaJá.
+core = 7.x
+;dependencies[] = leiaja
+package = Leia Já

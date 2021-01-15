@@ -1,0 +1,131 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do meu módulo
+ * 
+ * @author Lídio Gomes <lidio.gomes@sereducacional.com>
+ */
+/*
+ * Implementação do hook_theme
+ */
+function integracao_nova_capa_theme(){
+    
+    $pathTheme = drupal_get_path('theme', 'leiaja');
+    
+    return array(
+        'menu-home' => array(
+            'template' => 'menu.tpl.php',
+            'path' => $pathTheme . '/templates/'
+        )
+    );
+    
+}
+
+
+/**
+ * Implementação da função hook_menu()
+ */
+function integracao_nova_capa_menu() {
+    //Declarando a variável $itens
+    $itens = array();
+
+    $itens['admin-capa/ajax/get-noticias'] = array(
+        'title' => 'Noticias da capa',
+        'page callback' => 'getNoticias',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/gerar-json'] = array(
+        'title' => 'Json mobile',
+        'page callback' => 'gerarJson',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/montar-noticia'] = array(
+        'title' => 'Monta as noticias',
+        'page callback' => 'montarNoticia',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/image-crop'] = array(
+        'title' => 'Crop de imagens',
+        'page callback' => 'imageCropCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/nova-imagem'] = array(
+        'title' => 'Nova Imagem',
+        'page callback' => 'novaImagem',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/destroi-imagem'] = array(
+        'title' => 'Destruir imagem',
+        'page callback' => 'destroiImagem',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/capa-base'] = array(
+        'title' => 'Salvar Capa',
+        'page callback' => 'capaBase',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/preview-capa'] = array(
+        'title' => 'Preview da Capa',
+        'page callback' => 'previewCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/get-matriz'] = array(
+        'title' => 'Get Matriz',
+        'page callback' => 'getMatriz',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/salvar-capa'] = array(
+        'title' => 'Salvar Capa',
+        'page callback' => 'salvarCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/atualizar-capa'] = array(
+        'title' => 'Atualizar Capa',
+        'page callback' => 'atualizarCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/deletar-capa'] = array(
+        'title' => 'Deletar Capa',
+        'page callback' => 'deletarCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/listar-capa'] = array(
+        'title' => 'Listar Capa',
+        'page callback' => 'listarCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    $itens['admin-capa/ajax/duplicar-capa'] = array(
+        'title' => 'Duplicar Capa',
+        'page callback' => 'duplicarCapa',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'integracao_nova_capa.inc'
+    );
+    
+    return $itens;
+}

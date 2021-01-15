@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title>LeiaJá - Tudo o que você precisa saber</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/ie-emulation-modes-warning.js"></script>
+    </head>
+    
+    <body>
+        <!-- Começa Modal Compartilhar -->
+        <div id="modal-share" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-share-title">Compartilhar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-xs-6 align-center">
+                            <a href="#" class="facebook">
+                                <img src="img/icon_facebook.svg" alt="Compartilhar no Facebook">
+                            </a>
+                        </div>
+                        <div class="col-xs-6 align-center">
+                            <a href="#" class="whatsapp"><img src="img/icon_whatsapp.svg" alt="Compartilhar no Whatsapp"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Termina Modal Compartilhar -->
+        
+        <!-- Começa Modal Comentários -->
+        <div id="modal-comments" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-comments-title">Comentários</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                    <div class="modal-body">
+                        <img src="img/comments.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Termina Modal Comentários -->
+        <nav class="navbar navbar-leiaja navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle x collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/logo-leiaja.svg"></a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <div class="input-group campo-busca">
+                        <input type="text" class="form-control" placeholder="Buscar">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <img src="img/icon_search.svg">
+                            </button>
+                        </span>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="noticias"><a href="noticias.html">Notícias</a></li>
+                        <li class="politica"><a href="politica.html">Política</a></li>
+                        <li class="carreiras"><a href="carreiras.html">Carreiras</a></li>
+                        <li class="esportes"><a href="esportes.html">Esportes</a></li>
+                        <li class="entretenimento"><a href="entretenimento.html">Entretenimento</a></li>
+                        <li class="tecnologia"><a href="tecnologia.html">Tecnologia</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="main-container" class="container">
+            <article class="thumbnail entretenimento">
+                <img src="img/noticias/entretenimento/devotos.jpg">
+                <h1>Devotos celebra 30 anos querendo ‘começar de novo’</h1>
+                <div class="col-xs-10 no-padding">
+                    <h2><strong>MÚSICA</strong> | 20/03/2018</h2>
+                </div>
+                <div class="col-xs-2 no-padding">
+                    <a href="#" data-toggle="modal" data-target="#modal-share"><img class="share" src="img/icon_share_entretenimento.svg"></a>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <p>Contrariando a possível falta de perspectivas, uma banda de hardcore criada na periferia do Recife, na comunidade do Alto José do Pinho, em 1988, encontrou espaço no cenário da música local, conquistando os mais diversos públicos e consolidando o seu som até tornar-se uma das mais importantes bandas do rock pernambucano, 30 anos depois. O Devotos abriu 2018 celebrando três décadas de trabalho e até o fim do ano continuará desenvolvendo atividades para comemorar, incluindo o lançamento de um disco de inéditas. Este trabalho chegará com a missão de 'zerar o cronômetro' e trazer novas possibilidades para que a banda possa se reinventar e assim dar conta de outros longos anos de hardcore.</p>
+                    <p>Cannibal, Neílton e Celo eram três adolescentes do Alto Zé do Pinho quando se juntaram, no fim da década de 1980, para fazer música rápida e alta na cena punk do Recife. Entre baculejos da polícia e shows que só saberiam que estavam escalados ao se deparar com cartazes que os anunciavam pelos muros da cidade, o então chamado Devotos do Ódio foi percorrendo seu caminho. Nos primeiros nove anos, a banda ficou restrita à cena punk, como relembra o baixista e vocalista Cannibal, mas em 1994 uma noite no antigo Circo Maluco Beleza derrubaria a primeira (falsa) previsão pára a banda.</p>
+                    <p>A festa, promovida pelo produtor Paulo André (do Abril pro Rock), Rock’n Roll Circus, tinha em seu headline Mundo Livre S.A e Chico Science e Nação Zumbi, além de uma plateia bem diferente daquelas para as quais o Devotos costumava tocar. Entrando meio que “de penetra” no evento, apesar do receio do produtor e do desconhecimento do público, os rapazes transformaram uma participação de três músicas em um minishow com mais de cinco, que teve de ser encerrado para que as bandas escaladas pudessem tocar. Chico Science, ao ouvir o hardcore do grupo “começou a dançar” e, naquele momento, um novo caminho se abriu para o Devotos: “Acho que se a gente não tivesse agradado naquela noite a gente não teria se integrado”, diz Neílton, guitarrista do grupo.</p>
+                    <!-- Começa Publicidade -->
+                    <img class="banner banner-284-236" src="img/banner.jpg">
+                    <!-- Termina Publicidade -->
+                    <p>A integração a que ele se refere é o movimento Manguebit, que já chegou com força no início da década de 1990, encabeçado por Chico Science e, pouco mais tarde, tornou-se um dos mais importantes movimentos musicais do século 20, no Brasil. O Devotos vinha de outra cena e fazia um som bem diferente do que se ouvia no Mangue, mas havia algo que os ligava ao novo movimento: “A gente falava exatamente o que Chico falava também, esse foi o elo. A mesma informação que Chico pregava nas músicas dele eram as informações que a gente tinha nas nossas, e ele percebeu isso”, relembra Neílton. A partir daí, a banda punk da periferia passou a se apresentar em eventos mais estruturados, ganhando visibilidade e angariando fãs dos mais diferentes estilos, lugares e classes sociais.</p>
+                    <p>Os anos seguintes foram de consolidação de um trabalho expressivo e forte que derrubou as demais (falsas) previsões para o grupo. O Devotos se desfez do ‘Ódio’ e, com o novo nome, ganhou respeito e credibilidade no meio musical nacional e internacional. Sem deixar sua comunidade e, sobretudo, zelando por ela, a banda conseguiu também valorizá-la e abrir as portas para “as pessoas subirem o Alto Zé do Pinho pra saber o que tava acontecendo lá”, como diz Cannibal. “O que a gente tinha antes era uma mídia sensacionalista que ia para o subúrbio cobrir os crimes e o tráfico, enquanto tinha os movimentos culturais rolando na comunidade e ninguém falava nada. Essa coisa da mídia começar a abraçar e passar a mostrar o que tinha de positivo na comunidade, acho que essa foi uma mudança forte que a gente conseguiu com a nossa música”, completa o vocalista.</p>
+                    <p>Em três décadas de som alto, rápido e pesado, o Devotos conquistou seu lugar e hoje é referência e inspiração para “a pirralhada que está começando”, como diz o baterista Celo. E, apesar de terem alcançado amadurecimento e estabilidade na carreira musical, este trio ainda zera o relógio a cada novo trabalho, criando novas possibilidades e novo gás para continuar na ativa: “Eu acredito que uma banda sobreviva de perspectivas para poder ter continuidade. Devotos tem milhões de planos ainda.”, entrega Celo. É como diz o primeiro disco da banda, ‘Agora tá valendo’.</p>
+                </div>
+                <div class="col-xs-12 no-padding numero-comentario">
+                    <a href="#" data-toggle="modal" data-target="#modal-comments">Comentários (7)</a>
+                </div>
+                <hr>
+            </article>
+        </div>
+        <div id="loading-icon"><img class="loading-icon" src="img/icon_loading.svg"></div>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+</html>

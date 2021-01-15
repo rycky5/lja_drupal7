@@ -1,0 +1,127 @@
+<?php
+
+
+/**
+ * Implementação do hook_theme().
+ *
+ */
+function usuario_theme()
+{
+  $pathTheme  = path_to_theme();
+  $path      = drupal_get_path('module', 'usuario');
+  return array(
+    'usuario' => array(
+      'template' => 'usuario',
+      'path' => "$pathTheme/template"
+    ),'cadastro' => array(
+      'template' => 'cadastro',
+      'path' => "$path/template",
+    ),
+    'alteracao' => array(
+      'template' => 'user_edit',
+      'path' => "$path/template",
+    ),
+
+  );
+}
+/**
+ * Implementação do hook_permission().
+ */
+function usuario_permission() {
+  return array(
+    'administer usuarios' => array(
+      'title' => t('Administrador do usuario.'),
+      'description' => t('Permite que usuários configurem a integração com o usuario.'),
+    )
+  );
+}
+/**
+ * Implementação da função hook_menu().
+ *
+ */
+function usuario_menu()
+{
+  $items = array();
+  // Página inicial.
+  $items['usuario/login'] = array(
+    'title' => 'Página Inicial',
+    'page callback' => 'usuario_login',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc' 
+  );
+  // Página inicial.
+  $items['usuario/logout'] = array(
+    'title' => 'Página Inicial',
+    'page callback' => 'user_sair',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc' 
+  );
+  
+  $items['cadastro'] = array(
+    'title' => t('Cadastro Leia Já'),
+    'description' => t('Cadastro do usuário.'),
+    'page callback' => 'user_register',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+
+  $items['alteracao'] = array(
+    'title' => t('Alteração de Cadastro Leia Já'),
+    'description' => t('Alteração de Cadastro do usuário.'),
+    'page callback' => 'user_edit',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+  
+  $items['ajax/user/register'] = array(
+    'title' => t('User Register Ajax'),
+    'page callback' => 'register_ajax',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+
+  $items['ajax/user/edit'] = array(
+    'title' => t('User Register Ajax'),
+    'page callback' => 'edit_ajax',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+
+  $items['ajax/node/share'] = array(
+    'title' => t('Count shared nodes'),
+    'page callback' => 'count_share',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+
+  $items['ajax/facebook/accept'] = array(
+    'title' => t('Facebook user accepted the terms'),
+    'page callback' => 'aceitar_usuario',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+
+  $items['ajax/user/tryusername'] = array(
+    'title' => t('User Register Ajax'),
+    'page callback' => 'tryUsername',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+
+  $items['ajax/user/trymail'] = array(
+    'title' => t('User Register Ajax'),
+    'page callback' => 'tryMail',
+    'access arguments' => array('access content'),
+    'file' => 'usuario.inc',
+    'type' => MENU_CALLBACK
+  );
+  
+  return $items;
+  
+}
+

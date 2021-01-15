@@ -1,0 +1,73 @@
+name = LeiaJa 2.0
+description = Tema versão 2.0 do LeiaJá.
+core = 7.x
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+regions[banner_topo] = Banner Topo
+regions[skyscraper] = Skyscraper
+regions[banner_float] = Banner Float
+regions[content] = Content
+regions[sidebar] = Sidebar
+regions[banner_footer] = Banner Footer
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Includes
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][]   = css/novacapa.css
+stylesheets[all][]   = css/boxes/estilo.css
+stylesheets[all][]   = css/grid.css
+stylesheets[all][]   = css/font-awesome.css
+
+scripts[]            = js/script.js
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Excludes
+;;;;;;;;;;;;;;;;;;;;;
+
+; JavaScript
+; --------------
+; exclude[js][] = 'modules/contextual/contextual.js'
+
+; CSS
+; --------------
+exclude[css][] = 'misc/vertical-tabs.css'
+exclude[css][] = 'modules/aggregator/aggregator.css'
+; Necessary administrative block CSS.
+; exclude[css][] = 'modules/block/block.css'
+exclude[css][] = 'modules/book/book.css'
+exclude[css][] = 'modules/comment/comment.css'
+exclude[css][] = 'modules/dblog/dblog.css'
+exclude[css][] = 'modules/file/file.css'
+exclude[css][] = 'modules/filter/filter.css'
+exclude[css][] = 'modules/forum/forum.css'
+exclude[css][] = 'modules/help/help.css'
+exclude[css][] = 'modules/menu/menu.css'
+exclude[css][] = 'modules/node/node.css'
+exclude[css][] = 'modules/openid/openid.css'
+exclude[css][] = 'modules/poll/poll.css'
+exclude[css][] = 'modules/search/search.css'
+exclude[css][] = 'modules/statistics/statistics.css'
+exclude[css][] = 'modules/syslog/syslog.css'
+exclude[css][] = 'modules/system/maintenance.css'
+exclude[css][] = 'modules/system/system.maintenance.css'
+exclude[css][] = 'modules/system/system.menus.css'
+exclude[css][] = 'modules/system/system.messages.css'
+exclude[css][] = 'modules/system/system.theme.css'
+exclude[css][] = 'modules/taxonomy/taxonomy.css'
+exclude[css][] = 'modules/tracker/tracker.css'
+exclude[css][] = 'modules/update/update.css'
+exclude[css][] = 'modules/user/user.css'
+;exclude[css][] = 'modules/system/admin.css'
+;exclude[css][] = 'modules/system/system.css'
+;exclude[css][] = 'modules/system/system.admin.css'
+;exclude[css][] = 'modules/system/system.base.css'
+
+
+; Information added by Drupal.org packaging script on 2014-08-06
+version = "7.31"
+project = "drupal"
+datestamp = "1407346433"

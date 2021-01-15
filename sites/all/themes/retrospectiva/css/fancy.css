@@ -1,0 +1,140 @@
+/* ********** RESET ********** */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%; }
+	
+body	{ }
+ol, ul  { list-style: none; }
+
+:focus  { outline: 0; }
+/* ********** RESET ********** */
+
+
+
+
+/* MAIN TAGS ################################### */	
+html { height: 100%;}
+
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande";
+	font-size:12px; line-height:18px;
+	color:#1a1a1a; 
+	text-align: left; 
+	margin:0px; padding:0px;  
+	position: relative;
+	height: 100%;
+	overflow-x: hidden;
+	}
+		
+#main {
+	width: 100%;
+	position: absolute;
+	/*margin-top: 10%;*/
+	}
+	
+	
+.info {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 300px;
+	text-align: center;
+	padding-top: 177px;
+	z-index: 1000;
+	/*background: url(../images/white_60.png);*/
+	}
+	
+	
+	
+/* FANCY SLIDER */
+.fancy_thumbnail_slider_container {
+	height: 477px;  /* total height with the next/prev buttons */ 
+	height:252px;
+	position: relative;
+	overflow:hidden;
+	}
+
+.fancy_thumbnail {
+	width: 100%;
+	height: 423px;
+	height:252px; 		/* .inner-height * row amount */
+	position: relative;  	/* important (relative or absolute) */
+	}
+	
+.fancy_thumbnail li {
+	float: left;
+	margin: 0 1px 1px 0;
+	width: 200px; height: 125px;
+	/* IMPORTANT = don't add border*/
+	position: relative;
+	cursor: pointer;
+	}
+	
+.fancy_thumbnail li .inner {
+	width: 200px; height: 125px;
+	float:left;background: url(../images/fotosespecial.jpg) no-repeat;
+}
+	
+.fancy_thumbnail li .caption {
+	width: 200px; height: 125px;
+	position: absolute;
+	top: 0px; left: 0px;
+	display: none;
+	}
+	
+.fancy_thumbnail li .caption a {
+	display: block;
+	width: 200px; height: 125px;
+	}
+	
+	
+.fancy_thumbnail_next, .fancy_thumbnail_prev {
+	width: 51px;
+	height: 16px;
+	display:block;
+	margin: 0 auto;
+	text-indent: -9999px;
+	}
+	
+.fancy_thumbnail_next {
+
+	margin-top: 10px;
+	}	
+	
+.fancy_thumbnail_prev {
+	margin-bottom: 10px;
+	}
+	
+.fancy_thumbnail_next:hover, .fancy_thumbnail_prev:hover {
+	background-position: bottom left;
+	}
+
+.disable { /*display: none;*/ background: none; }  /* if next/prev button disable */
+	
+.fancy_thumbnail li .inner.foto1 { background-position: 0px 0px; }
+.fancy_thumbnail li .inner.foto2 { background-position: 0px -125px; }
+.fancy_thumbnail li .inner.foto3 { background-position: 0px -250px; }
+.fancy_thumbnail li .inner.foto4 { background-position: 0px -375px; }
+.fancy_thumbnail li .inner.foto5 { background-position: 0px -500px; }
+.fancy_thumbnail li .inner.foto6 { background-position: 0px -625px; }
+.fancy_thumbnail li .inner.foto7 { background-position: 0px -750px; }
+.fancy_thumbnail li .inner.foto8 { background-position: 0px -875px; }
+.fancy_thumbnail li .inner.foto9 { background-position: 0px -1000px; }
+.fancy_thumbnail li .inner.foto10 { background-position: 0px -1125px; }
+.fancy_thumbnail li .inner.foto11 { background-position: 0px -1250px; }
+.fancy_thumbnail li .inner.foto12 { background-position: 0px -1375px; }
+.fancy_thumbnail li .inner.foto13 { background-position: 0px -1500px; }
+.fancy_thumbnail li .inner.foto14 { background-position: 0px -1625px; }
+.fancy_thumbnail li .inner.foto15 { background-position: 0px -1750px; }
+

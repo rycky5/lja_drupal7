@@ -1,0 +1,27 @@
+<?php
+/**
+ * Hook Theme para criação dos temas dos cadernos com dependencia do theme/aparence Leia já (beta) 
+ */
+function cadernos_theme(){
+  $pathTheme = path_to_theme();
+
+  return array(
+    'colunistas' => array(
+      'template' => 'caderno_colunistas',
+      'path' => "sites/all/themes/leiaja/templates",
+    ),
+  );
+}
+
+function cadernos_menu(){
+  $items = array();
+  
+  $items['colunistas2'] = array(
+    'title' => 'Colunistas',
+    'page callback' => 'page_colunistas2',
+    'access arguments' => array('access content'),
+    'file' => 'cadernos.inc'
+  );
+  
+  return $items;
+}

@@ -1,0 +1,5 @@
+name = listaufpe
+description = Consulta ao resultado do listão da UFPE.
+core = 7.x
+package = Leia Já
+;dependencies[] = leiaja

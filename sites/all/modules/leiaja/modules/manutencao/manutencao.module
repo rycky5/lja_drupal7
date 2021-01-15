@@ -1,0 +1,68 @@
+<?php
+/**
+ * Arquivo que conterá os hooks do meu módulo
+ * 
+ * @author Thiago Galvão <galvao@sereducacional.com>
+ */
+/**
+ * Implementação do hook_theme().
+ */
+function manutencao_theme()
+{
+  $pathModule = drupal_get_path('module', 'manutencao');
+
+  return array(
+    'batchReport' => array(
+      'template' => 'batchReport',
+      'path' => "$pathModule/template"
+    )
+  );
+}
+
+/*
+ * Implement hook_permission().
+ */
+function manutencao_permission()
+{
+  return array(
+    'administer manutencao apagar' => array(
+      'title' => 'Apagar nodes antigos',
+      'description' => t('Permite excluir os nodes com mais de 90 dias da Agência Estado e NowDigital.'),
+    )
+  );
+}
+
+/**
+ * Implementação da função hook_menu().
+ *
+ *
+ */
+function manutencao_menu()
+{
+  $items = array();
+
+  /*
+   * migração de views
+   */
+  $items['admin/config/development/limpeza'] = array(
+    'title' => 'Limpeza de notícias antigas.',
+    'description' => 'Exclui notícias com mais de 60 dias da Agência Estado e NowDigital.',
+    'page callback' => 'page_limpeza',
+    'access arguments' => array('administer manutencao apagar'),
+    'file' => 'limpeza.inc',
+    'type' => MENU_NORMAL_ITEM
+  );
+
+  /*
+   * migração de views
+   */
+  $items['admin/manutencao/batchReport'] = array(
+    'title' => 'Resultado do processo',
+    'page callback' => 'page_batchReport',
+    'access arguments' => array('administer manutencao apagar'),
+    'file' => 'limpeza.inc',
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
